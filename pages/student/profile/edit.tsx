@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import Meta from "@components/Meta";
 import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
-import { Branches, func, programType } from "@components/Utils/matrixUtils";
+import { Branches } from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
 
 function ProfileEdit() {
@@ -29,8 +29,8 @@ function ProfileEdit() {
   } = useForm<Student>({
     defaultValues: StudentData,
   });
-  const [dept, setDept] = useState<any>("");
-  const [deptSec, setDeptSec] = useState<any>("");
+  // const [dept, setDept] = useState<any>("");
+  // const [deptSec, setDeptSec] = useState<any>("");
 
   const { token } = useStore();
   const router = useRouter();
@@ -193,9 +193,9 @@ function ProfileEdit() {
                     fullWidth
                     variant="standard"
                     {...register("department")}
-                    onChange={(e) => {
-                      setDept(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setDept(e.target.value);
+                    // }}
                     disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
@@ -209,7 +209,7 @@ function ProfileEdit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Program</p>
-                  {dept !== "" ? (
+                  {/* {dept !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -247,7 +247,13 @@ function ProfileEdit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )}
+                  )} */}
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    disabled
+                    value="PhD"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
@@ -255,9 +261,9 @@ function ProfileEdit() {
                     fullWidth
                     variant="standard"
                     {...register("department_2")}
-                    onChange={(e) => {
-                      setDeptSec(e.target.value);
-                    }}
+                    // onChange={(e) => {
+                    //   setDeptSec(e.target.value);
+                    // }}
                     disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
@@ -271,7 +277,7 @@ function ProfileEdit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Secondary Program</p>
-                  {deptSec !== "" ? (
+                  {/* {deptSec !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -309,7 +315,13 @@ function ProfileEdit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )}
+                  )} */}
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    disabled
+                    value="PhD"
+                  />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>

@@ -13,6 +13,8 @@ export const programExpanded = [
   "PhD",
 ];
 
+export const programPhDExpanded = ["PhD"];
+
 export const programCondensed = [
   "BT/BS/Double Major",
   "Dual",
