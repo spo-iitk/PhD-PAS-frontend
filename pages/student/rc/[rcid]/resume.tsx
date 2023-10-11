@@ -20,6 +20,7 @@ import AvTimerIcon from "@mui/icons-material/AvTimer";
 import { styled } from "@mui/material/styles";
 import { green } from "@mui/material/colors";
 import SaveIcon from "@mui/icons-material/Save";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { getDeptProgram } from "@components/Parser/parser";
 import useStore from "@store/store";
@@ -146,6 +147,7 @@ function Resume() {
   const [allResumes, setAllResumes] = useState<AllStudentResumeResponse[]>([]);
   const [resumeName, setResumeName] = useState<string>("");
   const [open, setOpen] = useState(false);
+  const [openDeleteConfirmation, setOpenDeleteConfirmation] = useState(false);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -155,6 +157,15 @@ function Resume() {
     setSuccess(false);
     setFileSaved(null);
     setLoading(false);
+  };
+
+  const handleOpenDeleteConfirmation = () => setOpenDeleteConfirmation(true);
+  const handleCloseDeleteConfirmation = async (confirmation: boolean) => {
+    if (confirmation) {
+      const response = await resumeRequest.delete(token, rid);
+      if (response != null) window.location.reload();
+    }
+    setOpenDeleteConfirmation(false);
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -265,6 +276,11 @@ function Resume() {
                 <AddIcon />
               </IconButton>
             </div>
+            <div>
+              <IconButton onClick={handleOpenDeleteConfirmation}>
+                <DeleteIcon />
+              </IconButton>
+            </div>
           </Grid>
         </Grid>
         <div>
@@ -348,6 +364,32 @@ function Resume() {
               Upload
             </Button>
           </form>
+        </Box>
+      </Modal>
+      <Modal
+        open={openDeleteConfirmation}
+        onClose={handleCloseDeleteConfirmation}
+      >
+        <Box sx={boxStyle}>
+          <h2 style={{ margin: "0 auto 25px auto", padding: "0 auto" }}>
+            Delete Resume
+          </h2>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            onClick={() => handleCloseDeleteConfirmation(true)}
+          >
+            Delete
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            onClick={() => handleCloseDeleteConfirmation(false)}
+          >
+            Cancel
+          </Button>
         </Box>
       </Modal>
     </>

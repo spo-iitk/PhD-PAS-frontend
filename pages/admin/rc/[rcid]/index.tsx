@@ -4,14 +4,11 @@ import {
   CardContent,
   Grid,
   List,
-  Modal,
   Stack,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 import theme from "@components/theme/theme";
 import Meta from "@components/Meta";
@@ -20,9 +17,6 @@ import useStore from "@store/store";
 import noticeRequest, { NoticeParams } from "@callbacks/admin/rc/notice";
 import requestCompany from "@callbacks/admin/rc/company";
 import eventRequest, { Event } from "@callbacks/admin/rc/overview";
-import rcRequest from "@callbacks/admin/rc/rc";
-import EditRCApplicationCap from "@components/Modals/EditRCApplicationCap";
-import DeleteConfirmation from "@components/Modals/DeleteConfirmation";
 
 function Index() {
   const router = useRouter();
@@ -93,39 +87,39 @@ function Index() {
     router.push(`/admin/rc/${rid}/notice`);
   };
 
-  const [openNew, setOpenNew] = useState(false);
-  const [openDeleteModal, setDeleteModal] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
-  useEffect(() => {
-    const close = async () => {
-      if (rcid && confirmation) {
-        await rcRequest.put(token, {
-          ID: parseInt(rcid?.toString(), 10),
-          inactive: true,
-        });
-        router.push("/admin/rc");
-      }
-    };
-    close();
-  }, [confirmation, rcid, router, router.isReady, token]);
-  const handleOpenNew = () => {
-    setOpenNew(true);
-  };
-  const handleCloseNew = () => {
-    setOpenNew(false);
-  };
-  const handleOpenDeleteModal = () => {
-    setDeleteModal(true);
-  };
-  const handleCloseDeleteModal = () => {
-    setDeleteModal(false);
-  };
+  // const [openNew, setOpenNew] = useState(false);
+  // const [openDeleteModal, setDeleteModal] = useState(false);
+  // const [confirmation, setConfirmation] = useState(false);
+  // useEffect(() => {
+  //   const close = async () => {
+  //     if (rcid && confirmation) {
+  //       await rcRequest.put(token, {
+  //         ID: parseInt(rcid?.toString(), 10),
+  //         inactive: true,
+  //       });
+  //       router.push("/admin/rc");
+  //     }
+  //   };
+  //   close();
+  // }, [rcid, router, router.isReady, token]);
+  // const handleOpenNew = () => {
+  //   setOpenNew(true);
+  // };
+  // const handleCloseNew = () => {
+  //   setOpenNew(false);
+  // };
+  // const handleOpenDeleteModal = () => {
+  //   setDeleteModal(true);
+  // };
+  // const handleCloseDeleteModal = () => {
+  //   setDeleteModal(false);
+  // };
 
   return (
     <div>
       <Meta title={`Admin Dashboard - ${rcName}`} />
       <Stack>
-        {!hideItems && (
+        {/* {!hideItems && (
           <Stack
             spacing={3}
             justifyContent="space-between"
@@ -161,7 +155,7 @@ function Index() {
               />
             </Modal>
           </Stack>
-        )}
+        )} */}
         {!hideItems ? (
           <>
             <Grid container justifyContent="space-evenly" spacing={2}>

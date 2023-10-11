@@ -17,7 +17,7 @@ import AdminStudentRequest, {
   Student,
 } from "@callbacks/admin/student/adminStudent";
 import useStore from "@store/store";
-import { Branches, func, programType } from "@components/Utils/matrixUtils";
+import { Branches } from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
 
 function Edit() {
@@ -40,8 +40,8 @@ function Edit() {
   const watchCategory = watch("category");
   const watchDisability = watch("disability");
 
-  const [dept, setDept] = useState<string>("");
-  const [deptSec, setDeptSec] = useState<string>("");
+  // const [dept, setDept] = useState<string>("");
+  // const [deptSec, setDeptSec] = useState<string>("");
 
   const { token } = useStore();
   const router = useRouter();
@@ -194,9 +194,9 @@ function Edit() {
                     fullWidth
                     variant="standard"
                     {...register("department")}
-                    onChange={(e) => {
-                      setDept(e.target.value as string);
-                    }}
+                    // onChange={(e) => {
+                    //   setDept(e.target.value as string);
+                    // }}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -209,7 +209,7 @@ function Edit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Program</p>
-                  {dept !== "" ? (
+                  {/* {dept !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -245,7 +245,13 @@ function Edit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )}
+                  )} */}
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    disabled
+                    value="PhD"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
@@ -261,7 +267,7 @@ function Edit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Secondary Program</p>
-                  {deptSec !== "" ? (
+                  {/* {deptSec !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -300,7 +306,13 @@ function Edit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )}
+                  )} */}
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    disabled
+                    value="PhD"
+                  />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>

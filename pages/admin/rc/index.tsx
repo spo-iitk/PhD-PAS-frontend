@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { IconButton, Modal, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { GridColDef } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
-import AddIcon from "@mui/icons-material/Add";
 
 import DataGrid from "@components/DataGrid";
 import Meta from "@components/Meta";
@@ -10,7 +9,6 @@ import InactiveButton from "@components/Buttons/InactiveButton";
 import rcRequest, { RC } from "@callbacks/admin/rc/rc";
 import ActiveButton from "@components/Buttons/ActiveButton";
 import useStore from "@store/store";
-import AddRC from "@components/Modals/AddRC";
 
 const columns: GridColDef[] = [
   {
@@ -69,14 +67,14 @@ function Index() {
   const router = useRouter();
   const [rows, setRows] = useState<RC[]>([]);
   const { token, setRCName, setRcId } = useStore();
-  const [openNew, setOpenNew] = useState(false);
+  // const [openNew, setOpenNew] = useState(false);
   const [loading, setLoading] = useState(true);
-  const handleOpenNew = () => {
-    setOpenNew(true);
-  };
-  const handleCloseNew = () => {
-    setOpenNew(false);
-  };
+  // const handleOpenNew = () => {
+  //   setOpenNew(true);
+  // };
+  // const handleCloseNew = () => {
+  //   setOpenNew(false);
+  // };
 
   useEffect(() => {
     const getRC = async () => {
@@ -106,9 +104,9 @@ function Index() {
             <h2>Recruitment Cycle</h2>
           </div>
           <div>
-            <IconButton onClick={handleOpenNew}>
+            {/* <IconButton onClick={handleOpenNew}>
               <AddIcon />
-            </IconButton>
+            </IconButton> */}
           </div>
         </Stack>
 
@@ -125,9 +123,9 @@ function Index() {
           }}
           loading={loading}
         />
-        <Modal open={openNew} onClose={handleCloseNew}>
+        {/* <Modal open={openNew} onClose={handleCloseNew}>
           <AddRC handleClose={handleCloseNew} />
-        </Modal>
+        </Modal> */}
       </Stack>
     </div>
   );

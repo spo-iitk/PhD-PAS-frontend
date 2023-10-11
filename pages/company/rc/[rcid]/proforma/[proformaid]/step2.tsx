@@ -5,7 +5,6 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -60,19 +59,19 @@ function Step2() {
     setStr(new Array(130 + 1).join("0"));
   };
 
-  const handleProgramWise = (programName: string[]) => {
-    let newStr = str;
-    Branches.forEach((branch) => {
-      programName.forEach((program) => {
-        const idx =
-          func[branch as keyof typeof func][program as keyof programType];
-        if (idx !== -1) {
-          newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
-        }
-      });
-    });
-    setStr(newStr);
-  };
+  // const handleProgramWise = (programName: string[]) => {
+  //   let newStr = str;
+  //   Branches.forEach((branch) => {
+  //     programName.forEach((program) => {
+  //       const idx =
+  //         func[branch as keyof typeof func][program as keyof programType];
+  //       if (idx !== -1) {
+  //         newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
+  //       }
+  //     });
+  //   });
+  //   setStr(newStr);
+  // };
 
   const handleBranchWise = (branchName: string) => {
     let newStr = str;
@@ -102,40 +101,40 @@ function Step2() {
     setStr(newStr);
   };
 
-  const handleExamSelection = (exam: string) => {
-    switch (exam) {
-      case "JEE":
-        handleProgramWise([
-          "BT",
-          "BS",
-          "DoubleMajor",
-          "DualA",
-          "DualB",
-          "DualC",
-        ]);
-        break;
-      case "JAM":
-        handleProgramWise(["MSc"]);
-        break;
-      case "CAT":
-        handleProgramWise(["MBA"]);
-        break;
-      case "GATE":
-        handleProgramWise(["MT", "MSR", "MDes"]);
-        break;
-      case "CEED":
-        handleProgramWise(["MDes"]);
-        break;
-      default:
-        break;
-    }
-  };
+  // const handleExamSelection = (exam: string) => {
+  //   switch (exam) {
+  //     case "JEE":
+  //       handleProgramWise([
+  //         "BT",
+  //         "BS",
+  //         "DoubleMajor",
+  //         "DualA",
+  //         "DualB",
+  //         "DualC",
+  //       ]);
+  //       break;
+  //     case "JAM":
+  //       handleProgramWise(["MSc"]);
+  //       break;
+  //     case "CAT":
+  //       handleProgramWise(["MBA"]);
+  //       break;
+  //     case "GATE":
+  //       handleProgramWise(["MT", "MSR", "MDes"]);
+  //       break;
+  //     case "CEED":
+  //       handleProgramWise(["MDes"]);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <div>
       <Meta title="Step 2 - New Opening" />
       <Card sx={{ padding: 3 }}>
-        <h2>Step 2/5 (Eligibility Matrix)</h2>
+        <h2>Step 2/4 (Eligibility Matrix)</h2>
         <Stack spacing={4} alignItems="center">
           <Stack spacing={1}>
             <Stack spacing={4} direction="row" alignItems="center">
@@ -144,7 +143,7 @@ function Step2() {
               </IconButton>
               <h3>Select all</h3>
             </Stack>
-            <Stack spacing={4} direction="row" alignItems="center">
+            {/* <Stack spacing={4} direction="row" alignItems="center">
               <IconButton onClick={() => handleExamSelection("JEE")}>
                 <CheckCircleIcon />
               </IconButton>
@@ -175,11 +174,11 @@ function Step2() {
                 <CheckCircleIcon />
               </IconButton>
               <h3>Select all branches and programmes coming from CEED</h3>
-            </Stack>
+            </Stack> */}
           </Stack>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
+              {/* <TableHead>
                 <TableRow>
                   <TableCell
                     align="center"
@@ -253,7 +252,7 @@ function Step2() {
                     </Button>
                   </TableCell>
                 </TableRow>
-              </TableHead>
+              </TableHead> */}
               <TableBody>
                 {Branches.map((branch) => (
                   <TableRow>
@@ -266,7 +265,7 @@ function Step2() {
                         {branch}
                       </Button>
                     </TableCell>
-                    <TableCell width={100} align="center">
+                    {/* <TableCell width={100} align="center">
                       {func[branch as keyof typeof func].BT === -1 &&
                       func[branch as keyof typeof func].BS === -1 &&
                       func[branch as keyof typeof func].DoubleMajor === -1 ? (
@@ -348,7 +347,7 @@ function Step2() {
                           onClick={() => handleCheck(branch, ["MBA"])}
                         />
                       )}
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell width={100} align="center">
                       {func[branch as keyof typeof func].PhD === -1 ? (
                         <RemoveIcon />
