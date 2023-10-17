@@ -427,7 +427,7 @@ function Index() {
                   fullWidth
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              {/* <Grid item xs={12} md={6}>
                 <p>Secondary Program- Secondary Department</p>
                 <TextField
                   value={getDeptProgram(
@@ -439,7 +439,7 @@ function Index() {
                   }}
                   fullWidth
                 />
-              </Grid>
+              </Grid> */}
               <Grid item xs={12} md={6}>
                 <p>Email</p>
                 <TextField

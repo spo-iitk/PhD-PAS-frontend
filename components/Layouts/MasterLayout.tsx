@@ -207,7 +207,7 @@ function MasterLayout({
               </ListItem>
             </a>
           ))}
-          <a
+          {/* <a
             href="https://spo.iitk.ac.in/placement-coordinators"
             target="_blank"
             rel="noreferrer"
@@ -220,7 +220,7 @@ function MasterLayout({
                 <h4 style={{ margin: 5, color: "white" }}>Contact SPO</h4>
               </ListItemText>
             </ListItem>
-          </a>
+          </a> */}
           <Link href="/login" passHref key="logout">
             <ListItem sx={{ borderRadius: 5 }} button>
               <ListItemAvatar sx={{ color: "white" }}>
@@ -370,7 +370,7 @@ function MasterLayout({
                     </ListItem>
                   </a>
                 ))}
-                <a
+                {/* <a
                   href="https://spo.iitk.ac.in/placement-coordinators"
                   target="_blank"
                   rel="noreferrer"
@@ -383,7 +383,7 @@ function MasterLayout({
                       <h4 style={{ margin: 5, color: "white" }}>Contact SPO</h4>
                     </ListItemText>
                   </ListItem>
-                </a>
+                </a> */}
                 <Link href="/login" passHref key="logout">
                   <ListItem sx={{ borderRadius: 5 }} button>
                     <ListItemAvatar sx={{ color: "white" }}>
