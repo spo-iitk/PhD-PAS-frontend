@@ -283,11 +283,11 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
           name: "Proforma",
           id: "/proforma",
         },
-        {
-          avatar: <CalendarMonthIcon />,
-          name: "Calendar",
-          id: "/calendar",
-        },
+        // {
+        //   avatar: <CalendarMonthIcon />,
+        //   name: "Calendar",
+        //   id: "/calendar",
+        // },
         {
           avatar: <AccountCircleIcon />,
           name: "Attendance",
@@ -515,11 +515,11 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
           name: "Attendance",
           id: "/attendance",
         },
-        {
-          avatar: <CalendarMonthIcon />,
-          name: "Calendar",
-          id: "/calendar",
-        },
+        // {
+        //   avatar: <CalendarMonthIcon />,
+        //   name: "Calendar",
+        //   id: "/calendar",
+        // },
       ],
       extra: [
         {

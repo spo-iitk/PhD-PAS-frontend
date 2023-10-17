@@ -300,12 +300,12 @@ function Index() {
     } as AdminProformaType);
   };
 
-  const hideDetails = (hide: boolean) => {
-    requestProforma.hide(token, rid, parseInt(pid, 10), hide);
-  };
+  // const hideDetails = (hide: boolean) => {
+  //   requestProforma.hide(token, rid, parseInt(pid, 10), hide);
+  // };
 
-  const onClickHideDetails = () => hideDetails(true);
-  const onClickShowDetails = () => hideDetails(false);
+  // const onClickHideDetails = () => hideDetails(true);
+  // const onClickShowDetails = () => hideDetails(false);
 
   useEffect(() => {
     const fetchProformaEvents = async () => {
@@ -428,13 +428,13 @@ function Index() {
           >
             View Proforma
           </Button>
-          <Button
+          {/* <Button
             sx={{ width: { xs: "280px" }, height: "40px" }}
             variant="contained"
             href={`/admin/rc/${rid}/proforma/${pid}/step1`}
           >
             Update Proforma
-          </Button>
+          </Button> */}
         </Stack>
         <Stack spacing={3} direction={{ sm: "row", xs: "column" }}>
           <Button
@@ -454,26 +454,26 @@ function Index() {
         direction={{ lg: "row", xs: "column" }}
       >
         <Stack spacing={3} direction={{ sm: "row", xs: "column" }}>
-          <Button
+          {/* <Button
             variant="contained"
             sx={{ width: { xs: "280px" }, height: "40px" }}
             onClick={onClickShowDetails}
           >
             Show Details to Company
-          </Button>
-          <Button
+          </Button> */}
+          {/* <Button
             variant="contained"
             sx={{ width: { xs: "280px" }, height: "40px" }}
             onClick={onClickHideDetails}
           >
             Hide Details to Company
-          </Button>
+          </Button> */}
         </Stack>
         <Stack spacing={3} direction={{ sm: "row", xs: "column" }}>
           <Button
             variant="contained"
             sx={{ width: { xs: "280px" }, height: "40px" }}
-            href={`/admin/rc/${rid}/proforma/${pid}/step5`}
+            href={`/admin/rc/${rid}/proforma/${pid}/step4`}
           >
             Change/Set Deadline
           </Button>
