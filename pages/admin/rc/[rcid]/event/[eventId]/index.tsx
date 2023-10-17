@@ -72,12 +72,12 @@ const cols: GridColDef[] = [
     width: 200,
     valueGetter: (params) => getDeptProgram(params.value),
   },
-  {
-    field: "secondary_program_department_id",
-    headerName: "Secondary Department",
-    width: 200,
-    valueGetter: (params) => getDeptProgram(params.value),
-  },
+  // {
+  //   field: "secondary_program_department_id",
+  //   headerName: "Secondary Department",
+  //   width: 200,
+  //   valueGetter: (params) => getDeptProgram(params.value),
+  // },
   {
     field: "is_frozen",
     headerName: "Frozen",

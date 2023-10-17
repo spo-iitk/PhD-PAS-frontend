@@ -255,7 +255,7 @@ function ProfileEdit() {
                     value="PhD"
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
                   <Select
                     fullWidth
@@ -274,7 +274,7 @@ function ProfileEdit() {
                       </MenuItem>
                     ))}
                   </Select>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Secondary Program</p>
                   {/* {deptSec !== "" ? (

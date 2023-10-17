@@ -185,7 +185,7 @@ function Index() {
                 Go to Company Master DB
               </Button>
 
-              <Button
+              {/* <Button
                 sx={{ width: { xs: "280px" } }}
                 variant="contained"
                 onClick={handleOpenNew}
@@ -197,7 +197,7 @@ function Index() {
                   handleCloseNew={handleCloseNew}
                   cname={row.company_name}
                 />
-              </Modal>
+              </Modal> */}
             </Stack>
           )}
         </Stack>

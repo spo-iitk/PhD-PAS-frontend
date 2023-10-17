@@ -30,12 +30,12 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       disabled: false,
       api_id: "roll_no",
     },
-    {
-      field: "Expected Graduation Year",
-      value: "Select your Graduation Year",
-      disabled: false,
-      api_id: "expected_graduation_year",
-    },
+    // {
+    //   field: "Expected Graduation Year",
+    //   value: "Select your Graduation Year",
+    //   disabled: false,
+    //   api_id: "expected_graduation_year",
+    // },
     {
       field: "Department",
       value: "Select your Department",
@@ -48,30 +48,30 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       disabled: true,
       api_id: "program",
     },
-    {
-      field: "Secondary Department",
-      value: "Select your Department",
-      disabled: true,
-      api_id: "department_2",
-    },
-    {
-      field: "Secondary Program",
-      value: "Select your Program",
-      disabled: true,
-      api_id: "program_2",
-    },
-    {
-      field: "Specialisation",
-      value: "Enter your Specialisation",
-      disabled: false,
-      api_id: "specialization",
-    },
-    {
-      field: "Preference",
-      value: "Select your Preference",
-      disabled: false,
-      api_id: "preference",
-    },
+    // {
+    //   field: "Secondary Department",
+    //   value: "Select your Department",
+    //   disabled: true,
+    //   api_id: "department_2",
+    // },
+    // {
+    //   field: "Secondary Program",
+    //   value: "Select your Program",
+    //   disabled: true,
+    //   api_id: "program_2",
+    // },
+    // {
+    //   field: "Specialisation",
+    //   value: "Enter your Specialisation",
+    //   disabled: false,
+    //   api_id: "specialization",
+    // },
+    // {
+    //   field: "Preference",
+    //   value: "Select your Preference",
+    //   disabled: false,
+    //   api_id: "preference",
+    // },
     {
       field: "Gender",
       value: "Select your Gender",

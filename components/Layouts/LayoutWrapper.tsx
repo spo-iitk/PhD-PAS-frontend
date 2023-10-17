@@ -219,11 +219,11 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         },
       ],
       extra: [
-        {
-          avatar: <LightbulbIcon />,
-          name: "Placements Insight",
-          id: "https://spo.iitk.ac.in/insights",
-        },
+        // {
+        //   avatar: <LightbulbIcon />,
+        //   name: "Placements Insight",
+        //   id: "https://spo.iitk.ac.in/insights",
+        // },
         {
           avatar: <ArticleIcon />,
           name: "Intern Policy",
@@ -424,20 +424,22 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
               id: "/company",
             }
           : { avatar: <></>, name: "", id: "", hidden: true },
-        role === 100 || role === 101
-          ? {
-              avatar: <BarChartIcon />,
-              name: "User Database",
-              id: "/users",
-            }
-          : { avatar: <></>, name: "", id: "", hidden: true },
-        role === 100 || role === 101
-          ? {
-              avatar: <BarChartIcon />,
-              name: "Master Database (Company HR",
-              id: "/companyHR",
-            }
-          : { avatar: <></>, name: "", id: "", hidden: true },
+        // role === 100 || role === 101
+        // ?
+        // { avatar: <></>, name: "", id: "", hidden: true }
+          // ? {
+          //     avatar: <BarChartIcon />,
+          //     name: "User Database",
+          //     id: "/users",
+          //   }
+          // : { avatar: <></>, name: "", id: "", hidden: true },
+        // role === 100 || role === 101
+        //   ? {
+        //       avatar: <BarChartIcon />,
+        //       name: "Master Database (Company HR",
+        //       id: "/companyHR",
+        //     }
+        //   : { avatar: <></>, name: "", id: "", hidden: true },
       ],
       extra: [
         {
