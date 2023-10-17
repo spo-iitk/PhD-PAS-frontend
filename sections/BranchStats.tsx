@@ -45,32 +45,32 @@ const columns: GridColDef[] = [
 ];
 
 function BranchStats(params: { data: StatsType[]; isLoading: boolean }) {
-  const { data, isLoading } = params;
-  if (data && data.length > 0)
-    return (
-      <div>
-        <Meta title=" Stats Branchwise" />
-        <h2>Stats &gt; Branch-Wise</h2>
-        <DataGrid
-          rows={data}
-          columns={columns}
-          getRowId={(row) => row.program_department_id}
-          loading={isLoading}
-        />
-      </div>
-    );
-  return (
-    <div>
-      <Meta title=" Stats Branchwise" />
-      <h2>Stats &gt; Branch-Wise</h2>
-      <DataGrid
-        rows={[]}
-        columns={columns}
-        getRowId={(row) => row.program_department_id}
-        loading={isLoading}
-      />
-    </div>
-  );
+  // const { data, isLoading } = params;
+  // if (data && data.length > 0)
+  //   return (
+  //     <div>
+  //       <Meta title=" Stats Branchwise" />
+  //       <h2>Stats &gt; Branch-Wise</h2>
+  //       <DataGrid
+  //         rows={data}
+  //         columns={columns}
+  //         getRowId={(row) => row.program_department_id}
+  //         loading={isLoading}
+  //       />
+  //     </div>
+  //   );
+  // return (
+  //   <div>
+  //     <Meta title=" Stats Branchwise" />
+  //     <h2>Stats &gt; Branch-Wise</h2>
+  //     <DataGrid
+  //       rows={[]}
+  //       columns={columns}
+  //       getRowId={(row) => row.program_department_id}
+  //       loading={isLoading}
+  //     />
+  //   </div>
+  // );
 }
 
 BranchStats.layout = "adminPhaseDashBoard";

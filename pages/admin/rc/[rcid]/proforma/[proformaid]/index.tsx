@@ -123,13 +123,13 @@ const fixed_columns: GridColDef[] = [
     headerName: "Department",
     valueGetter: (params) => getDepartment(params.row.program_department_id),
   },
-  {
-    field: "program_dept_2",
-    headerName: "Secondary Program/Dept",
-    hide: true,
-    valueGetter: (params) =>
-      getDeptProgram(params.row.secondary_program_department_id),
-  },
+  // {
+  //   field: "program_dept_2",
+  //   headerName: "Secondary Program/Dept",
+  //   hide: true,
+  //   valueGetter: (params) =>
+  //     getDeptProgram(params.row.secondary_program_department_id),
+  // },
   {
     field: "status_name",
     headerName: "Status",
@@ -143,16 +143,16 @@ const fixed_columns: GridColDef[] = [
       </Button>
     ),
   },
-  {
-    field: "specialization",
-    headerName: "Specialisation",
-    hide: true,
-  },
-  {
-    field: "preference",
-    headerName: "Preference",
-    hide: true,
-  },
+  // {
+  //   field: "specialization",
+  //   headerName: "Specialisation",
+  //   hide: true,
+  // },
+  // {
+  //   field: "preference",
+  //   headerName: "Preference",
+  //   hide: true,
+  // },
   {
     field: "gender",
     hide: true,
@@ -170,11 +170,11 @@ const fixed_columns: GridColDef[] = [
       value && `${new Date(value).toLocaleDateString("en-GB")}`,
     hide: true,
   },
-  {
-    field: "expected_graduation_year",
-    hide: true,
-    headerName: "Expected Graduation Year",
-  },
+  // {
+  //   field: "expected_graduation_year",
+  //   hide: true,
+  //   headerName: "Expected Graduation Year",
+  // },
   {
     field: "tenth_board",
     headerName: "10th Board",

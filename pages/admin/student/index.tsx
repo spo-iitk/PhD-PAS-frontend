@@ -49,20 +49,20 @@ const columns: GridColDef[] = [
     headerName: "Secondary Program",
     valueGetter: (rowData) => getDeptProgram(rowData.value),
   },
-  {
-    field: "specialization",
-    headerName: "Specialisation",
-    hide: true,
-  },
+  // {
+  //   field: "specialization",
+  //   headerName: "Specialisation",
+  //   hide: true,
+  // },
   {
     field: "roll_no",
     headerName: "IITK Roll No.",
   },
-  {
-    field: "preference",
-    headerName: "Preference",
-    hide: true,
-  },
+  // {
+  //   field: "preference",
+  //   headerName: "Preference",
+  //   hide: true,
+  // },
   {
     field: "gender",
     headerName: "Gender",
@@ -80,10 +80,10 @@ const columns: GridColDef[] = [
       value && `${new Date(value).toLocaleDateString("en-GB")}`,
     hide: true,
   },
-  {
-    field: "expected_graduation_year",
-    headerName: "Expected Graduation Year",
-  },
+  // {
+  //   field: "expected_graduation_year",
+  //   headerName: "Expected Graduation Year",
+  // },
   {
     field: "iitk_email",
     headerName: "IITK Email",

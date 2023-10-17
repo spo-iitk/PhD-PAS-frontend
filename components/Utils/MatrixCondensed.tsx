@@ -6,7 +6,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
 } from "@mui/material";
 import React from "react";
@@ -19,7 +18,7 @@ function MatrixCondensed({ data }: { data: string }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        {/* <TableHead>
           <TableRow>
             <TableCell align="center" width={100} sx={{ fontWeight: 600 }}>
               Program
@@ -43,14 +42,14 @@ function MatrixCondensed({ data }: { data: string }) {
               PhD
             </TableCell>
           </TableRow>
-        </TableHead>
+        </TableHead> */}
         <TableBody>
           {Branches.map((branch) => (
             <TableRow>
               <TableCell component="th" scope="row" sx={{ fontWeight: 600 }}>
                 {branch}
               </TableCell>
-              <TableCell width={100} align="center">
+              {/* <TableCell width={100} align="center">
                 {func[branch as keyof typeof func].BT === -1 &&
                 func[branch as keyof typeof func].BS === -1 &&
                 func[branch as keyof typeof func].DoubleMajor === -1 ? (
@@ -107,7 +106,7 @@ function MatrixCondensed({ data }: { data: string }) {
                 ) : (
                   <CloseIcon sx={{ color: "red" }} />
                 )}
-              </TableCell>
+              </TableCell> */}
               <TableCell width={100} align="center">
                 {func[branch as keyof typeof func].PhD === -1 ? (
                   <RemoveIcon />

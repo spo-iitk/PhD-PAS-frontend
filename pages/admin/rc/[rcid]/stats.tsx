@@ -69,15 +69,15 @@ function Stats() {
             aria-label="basic tabs example"
           >
             <Tab label="Studentwise" />
-            <Tab label="Branchwise" />
+            {/* <Tab label="Branchwise" /> */}
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
           <StudentStats data={statsData.student} isLoading={isLoading} />
         </TabPanel>
-        <TabPanel value={value} index={1}>
+        {/* <TabPanel value={value} index={1}>
           <BranchStats data={statsData.branch} isLoading={isLoading} />
-        </TabPanel>
+        </TabPanel> */}
       </Box>
     </div>
   );

@@ -102,6 +102,17 @@ const resumeRequest = {
         errorNotification("Error", err.response?.data?.error || err.message);
         return [] as AllStudentResumeResponse[];
       }),
+  delete: (token: string, rid: string) =>
+    instance
+      .delete(`/rc/${rid}/resume`, setConfig(token))
+      .then(() => {
+        successNotification("Success", "Resume deleted");
+        return responseBody;
+      })
+      .catch((err: ErrorType) => {
+        errorNotification("Error", err.response?.data?.error || err.message);
+        return null;
+      }),
 };
 
 export default resumeRequest;
