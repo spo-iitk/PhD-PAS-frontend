@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 
-export const BASE_URL = "http://192.168.3.3:80";
+export const BASE_URL = "http://localhost:80";
 
 export const AUTH_URL = `${BASE_URL}/api/auth`;
 export const RAS_URL = `${BASE_URL}/api/ras`;
