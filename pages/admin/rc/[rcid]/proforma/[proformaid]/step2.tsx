@@ -5,18 +5,15 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import RemoveIcon from "@mui/icons-material/Remove";
 
 import {
   Branches,
   func,
-  programPhDExpanded,
-  programType,
+  totalDeptKeywords,
 } from "@components/Utils/matrixUtils";
 import Meta from "@components/Meta";
 import useStore from "@store/store";
@@ -27,7 +24,7 @@ import requestProforma, {
 const ROUTE = "/admin/rc/[rcid]/proforma/[proformaid]/step3";
 
 function Step2() {
-  const [str, setStr] = useState(new Array(125 + 1).join("0"));
+  const [str, setStr] = useState(new Array(totalDeptKeywords + 1).join("0"));
   const router = useRouter();
   const { rcid, proformaid } = router.query;
   const rid = (rcid || "").toString();
@@ -37,7 +34,8 @@ function Step2() {
     if (!(rid && pid)) return;
     const getStep2 = async () => {
       const data = await requestProforma.get(token, rid, pid);
-      if (data.eligibility.length > 110) setStr(data.eligibility);
+      if (data.eligibility.length === totalDeptKeywords + 1)
+        setStr(data.eligibility);
     };
     getStep2();
   }, [rid, pid, token]);
@@ -55,30 +53,19 @@ function Step2() {
   };
 
   const handleCheckAll = () => {
-    setStr(new Array(125 + 1).join("1"));
+    setStr(new Array(totalDeptKeywords + 2).join("1"));
   };
 
   const handleReset = () => {
-    setStr(new Array(125 + 1).join("0"));
-  };
-
-  const handleProgramWise = (programName: string) => {
-    let newStr = str;
-    Branches.forEach((branch) => {
-      const idx =
-        func[branch as keyof typeof func][programName as keyof programType];
-      if (idx !== -1) {
-        newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
-      }
-    });
-    setStr(newStr);
+    setStr(new Array(totalDeptKeywords + 2).join("0"));
   };
 
   const handleBranchWise = (branchName: string) => {
     let newStr = str;
-    programPhDExpanded.forEach((programName) => {
+    Object.keys(func[branchName as keyof typeof func]).forEach((keyword) => {
+      const temp = func[branchName as keyof typeof func];
       const idx =
-        func[branchName as keyof typeof func][programName as keyof programType];
+        func[branchName as keyof typeof func][keyword as keyof typeof temp];
       if (idx !== -1) {
         newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
       }
@@ -86,8 +73,9 @@ function Step2() {
     setStr(newStr);
   };
 
-  const handleCheck = (branch: string, program: string) => {
-    const idx = func[branch as keyof typeof func][program as keyof programType];
+  const handleCheck = (branch: string, keyword: string) => {
+    const temp = func[branch as keyof typeof func];
+    const idx = func[branch as keyof typeof func][keyword as keyof typeof temp];
     let newStr = str;
     if (str[idx] === "1") {
       newStr = `${newStr.substring(0, idx)}0${newStr.substring(idx + 1)}`;
@@ -96,48 +84,6 @@ function Step2() {
     }
     setStr(newStr);
   };
-  // const handleMultipleProgramWise = (programName: string[]) => {
-  //   let newStr = str;
-  //   Branches.forEach((branch) => {
-  //     programName.forEach((program) => {
-  //       const idx =
-  //         func[branch as keyof typeof func][program as keyof programType];
-  //       if (idx !== -1) {
-  //         newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
-  //       }
-  //     });
-  //   });
-  //   setStr(newStr);
-  // };
-
-  // const handleExamSelection = (exam: string) => {
-  //   switch (exam) {
-  //     case "JEE":
-  //       handleMultipleProgramWise([
-  //         "BT",
-  //         "BS",
-  //         "DoubleMajor",
-  //         "DualA",
-  //         "DualB",
-  //         "DualC",
-  //       ]);
-  //       break;
-  //     case "JAM":
-  //       handleMultipleProgramWise(["MSc"]);
-  //       break;
-  //     case "CAT":
-  //       handleMultipleProgramWise(["MBA"]);
-  //       break;
-  //     case "GATE":
-  //       handleMultipleProgramWise(["MT", "MSR", "MDes"]);
-  //       break;
-  //     case "CEED":
-  //       handleMultipleProgramWise(["MDes"]);
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
 
   return (
     <div>
@@ -152,63 +98,9 @@ function Step2() {
               </IconButton>
               <h3>Select all</h3>
             </Stack>
-            {/* <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={() => handleExamSelection("JEE")}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>
-                Select all branches and programmes coming from JEE Advanced
-              </h3>
-            </Stack>
-            <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={() => handleExamSelection("GATE")}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>Select all branches and programmes coming from GATE</h3>
-            </Stack>
-            <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={() => handleExamSelection("JAM")}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>Select all branches and programmes coming from JAM</h3>
-            </Stack>
-            <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={() => handleExamSelection("CAT")}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>Select all branches and programmes coming from CAT</h3>
-            </Stack>
-            <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={() => handleExamSelection("CEED")}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>Select all branches and programmes coming from CEED</h3>
-            </Stack> */}
           </Stack>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    align="center"
-                    width={100}
-                    sx={{ fontWeight: 600 }}
-                  >
-                    Program
-                  </TableCell>
-                  {programPhDExpanded.map((program) => (
-                    <TableCell
-                      align="center"
-                      width={100}
-                      sx={{ fontWeight: 600 }}
-                    >
-                      <Button onClick={() => handleProgramWise(program)}>
-                        {program}
-                      </Button>
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
               <TableBody>
                 {Branches.map((branch) => (
                   <TableRow>
@@ -221,26 +113,30 @@ function Step2() {
                         {branch}
                       </Button>
                     </TableCell>
-                    {programPhDExpanded.map((program) => (
-                      <TableCell width={100} align="center">
-                        {func[branch as keyof typeof func][
-                          program as keyof programType
-                        ] === -1 ? (
-                          <RemoveIcon />
-                        ) : (
-                          <Checkbox
-                            checked={
-                              str[
-                                func[branch as keyof typeof func][
-                                  program as keyof programType
-                                ]
-                              ] === "1"
-                            }
-                            onClick={() => handleCheck(branch, program)}
-                          />
+                    <TableCell>
+                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        {Object.keys(func[branch as keyof typeof func]).map(
+                          (keyword) => {
+                            const temp = func[branch as keyof typeof func];
+                            const value =
+                              func[branch as keyof typeof func][
+                                keyword as keyof typeof temp
+                              ];
+                            return (
+                              <TableRow>
+                                <TableCell>{keyword}</TableCell>
+                                <TableCell>
+                                  <Checkbox
+                                    checked={str[value] === "1"}
+                                    onClick={() => handleCheck(branch, keyword)}
+                                  />
+                                </TableCell>
+                              </TableRow>
+                            );
+                          }
                         )}
-                      </TableCell>
-                    ))}
+                      </Table>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

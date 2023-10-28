@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-import RemoveIcon from "@mui/icons-material/Remove";
 import {
   Paper,
   Table,
@@ -16,8 +15,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import {
   Branches,
   func,
-  programPhDExpanded,
-  programType,
+  totalDeptKeywords,
 } from "@components/Utils/matrixUtils";
 
 function MatrixExpanded({ data }: { data: string }) {
@@ -32,23 +30,31 @@ function MatrixExpanded({ data }: { data: string }) {
               <TableCell component="th" scope="row" sx={{ fontWeight: 600 }}>
                 {branch}
               </TableCell>
-              {programPhDExpanded.map((program) => (
-                <TableCell width={100} align="center">
-                  {func[branch as keyof typeof func][
-                    program as keyof programType
-                  ] === -1 ? (
-                    <RemoveIcon />
-                  ) : data[
-                      func[branch as keyof typeof func][
-                        program as keyof programType
-                      ]
-                    ] === "1" ? (
-                    <CheckIcon sx={{ color: "green" }} />
-                  ) : (
-                    <CloseIcon sx={{ color: "red" }} />
+              <TableCell>
+                <Table sx={{ minWidth: 650 }} aria-label="keywords table">
+                  {Object.keys(func[branch as keyof typeof func]).map(
+                    (keyword) => {
+                      const temp = func[branch as keyof typeof func];
+                      const value =
+                        func[branch as keyof typeof func][
+                          keyword as keyof typeof temp
+                        ];
+                      return (
+                        <TableRow>
+                          <TableCell>{keyword}</TableCell>
+                          <TableCell>
+                            {data[value] === "1" ? (
+                              <CheckIcon sx={{ color: "green" }} />
+                            ) : (
+                              <CloseIcon sx={{ color: "red" }} />
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    }
                   )}
-                </TableCell>
-              ))}
+                </Table>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

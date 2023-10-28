@@ -428,13 +428,13 @@ function Index() {
           >
             View Proforma
           </Button>
-          {/* <Button
+          <Button
             sx={{ width: { xs: "280px" }, height: "40px" }}
             variant="contained"
             href={`/admin/rc/${rid}/proforma/${pid}/step1`}
           >
             Update Proforma
-          </Button> */}
+          </Button>
         </Stack>
         <Stack spacing={3} direction={{ sm: "row", xs: "column" }}>
           <Button
