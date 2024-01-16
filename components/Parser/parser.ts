@@ -1,4 +1,4 @@
-import { func, programType, rev } from "@components/Utils/matrixUtils";
+import { func, rev } from "@components/Utils/matrixUtils";
 
 export const getProgram = (id: number) => {
   if (id === 200 || id === 0) return "NA";
@@ -25,5 +25,8 @@ export const getId = (program: string, department: string) => {
     return 200;
 
   if (program === "" || department === "") return 0;
-  return func[department as keyof typeof func][program as keyof programType];
+  const temp = func[department as keyof typeof func];
+  const idx =
+    func[department as keyof typeof func][program as keyof typeof temp];
+  return idx;
 };

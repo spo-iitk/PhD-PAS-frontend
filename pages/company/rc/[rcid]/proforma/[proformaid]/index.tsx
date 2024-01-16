@@ -2,17 +2,10 @@ import { Card, Grid, Stack, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import StepperComp from "@components/Stepper/stepperComp";
 import Meta from "@components/Meta";
 import MatrixExpanded from "@components/Utils/MatrixExpanded";
 import useStore from "@store/store";
-import proformaRequest, {
-  ProformaEvent,
-  ProformaType,
-} from "@callbacks/company/proforma";
-import {
-  totalDeptKeywords,
-} from "@components/Utils/matrixUtils";
+import proformaRequest, { ProformaType } from "@callbacks/company/proforma";
 import RichText from "@components/Editor/RichText";
 
 const textFieldColor = "#ff0000";

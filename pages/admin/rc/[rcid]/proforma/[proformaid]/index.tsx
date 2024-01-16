@@ -25,11 +25,7 @@ import StudentRequest from "@callbacks/admin/rc/proforma/students";
 import { CDN_URL } from "@callbacks/constants";
 import DataGrid from "@components/DataGrid";
 import Meta from "@components/Meta";
-import {
-  getDepartment,
-  getDeptProgram,
-  getProgram,
-} from "@components/Parser/parser";
+import { getDepartment, getProgram } from "@components/Parser/parser";
 import useStore from "@store/store";
 import zip from "@callbacks/auth/zip";
 import DownloadResume, {

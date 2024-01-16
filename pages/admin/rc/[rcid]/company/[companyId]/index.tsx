@@ -1,21 +1,13 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from "react";
 import { GridColDef } from "@mui/x-data-grid";
-import {
-  Button,
-  Card,
-  IconButton,
-  Modal,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, Card, IconButton, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import { useRouter } from "next/router";
 
 import DataGrid from "@components/DataGrid";
 import Meta from "@components/Meta";
-import AddPPO from "@components/Modals/addPPO";
 import useStore from "@store/store";
 import requestProforma, { ProformaType } from "@callbacks/admin/rc/proforma";
 import requestCompany, { CompanyRc } from "@callbacks/admin/rc/company";
@@ -89,14 +81,7 @@ function Index() {
   const { rcid } = router.query;
   const rid = (rcid || "").toString();
   const ID = (CID || "").toString();
-  const [openNew, setOpenNew] = useState(false);
   const [rows, setRows] = useState<ProformaType[]>([]);
-  const handleOpenNew = () => {
-    setOpenNew(true);
-  };
-  const handleCloseNew = () => {
-    setOpenNew(false);
-  };
   const { token, rcName, role } = useStore();
   const [showExtraContent, setShowExtraContent] = useState(false);
   const [row, setRow] = useState<CompanyRc>({

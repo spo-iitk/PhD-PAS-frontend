@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import CallIcon from "@mui/icons-material/Call";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import {

@@ -12,11 +12,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import CheckIcon from "@mui/icons-material/Check";
 
-import {
-  Branches,
-  func,
-  totalDeptKeywords,
-} from "@components/Utils/matrixUtils";
+import { Branches, func } from "@components/Utils/matrixUtils";
 
 function MatrixExpanded({ data }: { data: string }) {
   if (data?.length < 110)

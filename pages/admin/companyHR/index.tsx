@@ -1,5 +1,6 @@
 // import { GridColDef } from "@mui/x-data-grid";
 // import React, { useEffect, useState } from "react";
+import React from "react";
 
 // import CompanyHRRequest, {
 //   CompanyHR,
@@ -73,3 +74,10 @@
 
 // Index.layout = "adminDashBoard";
 // export default Index;
+
+function Index() {
+  return <div>companyHR</div>;
+}
+
+Index.layout = "adminDashBoard";
+export default Index;

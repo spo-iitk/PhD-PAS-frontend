@@ -4,7 +4,6 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 
-import BranchStats from "sections/BranchStats";
 import StudentStats from "sections/StudentStats";
 import statRequest, { Stats as StatsType } from "@callbacks/admin/rc/stats";
 import useStore from "@store/store";

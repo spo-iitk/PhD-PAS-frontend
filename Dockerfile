@@ -15,4 +15,4 @@ RUN git clone --depth 1 https://github.com/PhD-PAS/PhD-PAS-frontend.git .
 EXPOSE 80
 
 # Run script
-CMD [ "/home/ras/scripts/production.sh" ]
+CMD bash /home/ras/scripts/production.sh

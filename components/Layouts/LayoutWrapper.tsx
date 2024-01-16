@@ -7,7 +7,6 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import EqualizerIcon from "@mui/icons-material/Equalizer";
 import FeedIcon from "@mui/icons-material/Feed";
-import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import PieChartIcon from "@mui/icons-material/PieChart";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import { useRouter } from "next/router";
@@ -427,12 +426,12 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         // role === 100 || role === 101
         // ?
         // { avatar: <></>, name: "", id: "", hidden: true }
-          // ? {
-          //     avatar: <BarChartIcon />,
-          //     name: "User Database",
-          //     id: "/users",
-          //   }
-          // : { avatar: <></>, name: "", id: "", hidden: true },
+        // ? {
+        //     avatar: <BarChartIcon />,
+        //     name: "User Database",
+        //     id: "/users",
+        //   }
+        // : { avatar: <></>, name: "", id: "", hidden: true },
         // role === 100 || role === 101
         //   ? {
         //       avatar: <BarChartIcon />,

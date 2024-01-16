@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git pull origin main
+git pull origin master
 
 # Remove old packages and build files
 rm -rf node_modules/ ./.next/
