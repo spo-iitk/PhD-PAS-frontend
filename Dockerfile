@@ -10,7 +10,7 @@ WORKDIR /home/ras
 RUN git config --global user.name "SPO Web Team"
 RUN git config --global user.email "pas@iitk.ac.in"
 
-RUN git clone --depth 1 https://github.com/PhD-PAS/PhD-PAS-frontend.git .
+RUN git clone --depth 1 https://github.com/spo-iitk/PhD-PAS-frontend.git .
 
 EXPOSE 80
 
