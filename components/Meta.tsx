@@ -25,7 +25,7 @@ function Meta({
 }
 
 Meta.defaultProps = {
-  title: "Recruitment Automation System",
+  title: "PhD Recruitment Automation System",
   description: "",
   keywords: "automation, recuitment, system",
 };

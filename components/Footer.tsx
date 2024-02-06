@@ -135,7 +135,7 @@ function Footer() {
                   </Typography>
                 </a>
                 <a
-                  href="https://spo.iitk.ac.in/placement-coordinators"
+                  href="https://spo.iitk.ac.in/administration"
                   target="_blank"
                   rel="noreferrer"
                 >

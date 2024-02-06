@@ -17,7 +17,7 @@ import AdminStudentRequest, {
   Student,
 } from "@callbacks/admin/student/adminStudent";
 import useStore from "@store/store";
-import { Branches } from "@components/Utils/matrixUtils";
+import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
 
 function Edit() {
@@ -32,15 +32,15 @@ function Edit() {
   } = useForm<Student>({
     defaultValues: StudentData,
   });
-  const watchPreference = watch("preference");
+  // const watchPreference = watch("preference");
   const watchGender = watch("gender");
   const watchTenthBoard = watch("tenth_board");
   const watchTwelfthBoard = watch("twelfth_board");
-  const watchEntranceExam = watch("entrance_exam");
+  // const watchEntranceExam = watch("entrance_exam");
   const watchCategory = watch("category");
   const watchDisability = watch("disability");
 
-  // const [dept, setDept] = useState<string>("");
+  const [dept, setDept] = useState<any>("");
   // const [deptSec, setDeptSec] = useState<string>("");
 
   const { token } = useStore();
@@ -55,6 +55,7 @@ function Edit() {
         parseInt(sId, 10)
       ).catch(() => ({ ID: 0 } as Student));
       setStudentData(student);
+      setDept(student.department);
       reset(student);
     };
     if (router.isReady) fetch();
@@ -165,7 +166,7 @@ function Edit() {
                     {...register("roll_no")}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Expected Year of Graduation</p>
                   <TextField
                     fullWidth
@@ -187,16 +188,17 @@ function Edit() {
                       (event.target as HTMLTextAreaElement).blur()
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Department</p>
                   <Select
                     fullWidth
                     variant="standard"
                     {...register("department")}
-                    // onChange={(e) => {
-                    //   setDept(e.target.value as string);
-                    // }}
+                    onChange={(e) => {
+                      setDept(e.target.value);
+                    }}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -209,7 +211,7 @@ function Edit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Program</p>
-                  {/* {dept !== "" ? (
+                  {dept !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -217,24 +219,26 @@ function Edit() {
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
-                      {dept !== "" &&
-                        dept !== "NA" &&
-                        Object.keys(func[dept as keyof typeof func]).map(
-                          (program: any) => {
-                            if (
-                              func[dept as keyof typeof func][
-                                program as keyof programType
-                              ] !== -1
-                            ) {
-                              return (
-                                <MenuItem key={program} value={program}>
-                                  {program}
-                                </MenuItem>
-                              );
-                            }
-                            return null;
-                          }
-                        )}
+                      {Object.keys(func[dept as keyof typeof func] || []).map(
+                        (keyword) => (
+                          // const temp =
+                          //   func[StudentData.department as keyof typeof func];
+                          // const value =
+                          //   func[StudentData.department as keyof typeof func][
+                          //     keyword as keyof typeof temp
+                          //   ];
+                          <MenuItem key={keyword} value={keyword}>
+                            {keyword}
+                          </MenuItem>
+                        )
+                      )}
+                      {/* {Object.keys(
+                        func[StudentData.department as keyof typeof func]
+                      ).map((program) => (
+                        <MenuItem key={program} value={program}>
+                          {program}
+                        </MenuItem>
+                      ))} */}
                     </Select>
                   ) : (
                     <Select
@@ -245,13 +249,13 @@ function Edit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )} */}
-                  <TextField
+                  )}
+                  {/* <TextField
                     fullWidth
                     variant="standard"
                     disabled
                     value="PhD"
-                  />
+                  /> */}
                 </Grid>
                 {/* <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
@@ -265,9 +269,9 @@ function Edit() {
                     ))}
                   </Select>
                 </Grid> */}
-                <Grid item xs={12} sm={6}>
-                  <p>Secondary Program</p>
-                  {/* {deptSec !== "" ? (
+                {/* <Grid item xs={12} sm={6}>
+                  <p>Secondary Program</p> */}
+                {/* {deptSec !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -307,26 +311,35 @@ function Edit() {
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
                   )} */}
-                  <TextField
+                {/* <TextField
                     fullWidth
                     variant="standard"
                     disabled
                     value="PhD"
-                  />
-                </Grid>
+                  /> */}
+                {/* </Grid> */}
 
                 <Grid item xs={12} sm={6}>
-                  <p>Specialization</p>
-                  <TextField
+                  <p>Stage of PhD</p>
+                  <Select
                     fullWidth
-                    type="text"
-                    id="standard-basic"
                     variant="standard"
                     {...register("specialization")}
-                  />
+                    // onChange={(e) => {
+                    //   setDept(e.target.value as string);
+                    // }}
+                  >
+                    <MenuItem value="" />
+                    {/* <MenuItem value="NA">None</MenuItem> */}
+                    {StagesofPhD.map((stage) => (
+                      <MenuItem key={stage} value={stage}>
+                        {stage}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Preference</p>
                   <Select
                     fullWidth
@@ -338,7 +351,7 @@ function Edit() {
                     <MenuItem value="Academic">Academic</MenuItem>
                     <MenuItem value="Industrial">Industrial</MenuItem>
                   </Select>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Gender</p>
                   <Select
@@ -559,7 +572,7 @@ function Edit() {
                     })}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Entrance Exam</p>
                   <Select
                     fullWidth
@@ -593,7 +606,7 @@ function Edit() {
                       (event.target as HTMLTextAreaElement).blur()
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Category</p>
                   <Select
@@ -613,7 +626,7 @@ function Edit() {
                     <MenuItem value="Other">Other</MenuItem>
                   </Select>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Category Rank</p>
                   <TextField
                     fullWidth
@@ -627,7 +640,7 @@ function Edit() {
                       (event.target as HTMLTextAreaElement).blur()
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>
                   <TextField

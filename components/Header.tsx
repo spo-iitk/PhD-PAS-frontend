@@ -39,7 +39,7 @@ function Header() {
             />
             <Stack direction="column">
               <h2 className={headerstyles.title} style={{ margin: 0 }}>
-                Recruitment Automation System
+                PhD Recruitment Automation System
               </h2>
               <h5 className={headerstyles.title} style={{ margin: 0 }}>
                 Indian Institute of Technology, Kanpur
@@ -52,7 +52,7 @@ function Header() {
             <Link href="/login">Sign in</Link>
             <Link href="/signup">Sign Up</Link>
             <a
-              href="https://spo.iitk.ac.in/placement-coordinators"
+              href="https://spo.iitk.ac.in/administation"
               target="_blank"
               rel="noreferrer"
             >
@@ -117,7 +117,7 @@ function Header() {
             </MenuItem>
             <MenuItem>
               <a
-                href="https://spo.iitk.ac.in/placement-coordinators"
+                href="https://spo.iitk.ac.in/administration"
                 target="_blank"
                 rel="noreferrer"
               >

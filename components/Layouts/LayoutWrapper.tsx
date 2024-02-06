@@ -287,11 +287,11 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         //   name: "Calendar",
         //   id: "/calendar",
         // },
-        {
-          avatar: <AccountCircleIcon />,
-          name: "Attendance",
-          id: "/attendance",
-        },
+        // {
+        //   avatar: <AccountCircleIcon />,
+        //   name: "Attendance",
+        //   id: "/attendance",
+        // },
         {
           avatar: <CalendarMonthIcon />,
           name: "Events",
@@ -511,11 +511,11 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
           name: "Questions",
           id: "/question",
         },
-        {
-          avatar: <AccountCircleIcon />,
-          name: "Attendance",
-          id: "/attendance",
-        },
+        // {
+        //   avatar: <AccountCircleIcon />,
+        //   name: "Attendance",
+        //   id: "/attendance",
+        // },
         // {
         //   avatar: <CalendarMonthIcon />,
         //   name: "Calendar",

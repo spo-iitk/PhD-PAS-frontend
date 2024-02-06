@@ -91,7 +91,7 @@ function ForgotPass() {
 
   return (
     <div>
-      <Meta title="Forgot Password - Recruitment Automation System" />
+      <Meta title="Forgot Password - PhD Recruitment Automation System" />
       {sent ? (
         <Stack
           spacing={2}
@@ -239,7 +239,7 @@ function ForgotPass() {
           <FormControl sx={{ m: 1, width: "35ch" }} variant="outlined">
             <h2>Forgot Password</h2>
             <Typography variant="subtitle1" color="text.secondary">
-              Recruitment Portal IIT Kanpur
+              PhD Recruitment Portal IIT Kanpur
             </Typography>
           </FormControl>
 

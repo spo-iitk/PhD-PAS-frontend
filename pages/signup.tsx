@@ -36,7 +36,7 @@ function SignUp() {
 
   return (
     <div>
-      <Meta title="Sign Up - Recruitment Automation System" />
+      <Meta title="Sign Up - PhD Recruitment Automation System" />
       <Stack
         direction={{ xs: "column", sm: "row" }}
         justifyContent="center"
@@ -61,7 +61,7 @@ function SignUp() {
             <h2>Welcome!</h2>
             <h2>Sign up to</h2>
             <Typography variant="subtitle1" color="text.secondary">
-              Recruitment Portal IIT Kanpur
+              PhD Recruitment Portal IIT Kanpur
             </Typography>
           </FormControl>
           <FormControl sx={{ m: 1, width: "35ch" }} variant="outlined">
