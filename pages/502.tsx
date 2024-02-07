@@ -23,7 +23,7 @@ const Image = styled.img`
 function Custom404() {
   return (
     <div>
-      <Meta title="Under Maintenance | Recruitment Automation System" />
+      <Meta title="Under Maintenance | PhD Recruitment Automation System" />
       <Stack
         spacing={1}
         justifyContent="center"

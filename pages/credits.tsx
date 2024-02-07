@@ -22,46 +22,30 @@ import useStore from "@store/store";
 const teamMembers = [
   {
     src: "https://abhishekshree.github.io/static/images/dp.jpg",
-    name: "Abhishek Shree",
-    title: "Web Head, 2022-23",
+    name: "Krishnansh Agarwal",
+    title: "Web Head, 2023-24",
     about: "Reads and consumes a lot of pop culture.",
     linkedin: "https://www.linkedin.com/in/abhishekshree/",
     website: "https://abhishekshree.github.io",
   },
   {
     src: "https://1-harshit.github.io/avatar.jpg",
-    name: "Harshit Raj",
-    title: "Web Head, 2022-23",
+    name: "Utkarsh Mishra",
+    title: "Web Head, 2023-24",
     about: "Living on the edge and not falling.",
     linkedin: "https://www.linkedin.com/in/1-harshit/",
     website: "https://1-harshit.github.io",
   },
-  {
-    src: "https://manas-gupta.vercel.app/images/dp.jpg?auto=format&fit=max&w=384",
-    name: "Manas Gupta",
-    title: "Lead Developer",
-    about: "High on life and spreads panic everywhere.",
-    linkedin: "https://linkedin.com/in/manasg20/",
-    website: "https://manas-gupta.vercel.app",
-  },
-  {
-    src: "https://somyagupta18.github.io/assets/images/profile_pic.jpeg",
-    name: "Somya Gupta",
-    title: "Lead Developer",
-    about: "A high functioning sociopath owning a start-up.",
-    linkedin: "https://www.linkedin.com/in/somyagupta18",
-    website: "https://somyagupta18.github.io",
-  },
 ];
 
-const contributors = [
-  { name: "Tejas Ahuja" },
-  { name: "Utkarsh Mishra" },
-  { name: "S Amandeep" },
-  { name: "Krishnansh Agrawal" },
-  { name: "Adarsh Shaw" },
-  { name: "Aditya Bangar" },
-];
+// const contributors = [
+//   { name: "Tejas Ahuja" },
+//   { name: "Utkarsh Mishra" },
+//   { name: "S Amandeep" },
+//   { name: "Krishnansh Agrawal" },
+//   { name: "Adarsh Shaw" },
+//   { name: "Aditya Bangar" },
+// ];
 function Person({ data }: any) {
   return (
     <div className={formstyles.tiles} style={{ height: "100%" }}>
@@ -78,8 +62,8 @@ function Person({ data }: any) {
             <Avatar
               variant="rounded"
               imgProps={{
-                width: "100",
-                height: "100",
+                width: "500",
+                height: "500",
                 loading: "lazy",
               }}
               src={data.src}
@@ -151,17 +135,17 @@ function Person({ data }: any) {
   );
 }
 
-function Others({ data }: any) {
-  return (
-    <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
-      <Stack spacing={2} justifyContent="center" alignItems="center">
-        <Typography variant="body2" fontWeight="bold">
-          {data.name}
-        </Typography>
-      </Stack>
-    </Paper>
-  );
-}
+// function Others({ data }: any) {
+//   return (
+//     <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
+//       <Stack spacing={2} justifyContent="center" alignItems="center">
+//         <Typography variant="body2" fontWeight="bold">
+//           {data.name}
+//         </Typography>
+//       </Stack>
+//     </Paper>
+//   );
+// }
 function Credits() {
   const { token } = useStore();
   useEffect(() => {
@@ -189,27 +173,17 @@ function Credits() {
               <Stack spacing={5} direction="column">
                 <Grid container spacing={2}>
                   <Zoom in style={{ transitionDelay: "500ms" }}>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid item xs={12} sm={6} md={6}>
                       <Person data={teamMembers[0]} />
                     </Grid>
                   </Zoom>
                   <Zoom in style={{ transitionDelay: "700ms" }}>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid item xs={12} sm={6} md={6}>
                       <Person data={teamMembers[1]} />
                     </Grid>
                   </Zoom>
-                  <Zoom in style={{ transitionDelay: "900ms" }}>
-                    <Grid item xs={12} sm={6} md={3}>
-                      <Person data={teamMembers[2]} />
-                    </Grid>
-                  </Zoom>
-                  <Zoom in style={{ transitionDelay: "1100ms" }}>
-                    <Grid item xs={12} sm={6} md={3}>
-                      <Person data={teamMembers[3]} />
-                    </Grid>
-                  </Zoom>
                 </Grid>
-                <Zoom in style={{ transitionDelay: "1300ms" }}>
+                {/* <Zoom in style={{ transitionDelay: "1300ms" }}>
                   <div>
                     <Typography
                       align="justify"
@@ -227,14 +201,14 @@ function Credits() {
                       and Go.
                     </Typography>
                   </div>
-                </Zoom>
+                </Zoom> */}
               </Stack>
             </div>
           </Grid>
         </Grid>
       </Box>
       <hr style={{ width: "80vw", margin: "50px auto", opacity: 0.5 }} />
-      <h2 style={{ textAlign: "center" }}>Other Contributors</h2>
+      {/* <h2 style={{ textAlign: "center" }}>Other Contributors</h2>
       <Box sx={{ margin: "30px auto", width: "60%" }}>
         <Grid container spacing={2}>
           {contributors.map((contributor) => (
@@ -243,7 +217,7 @@ function Credits() {
             </Grid>
           ))}
         </Grid>
-      </Box>
+      </Box> */}
     </div>
   );
 }

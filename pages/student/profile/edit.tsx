@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import Meta from "@components/Meta";
 import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
-import { Branches } from "@components/Utils/matrixUtils";
+import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
 
 function ProfileEdit() {
@@ -29,7 +29,7 @@ function ProfileEdit() {
   } = useForm<Student>({
     defaultValues: StudentData,
   });
-  // const [dept, setDept] = useState<any>("");
+  const [dept, setDept] = useState<any>("");
   // const [deptSec, setDeptSec] = useState<any>("");
 
   const { token } = useStore();
@@ -164,7 +164,7 @@ function ProfileEdit() {
                     {...register("roll_no")}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Expected Year of Graduation</p>
                   <TextField
                     fullWidth
@@ -186,16 +186,16 @@ function ProfileEdit() {
                       (event.target as HTMLTextAreaElement).blur()
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Department</p>
                   <Select
                     fullWidth
                     variant="standard"
                     {...register("department")}
-                    // onChange={(e) => {
-                    //   setDept(e.target.value);
-                    // }}
+                    onChange={(e) => {
+                      setDept(e.target.value);
+                    }}
                     disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
@@ -209,7 +209,7 @@ function ProfileEdit() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <p>Program</p>
-                  {/* {dept !== "" ? (
+                  {dept !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -218,24 +218,19 @@ function ProfileEdit() {
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
-                      {dept !== "" &&
-                        dept !== "NA" &&
-                        Object.keys(func[dept as keyof typeof func]).map(
-                          (program: any) => {
-                            if (
-                              func[dept as keyof typeof func][
-                                program as keyof programType
-                              ] !== -1
-                            ) {
-                              return (
-                                <MenuItem key={program} value={program}>
-                                  {program}
-                                </MenuItem>
-                              );
-                            }
-                            return null;
-                          }
-                        )}
+                      {Object.keys(func[dept as keyof typeof func] || []).map(
+                        (keyword) => (
+                          // const temp =
+                          //   func[StudentData.department as keyof typeof func];
+                          // const value =
+                          //   func[StudentData.department as keyof typeof func][
+                          //     keyword as keyof typeof temp
+                          //   ];
+                          <MenuItem key={keyword} value={keyword}>
+                            {keyword}
+                          </MenuItem>
+                        )
+                      )}
                     </Select>
                   ) : (
                     <Select
@@ -247,13 +242,7 @@ function ProfileEdit() {
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
-                  )} */}
-                  <TextField
-                    fullWidth
-                    variant="standard"
-                    disabled
-                    value="PhD"
-                  />
+                  )}
                 </Grid>
                 {/* <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
@@ -275,9 +264,9 @@ function ProfileEdit() {
                     ))}
                   </Select>
                 </Grid> */}
-                <Grid item xs={12} sm={6}>
-                  <p>Secondary Program</p>
-                  {/* {deptSec !== "" ? (
+                {/* <Grid item xs={12} sm={6}>
+                  <p>Secondary Program</p> */}
+                {/* {deptSec !== "" ? (
                     <Select
                       fullWidth
                       variant="standard"
@@ -316,26 +305,35 @@ function ProfileEdit() {
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
                   )} */}
-                  <TextField
+                {/* <TextField
                     fullWidth
                     variant="standard"
                     disabled
                     value="PhD"
                   />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
-                  <p>Specialization</p>
-                  <TextField
+                  <p>Stage of PhD</p>
+                  <Select
                     fullWidth
-                    type="text"
-                    id="standard-basic"
                     variant="standard"
                     {...register("specialization")}
-                  />
+                    // onChange={(e) => {
+                    //   setDept(e.target.value as string);
+                    // }}
+                  >
+                    <MenuItem value="" />
+                    {/* <MenuItem value="NA">None</MenuItem> */}
+                    {StagesofPhD.map((stage) => (
+                      <MenuItem key={stage} value={stage}>
+                        {stage}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Preference</p>
                   <Select
                     fullWidth
@@ -346,7 +344,7 @@ function ProfileEdit() {
                     <MenuItem value="Academic">Academic</MenuItem>
                     <MenuItem value="Industrial">Industrial</MenuItem>
                   </Select>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Gender</p>
                   <Select
@@ -574,7 +572,7 @@ function ProfileEdit() {
                     disabled={StudentData.is_verified}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Entrance Exam</p>
                   <Select
                     fullWidth
@@ -608,7 +606,7 @@ function ProfileEdit() {
                     }
                     disabled={StudentData.is_verified}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Category</p>
                   <Select
@@ -628,7 +626,7 @@ function ProfileEdit() {
                     <MenuItem value="Other">Other</MenuItem>
                   </Select>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Category Rank</p>
                   <TextField
                     fullWidth
@@ -643,7 +641,7 @@ function ProfileEdit() {
                     }
                     disabled={StudentData.is_verified}
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>
                   <TextField

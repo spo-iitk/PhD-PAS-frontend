@@ -44,16 +44,16 @@ const columns: GridColDef[] = [
     headerName: "Updated At",
     hide: true,
   },
-  {
-    field: "secondary_program_department_id",
-    headerName: "Secondary Program",
-    valueGetter: (rowData) => getDeptProgram(rowData.value),
-  },
   // {
-  //   field: "specialization",
-  //   headerName: "Specialisation",
-  //   hide: true,
+  //   field: "secondary_program_department_id",
+  //   headerName: "Secondary Program",
+  //   valueGetter: (rowData) => getDeptProgram(rowData.value),
   // },
+  {
+    field: "specialization",
+    headerName: "Stage of PhD",
+    hide: true,
+  },
   {
     field: "roll_no",
     headerName: "IITK Roll No.",
@@ -147,16 +147,16 @@ const columns: GridColDef[] = [
     headerName: "12th Board Marks",
     hide: true,
   },
-  {
-    field: "entrance_exam",
-    headerName: "Entrance Exam",
-    hide: true,
-  },
-  {
-    field: "entrance_exam_rank",
-    headerName: "Entrance Exam Rank",
-    hide: true,
-  },
+  // {
+  //   field: "entrance_exam",
+  //   headerName: "Entrance Exam",
+  //   hide: true,
+  // },
+  // {
+  //   field: "entrance_exam_rank",
+  //   headerName: "Entrance Exam Rank",
+  //   hide: true,
+  // },
   {
     field: "category",
     headerName: "Category",

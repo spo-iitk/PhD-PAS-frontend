@@ -60,12 +60,12 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
     //   disabled: true,
     //   api_id: "program_2",
     // },
-    // {
-    //   field: "Specialisation",
-    //   value: "Enter your Specialisation",
-    //   disabled: false,
-    //   api_id: "specialization",
-    // },
+    {
+      field: "Stage of PhD",
+      value: "Enter your Stage of PhD",
+      disabled: false,
+      api_id: "specialization",
+    },
     // {
     //   field: "Preference",
     //   value: "Select your Preference",
@@ -151,23 +151,23 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       api_id: "twelfth_year",
     },
     {
-      field: "12th Marks",
+      field: "12th Board Marks",
       value: "Enter your 12th Board Marks",
       disabled: false,
       api_id: "twelfth_marks",
     },
-    {
-      field: "Entrance Exam",
-      value: "Enter your Entrance Exam",
-      disabled: false,
-      api_id: "entrance_exam",
-    },
-    {
-      field: "Entrance Exam Rank",
-      value: "Enter your Entrance Exam Rank",
-      disabled: false,
-      api_id: "entrance_exam_rank",
-    },
+    // {
+    //   field: "Entrance Exam",
+    //   value: "Enter your Entrance Exam",
+    //   disabled: false,
+    //   api_id: "entrance_exam",
+    // },
+    // {
+    //   field: "Entrance Exam Rank",
+    //   value: "Enter your Entrance Exam Rank",
+    //   disabled: false,
+    //   api_id: "entrance_exam_rank",
+    // },
     {
       field: "Category",
       value: "Enter your Category",

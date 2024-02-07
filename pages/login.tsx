@@ -103,7 +103,7 @@ function Login() {
 
   return (
     <div>
-      <Meta title="Login - Recruitment Automation System" />
+      <Meta title="Login - PhD Recruitment Automation System" />
       <Stack
         direction={{ xs: "column", sm: "row" }}
         justifyContent="center"
@@ -128,7 +128,7 @@ function Login() {
             <h2>Welcome Back!</h2>
             <h2>Sign in to</h2>
             <Typography variant="subtitle1" color="text.secondary">
-              Recruitment Portal IIT Kanpur
+              PhD Recruitment Portal IIT Kanpur
             </Typography>
           </FormControl>
           <FormControl sx={{ m: 1, width: "35ch" }} variant="outlined">
