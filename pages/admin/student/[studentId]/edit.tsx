@@ -198,7 +198,6 @@ function Edit() {
                     onChange={(e) => {
                       setDept(e.target.value);
                     }}
-                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
