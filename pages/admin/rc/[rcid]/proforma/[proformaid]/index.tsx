@@ -216,11 +216,11 @@ const fixed_columns: GridColDef[] = [
     hide: true,
     headerName: "Category",
   },
-  {
-    field: "category_rank",
-    headerName: "Category Rank",
-    hide: true,
-  },
+  // {
+  //   field: "category_rank",
+  //   headerName: "Category Rank",
+  //   hide: true,
+  // },
   {
     field: "current_address",
     headerName: "Current Address",
