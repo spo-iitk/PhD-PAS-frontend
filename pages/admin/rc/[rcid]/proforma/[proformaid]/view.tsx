@@ -20,7 +20,6 @@ const textFieldSX = {
     fontWeight: "bold",
   },
 };
-const data1 = new Array(100 + 1).join("0");
 
 function View() {
   const { token } = useStore();
@@ -37,6 +36,7 @@ function View() {
     ID: 0,
   } as AdminProformaType);
   const [row2, setRow2] = useState<Event[]>([]);
+  const [elig, setElig] = useState("");
   useEffect(() => {
     const getCompanydata = async () => {
       if (router.isReady) {
@@ -48,11 +48,11 @@ function View() {
         setJd(response.job_description);
         setPd(response.package_details);
         setisFetched(true);
+        setElig(response.eligibility);
       }
     };
     getCompanydata();
   }, [token, rid, ID, router.isReady]);
-  const data = row.eligibility?.length > 110 ? row.eligibility : data1;
   return (
     <div style={{ padding: "0 2rem", marginBottom: 20 }}>
       <Meta title={`${PID} - Proforma Details`} />
@@ -158,7 +158,7 @@ function View() {
             </Grid>
             <Grid item xs={12}>
               <h3>Eligibility</h3>
-              <MatrixExpanded data={data} />
+              <MatrixExpanded data={elig} />
             </Grid>
             <Grid item xs={12}>
               <h3>Hiring Process</h3>

@@ -16,7 +16,7 @@ const textFieldSX = {
     fontWeight: "bold",
   },
 };
-const data1 = new Array(100 + 1).join("0");
+// const data1 = new Array(100 + 1).join("0");
 
 function Index() {
   const { token } = useStore();
@@ -29,6 +29,7 @@ function Index() {
   const [jd, setJd] = useState("");
   const [pd, setPd] = useState("");
   const [isFetched, setisFetched] = useState(false);
+  const [elig, setElig] = useState("");
   const [row, setRow] = useState<ProformaType>({
     ID: 0,
   } as ProformaType);
@@ -45,10 +46,11 @@ function Index() {
       setJd(response.job_description);
       setPd(response.package_details);
       setisFetched(true);
+      setElig(response.eligibility);
     };
     getCompanydata();
   }, [token, rid, ID]);
-  const data = row.eligibility?.length > 110 ? row.eligibility : data1;
+  // const data = row.eligibility?.length > 110 ? row.eligibility : data1;
   return (
     <div style={{ padding: "0 2rem", marginBottom: 20 }}>
       <Meta title="Proforma" />
@@ -128,7 +130,7 @@ function Index() {
             </Grid>
             <Grid item xs={12}>
               <h3>Eligibility</h3>
-              <MatrixExpanded data={data} />
+              <MatrixExpanded data={elig} />
             </Grid>
             {/* <Grid item xs={12}>
               <h3>Hiring Process</h3>
