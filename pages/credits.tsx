@@ -21,20 +21,18 @@ import useStore from "@store/store";
 
 const teamMembers = [
   {
-    src: "https://abhishekshree.github.io/static/images/dp.jpg",
+    src: "/images/Krishnansh.jpg",
     name: "Krishnansh Agarwal",
     title: "Web Head, 2023-24",
-    about: "Reads and consumes a lot of pop culture.",
-    linkedin: "https://www.linkedin.com/in/abhishekshree/",
-    website: "https://abhishekshree.github.io",
+    about: "",
+    linkedin: "https://www.linkedin.com/in/krishnansh-agarwal/",
   },
   {
-    src: "https://1-harshit.github.io/avatar.jpg",
+    src: "/images/Utkarsh.jpg",
     name: "Utkarsh Mishra",
     title: "Web Head, 2023-24",
-    about: "Living on the edge and not falling.",
-    linkedin: "https://www.linkedin.com/in/1-harshit/",
-    website: "https://1-harshit.github.io",
+    about: "",
+    linkedin: "https://www.linkedin.com/in/utkarsh-mishra-086251228",
   },
 ];
 
@@ -75,8 +73,8 @@ function Person({ data }: any) {
                 srcSet: `${data.src}?s=140 2x`,
               })}
               sx={{
-                width: 100,
-                height: 100,
+                width: 250,
+                height: 250,
                 backgroundColor: (theme) =>
                   theme.palette.mode === "dark" ? "primary.700" : "primary.100",
                 borderRadius: 1,
@@ -163,22 +161,22 @@ function Credits() {
               <Image
                 src="/images/credits.gif"
                 alt="logo"
-                width={600}
-                height={600}
+                width={800}
+                height={800}
               />
             </div>
           </Grid>
           <Grid item xs={12} lg={8}>
             <div>
-              <Stack spacing={5} direction="column">
-                <Grid container spacing={2}>
+              <Stack spacing={50} direction="column">
+                <Grid container spacing={5}>
                   <Zoom in style={{ transitionDelay: "500ms" }}>
-                    <Grid item xs={12} sm={6} md={6}>
+                    <Grid item xs={12} sm={4} md={4}>
                       <Person data={teamMembers[0]} />
                     </Grid>
                   </Zoom>
                   <Zoom in style={{ transitionDelay: "700ms" }}>
-                    <Grid item xs={12} sm={6} md={6}>
+                    <Grid item xs={12} sm={4} md={4}>
                       <Person data={teamMembers[1]} />
                     </Grid>
                   </Zoom>
