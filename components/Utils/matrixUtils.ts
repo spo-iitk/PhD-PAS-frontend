@@ -25,9 +25,9 @@ export const programPhDExpanded = ["PhD"];
 // ];
 
 export const StagesofPhD = [
-  "Open seminar given, thesis yet to submit",
-  "Thesis submitted, yet to defend",
-  "Thesis defended. degree will be awarded in next convocation",
+  "Open seminar given.Thesis yet to submit",
+  "Thesis submitted. Yet to defend",
+  "Thesis defended. Degree will be awarded in next convocation",
   "PhD degree awarded in current year",
 ];
 
