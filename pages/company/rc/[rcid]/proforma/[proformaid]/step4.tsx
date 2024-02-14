@@ -2,7 +2,13 @@ import {
   Autocomplete,
   Button,
   Card,
+  Checkbox,
   FormControl,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
   Stack,
   TextField,
 } from "@mui/material";
@@ -14,6 +20,7 @@ import Meta from "@components/Meta";
 import useStore from "@store/store";
 import proformaRequest, { ProformaType } from "@callbacks/company/proforma";
 import companyRequest, { HR } from "@callbacks/company/company";
+import { StagesofPhD } from "@components/Utils/matrixUtils";
 
 const ROUTE = "/company/rc/[rcId]";
 
@@ -27,6 +34,17 @@ function Step4() {
     ID: 0,
   } as ProformaType);
   const [HRdata, setHR] = useState<HR>({ name: "", hr1: "", hr2: "", hr3: "" });
+  const [stageofPhD, setStageofPhD] = useState<string[]>([]);
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
   const {
     register,
     handleSubmit,
@@ -35,9 +53,19 @@ function Step4() {
   } = useForm<ProformaType>({
     defaultValues: fetchData,
   });
+  const handleStageChange = (event: SelectChangeEvent<typeof stageofPhD>) => {
+    const {
+      target: { value },
+    } = event;
+    setStageofPhD(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
   const handleNext = async (data: ProformaType) => {
     const info = {
       ...data,
+      additional_eligibility: stageofPhD.join(","),
       ID: parseInt(pid, 10),
     };
     const res = await proformaRequest.put(token, rid, info);
@@ -78,21 +106,26 @@ function Step4() {
         <Stack spacing={3}>
           <h2>Step 4/4 : Additional Information</h2>
           <FormControl sx={{ m: 1 }}>
-            <p style={{ fontWeight: 300 }}>Additional Eligibility Criteria</p>
-            <TextField
+            <p style={{ fontWeight: 300 }}>Stage of PhD Eligible</p>
+            <Select
               id="Cname"
+              multiple
               required
+              value={stageofPhD}
+              onChange={handleStageChange}
+              input={<OutlinedInput label="Tag" />}
+              renderValue={(selected) => selected.join(", ")}
+              MenuProps={MenuProps}
               sx={{ marginLeft: "5 rem" }}
-              fullWidth
-              multiline
-              minRows={3}
-              variant="standard"
               error={!!errors.additional_eligibility}
-              helperText={
-                errors.additional_eligibility && "This field is required!"
-              }
-              {...register("additional_eligibility")}
-            />
+            >
+              {StagesofPhD.map((stage) => (
+                <MenuItem key={stage} value={stage}>
+                  <Checkbox checked={stageofPhD.indexOf(stage) > -1} />
+                  <ListItemText primary={stage} />
+                </MenuItem>
+              ))}
+            </Select>
           </FormControl>
           <FormControl sx={{ m: 1 }}>
             <p style={{ fontWeight: 300 }}>Message for Placement Coordinator</p>
