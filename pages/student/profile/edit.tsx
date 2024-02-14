@@ -120,6 +120,10 @@ function ProfileEdit() {
           Already verified students registering for the new placement season can
           edit some of the allowed fields below
         </h4>
+        <h4 style={{ fontWeight: 500 }}>
+          It is mandatory to fill the Stages of PhD field in order to be
+          registered for the recruitment cycle
+        </h4>
         <form style={{ marginBottom: 10 }}>
           <Stack justifyContent="center">
             <Card
@@ -318,6 +322,7 @@ function ProfileEdit() {
                   <Select
                     fullWidth
                     variant="standard"
+                    required
                     {...register("specialization")}
                     // onChange={(e) => {
                     //   setDept(e.target.value as string);
