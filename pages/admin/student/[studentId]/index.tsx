@@ -168,12 +168,12 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
     //   disabled: false,
     //   api_id: "entrance_exam_rank",
     // },
-    {
-      field: "Category",
-      value: "Enter your Category",
-      disabled: false,
-      api_id: "category",
-    },
+    // {
+    //   field: "Category",
+    //   value: "Enter your Category",
+    //   disabled: false,
+    //   api_id: "category",
+    // },
     // {
     //   field: "Category Rank",
     //   value: "Enter your Category Rank",

@@ -37,7 +37,7 @@ function Edit() {
   const watchTenthBoard = watch("tenth_board");
   const watchTwelfthBoard = watch("twelfth_board");
   // const watchEntranceExam = watch("entrance_exam");
-  const watchCategory = watch("category");
+  // const watchCategory = watch("category");
   const watchDisability = watch("disability");
 
   const [dept, setDept] = useState<any>("");
@@ -606,7 +606,7 @@ function Edit() {
                     }
                   />
                 </Grid> */}
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <p>Category</p>
                   <Select
                     fullWidth
@@ -624,7 +624,7 @@ function Edit() {
                     <MenuItem value="ST">ST</MenuItem>
                     <MenuItem value="Other">Other</MenuItem>
                   </Select>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={12} sm={6}>
                   <p>Category Rank</p>
                   <TextField
