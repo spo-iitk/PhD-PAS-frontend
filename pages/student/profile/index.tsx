@@ -115,8 +115,8 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       api_id: "current_cpi",
     },
     {
-      field: "UG CPI(only for PG Students)",
-      value: "Enter your UG CPI",
+      field: "PG CPI",
+      value: "Enter your PG CPI",
       disabled: false,
       api_id: "ug_cpi",
     },

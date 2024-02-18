@@ -105,7 +105,7 @@ const fixed_columns: GridColDef[] = [
   },
   {
     field: "ug_cpi",
-    headerName: "UG CPI",
+    headerName: "PG CPI",
     hide: true,
     width: 100,
   },

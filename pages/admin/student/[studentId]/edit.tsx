@@ -456,7 +456,7 @@ function Edit() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <p>UG CPI(only for PG Students)</p>
+                  <p>PG CPI</p>
                   <TextField
                     fullWidth
                     type="text"
