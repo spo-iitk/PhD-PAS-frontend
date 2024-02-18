@@ -114,7 +114,7 @@ const columns: GridColDef[] = [
   },
   {
     field: "ug_cpi",
-    headerName: "UG CPI(on for PG Students)",
+    headerName: "PG CPI",
     hide: true,
   },
   {
