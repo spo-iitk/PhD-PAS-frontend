@@ -276,8 +276,8 @@ function Index() {
           onChange={handleChangeBatch}
         >
           {Array.from(
-            { length: (new Date().getFullYear() % 100) - 13 },
-            (_, n) => n + 14
+            { length: (new Date().getFullYear() % 100) - 11 },
+            (_, n) => n + 11
           ).map((year) => (
             <MenuItem value={year}>Y{year}</MenuItem>
           ))}
