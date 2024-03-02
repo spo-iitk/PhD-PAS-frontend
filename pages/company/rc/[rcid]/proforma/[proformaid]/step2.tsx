@@ -64,8 +64,9 @@ function Step2() {
       const temp = func[branchName as keyof typeof func];
       const idx =
         func[branchName as keyof typeof func][keyword as keyof typeof temp];
-      if (idx !== -1) {
-        newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
+      let idn = parseInt(idx, 10);
+      if (idn !== -1) {
+        newStr = `${newStr.substring(0, idn)}1${newStr.substring(idn + 1)}`;
       }
     });
     setStr(newStr);
@@ -75,10 +76,11 @@ function Step2() {
     const temp = func[branch as keyof typeof func];
     const idx = func[branch as keyof typeof func][keyword as keyof typeof temp];
     let newStr = str;
-    if (str[idx] === "1") {
-      newStr = `${newStr.substring(0, idx)}0${newStr.substring(idx + 1)}`;
+    let idn = parseInt(idx, 10);
+    if (str[idn] === "1") {
+      newStr = `${newStr.substring(0, idn)}0${newStr.substring(idn + 1)}`;
     } else {
-      newStr = `${newStr.substring(0, idx)}1${newStr.substring(idx + 1)}`;
+      newStr = `${newStr.substring(0, idn)}1${newStr.substring(idn + 1)}`;
     }
     setStr(newStr);
   };
@@ -125,7 +127,7 @@ function Step2() {
                                 <TableCell>{keyword}</TableCell>
                                 <TableCell>
                                   <Checkbox
-                                    checked={str[value] === "1"}
+                                    checked={str[parseInt(value, 10)] === "1"}
                                     onClick={() => handleCheck(branch, keyword)}
                                   />
                                 </TableCell>
