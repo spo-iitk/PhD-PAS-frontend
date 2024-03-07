@@ -44,7 +44,7 @@ function Custom404() {
         <CustomButton
           variant="contained"
           color="primary"
-          href="https://placement.iitk.ac.in/"
+          href="https://phdplacement.iitk.ac.in/"
         >
           Alternate portal &rarr;
         </CustomButton>{" "}

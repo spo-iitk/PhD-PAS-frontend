@@ -91,7 +91,7 @@ function DownloadResume({
             variant="contained"
             target="_blank"
             sx={{ borderRadius: 5, fontSize: 16, width: "100%" }}
-            href={`https://placement.iitk.ac.in/cdn/zip/${resumeLink}`}
+            href={`https://phdplacement.iitk.ac.in/cdn/zip/${resumeLink}`}
           >
             Click Here to Download Zip
           </Button>
