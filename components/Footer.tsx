@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Grid, Stack } from "@mui/material";
 import React, { SyntheticEvent, useState } from "react";
 import CallIcon from "@mui/icons-material/Call";
@@ -81,66 +82,113 @@ function Footer() {
             alignItems="flex-start"
             style={{ minHeight: "20vh" }}
           >
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={5}>
               <h2>Important Links</h2>
-              <Stack direction="column" justifyContent="center" spacing={2}>
-                <a
-                  href="https://spo.iitk.ac.in/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">
-                    Student Placement Office
-                  </Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/departmental-brochure"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">Department Brochure</Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/companies#ipolicy"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">
-                    Intern Policy (Company)
-                  </Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/docs/2021-22/Internship-Policy-2021-22.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">
-                    Intern Policy (Student)
-                  </Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/assets/companies_links/IITK_Recruitment_Guide_2022-23.pdf"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">Recruitment Guide</Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/companies#steps"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">
-                    Recruitment Itinerarry
-                  </Typography>
-                </a>
-                <a
-                  href="https://spo.iitk.ac.in/administration"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Typography variant="body2">Contact Us</Typography>
-                </a>
+              <Stack direction="row" justifyContent="center" spacing={2}>
+                <Grid item xs={6}>
+                  <Stack direction="column" justifyContent="center" spacing={2}>
+
+                    <a
+                      href="https://spo.iitk.ac.in/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">
+                        Student Placement Office
+                      </Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/departmental-brochure"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Department Brochure</Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/companies#ipolicy"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">
+                        Intern Policy (Company)
+                      </Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/docs/2021-22/Internship-Policy-2021-22.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">
+                        Intern Policy (Student)
+                      </Typography>
+                    </a>
+
+                    <a
+                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EQg0xHNghM5Gpg9rO1HiTMgBrvASDlwPsz1S_nVKIQltQA?e=WYvgIt"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Internship Proforma</Typography>
+                    </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EVhj_9d8sutKmcpK_u10STIBcxCUAkCOpfrb4hKaafSdLA?e=f5vY2Y"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Job Announcement Form</Typography>
+                    </a>
+                  </Stack>
+                </Grid>
+                <Grid item xs={6}>
+                  <Stack direction="column" justifyContent="center" spacing={2}>
+                    <a
+                      href="https://iitk-my.sharepoint.com/personal/krvaibhav_iitk_ac_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload%2FConsent%20Form%5FPhD%20Internship%2Epdf&parent=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload&ga=1"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Guide's consent Form (Internship)</Typography>
+                    </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/personal/krvaibhav_iitk_ac_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload%2FConsent%20Form%5FPhD%20Placement%2Epdf&parent=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload&ga=1"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Guide's consent Form (Placement)</Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/assets/companies_links/IITK_Recruitment_Guide_2022-23.pdf"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Recruitment Guide</Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/companies#steps"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">
+                        Recruitment Itinerarry
+                      </Typography>
+                    </a>
+
+                    <a
+                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EeEGPK8DLvVJr9zNCfW1-IkBhY2NT_GOBncyqV_P9lZNNQ?e=TRuTxM"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">PhD OPC-DPC Contact List</Typography>
+                    </a>
+                    <a
+                      href="https://spo.iitk.ac.in/administration"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">Contact Us</Typography>
+                    </a>
+                  </Stack>
+                </Grid>
+
               </Stack>
             </Grid>
             <Grid item xs={12} md={3}>
