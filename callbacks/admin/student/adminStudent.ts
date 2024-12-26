@@ -48,7 +48,12 @@ export interface Student {
   friend_phone: string;
   is_editable: string;
   is_verified: boolean;
+  gate_score: number;
+  jam_score: number;
+  net_score: number;
+  stage_of_phd: string;
 }
+
 
 const instance = axios.create({
   baseURL: ADMIN_STUDENT_URL,
