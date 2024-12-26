@@ -13,53 +13,42 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import Meta from "@components/Meta";
-import AdminStudentRequest, {
-  Student,
-} from "@callbacks/admin/student/adminStudent";
+import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
 import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
 
-function Edit() {
+function ProfileEdit() {
   const [StudentData, setStudentData] = useState<Student>({ ID: 0 } as Student);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
     getValues,
-    watch,
+    formState: { errors },
   } = useForm<Student>({
     defaultValues: StudentData,
   });
-  // const watchPreference = watch("preference");
-  const watchGender = watch("gender");
-  const watchTenthBoard = watch("tenth_board");
-  const watchTwelfthBoard = watch("twelfth_board");
-  // const watchEntranceExam = watch("entrance_exam");
-  // const watchCategory = watch("category");
-  const watchDisability = watch("disability");
-
   const [dept, setDept] = useState<any>("");
-  // const [deptSec, setDeptSec] = useState<string>("");
+  // const [deptSec, setDeptSec] = useState<any>("");
 
   const { token } = useStore();
   const router = useRouter();
-  const { studentId } = router.query;
-  const sId = (studentId || "").toString();
-
   useEffect(() => {
     const fetch = async () => {
-      const student = await AdminStudentRequest.get(
-        token,
-        parseInt(sId, 10)
-      ).catch(() => ({ ID: 0 } as Student));
+      const student = await studentRequest
+        .get(token)
+        .catch(() => ({ ID: 0 } as Student));
+
       setStudentData(student);
-      setDept(student.department);
-      reset(student);
+      reset({
+        name: student.name,
+        iitk_email: student.iitk_email,
+        roll_no: student.roll_no,
+      });
     };
-    if (router.isReady) fetch();
-  }, [token, sId, reset, router]);
+    fetch();
+  }, [token, reset]);
 
   const onSubmit = async (data: Student) => {
     let program_department_id = getId(
@@ -71,19 +60,23 @@ function Edit() {
       getValues("program_2"),
       getValues("department_2")
     );
-    const response = await AdminStudentRequest.update(token, {
+
+    if (secondary_program_department_id === 200)
+      secondary_program_department_id = 0;
+
+    const response = await studentRequest.update(token, {
       ...data,
       program_department_id,
       secondary_program_department_id,
-      ID: parseInt(sId, 10),
     });
+
     if (response) {
-      router.push(`/admin/student/${sId}`);
+      router.push("/student/profile");
     }
   };
   return (
     <div>
-      <Meta title={`${StudentData.name} - Edit Student Details`} />
+      <Meta title="Edit Profile - Student Dashboard " />
       <Stack spacing={2}>
         <Stack
           direction={{ xs: "column", sm: "row" }}
@@ -123,6 +116,14 @@ function Edit() {
           PS. If your profile is already verified, it will be reverted upon any
           change.
         </h4>
+        <h4 style={{ fontWeight: 500 }}>
+          Already verified students registering for the new placement season can
+          edit some of the allowed fields below
+        </h4>
+        <h4 style={{ fontWeight: 500 }}>
+          It is mandatory to fill the Stages of PhD field in order to be
+          registered for the recruitment cycle
+        </h4>
         <form style={{ marginBottom: 10 }}>
           <Stack justifyContent="center">
             <Card
@@ -141,6 +142,7 @@ function Edit() {
                     type="text"
                     id="standard-basic"
                     variant="standard"
+                    disabled
                     {...register("name")}
                   />
                 </Grid>
@@ -198,6 +200,7 @@ function Edit() {
                     onChange={(e) => {
                       setDept(e.target.value);
                     }}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -215,6 +218,7 @@ function Edit() {
                       fullWidth
                       variant="standard"
                       {...register("program")}
+                      disabled={StudentData.is_verified}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -231,34 +235,30 @@ function Edit() {
                           </MenuItem>
                         )
                       )}
-                      {/* {Object.keys(
-                        func[StudentData.department as keyof typeof func]
-                      ).map((program) => (
-                        <MenuItem key={program} value={program}>
-                          {program}
-                        </MenuItem>
-                      ))} */}
                     </Select>
                   ) : (
                     <Select
                       fullWidth
                       variant="standard"
                       {...register("program")}
+                      disabled={StudentData.is_verified}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
                     </Select>
                   )}
-                  {/* <TextField
-                    fullWidth
-                    variant="standard"
-                    disabled
-                    value="PhD"
-                  /> */}
                 </Grid>
                 {/* <Grid item xs={12} sm={6}>
                   <p>Secondary Department</p>
-                  <Select fullWidth variant="standard">
+                  <Select
+                    fullWidth
+                    variant="standard"
+                    {...register("department_2")}
+                    // onChange={(e) => {
+                    //   setDeptSec(e.target.value);
+                    // }}
+                    disabled={StudentData.is_verified}
+                  >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
                     {Branches.map((branch) => (
@@ -275,9 +275,7 @@ function Edit() {
                       fullWidth
                       variant="standard"
                       {...register("program_2")}
-                      onChange={(e) => {
-                        setDeptSec(e.target.value as string);
-                      }}
+                      disabled={StudentData.is_verified}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -305,6 +303,7 @@ function Edit() {
                       fullWidth
                       variant="standard"
                       {...register("program_2")}
+                      disabled={StudentData.is_verified}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -315,14 +314,15 @@ function Edit() {
                     variant="standard"
                     disabled
                     value="PhD"
-                  /> */}
-                {/* </Grid> */}
+                  />
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                   <p>Stage of PhD</p>
                   <Select
                     fullWidth
                     variant="standard"
+                    required
                     {...register("specialization")}
                     // onChange={(e) => {
                     //   setDept(e.target.value as string);
@@ -343,7 +343,6 @@ function Edit() {
                   <Select
                     fullWidth
                     variant="standard"
-                    value={watchPreference || ""}
                     {...register("preference")}
                   >
                     <MenuItem value="" />
@@ -356,8 +355,8 @@ function Edit() {
                   <Select
                     fullWidth
                     variant="standard"
-                    value={watchGender || ""}
                     {...register("gender")}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -389,6 +388,7 @@ function Edit() {
                         return epoch;
                       },
                     })}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -453,6 +453,7 @@ function Edit() {
                     {...register("current_cpi", {
                       setValueAs: (value) => parseFloat(value),
                     })}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -465,6 +466,7 @@ function Edit() {
                     {...register("ug_cpi", {
                       setValueAs: (value) => parseFloat(value),
                     })}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -476,10 +478,10 @@ function Edit() {
                       <TextField
                         {...params}
                         variant="standard"
-                        value={watchTenthBoard || "CBSE"}
                         {...register("tenth_board")}
                       />
                     )}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -503,6 +505,7 @@ function Edit() {
                     onWheel={(event) =>
                       (event.target as HTMLTextAreaElement).blur()
                     }
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -517,6 +520,7 @@ function Edit() {
                       min: 0,
                       max: 100,
                     })}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -524,7 +528,6 @@ function Edit() {
                   <Autocomplete
                     freeSolo
                     options={["CBSE", "ICSE"]}
-                    value={watchTwelfthBoard || "CBSE"}
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -532,6 +535,7 @@ function Edit() {
                         {...register("twelfth_board")}
                       />
                     )}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -555,6 +559,7 @@ function Edit() {
                     onWheel={(event) =>
                       (event.target as HTMLTextAreaElement).blur()
                     }
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -569,6 +574,7 @@ function Edit() {
                       min: 0,
                       max: 100,
                     })}
+                    disabled={StudentData.is_verified}
                   />
                 </Grid>
                 {/* <Grid item xs={12} sm={6}>
@@ -576,9 +582,8 @@ function Edit() {
                   <Select
                     fullWidth
                     variant="standard"
-                    defaultValue={StudentData?.entrance_exam as string}
-                    value={watchEntranceExam || ""}
                     {...register("entrance_exam")}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -604,6 +609,7 @@ function Edit() {
                     onWheel={(event) =>
                       (event.target as HTMLTextAreaElement).blur()
                     }
+                    disabled={StudentData.is_verified}
                   />
                 </Grid> */}
                 {/* <Grid item xs={12} sm={6}>
@@ -611,8 +617,8 @@ function Edit() {
                   <Select
                     fullWidth
                     variant="standard"
-                    value={watchCategory || ""}
                     {...register("category")}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="" />
                     <MenuItem value="NA">None</MenuItem>
@@ -638,6 +644,7 @@ function Edit() {
                     onWheel={(event) =>
                       (event.target as HTMLTextAreaElement).blur()
                     }
+                    disabled={StudentData.is_verified}
                   />
                 </Grid> */}
                 <Grid item xs={12} sm={6}>
@@ -698,8 +705,8 @@ function Edit() {
                   <Select
                     fullWidth
                     variant="standard"
-                    value={watchDisability || "No"}
                     {...register("disability")}
+                    disabled={StudentData.is_verified}
                   >
                     <MenuItem value="Yes">Yes</MenuItem>
                     <MenuItem value="No">No</MenuItem>
@@ -714,5 +721,5 @@ function Edit() {
   );
 }
 
-Edit.layout = "adminDashBoard";
-export default Edit;
+ProfileEdit.layout = "studentDashboard";
+export default ProfileEdit;
