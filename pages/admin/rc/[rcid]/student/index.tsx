@@ -6,6 +6,7 @@ import { Button, IconButton, Modal, Stack, Tooltip } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import EditIcon from "@mui/icons-material/Edit";
+import SyncIcon from "@mui/icons-material/Sync";
 import { AcUnit } from "@mui/icons-material";
 
 import DataGrid from "@components/DataGrid";
@@ -200,9 +201,9 @@ function Index() {
   }, [rid, token]);
 
   const [openSync, setOpenSync] = useState(false);
-  // const handleOpenSync = () => {
-  //   setOpenSync(true);
-  // };
+  const handleOpenSync = () => {
+    setOpenSync(true);
+  };
   const handleCloseSync = () => {
     fetchAllStudents();
     setOpenSync(false);
@@ -266,11 +267,11 @@ function Index() {
                 <div />
               )}
             </Tooltip>
-            {/* <Tooltip title="Sync Student Data with Master">
+            <Tooltip title="Sync Student Data with Master">
               <IconButton onClick={handleOpenSync}>
                 <SyncIcon />
               </IconButton>
-            </Tooltip> */}
+            </Tooltip>
             <Tooltip title="UnFreeze Students">
               <IconButton onClick={handleOpenUnFreeze}>
                 <HowToRegIcon />
