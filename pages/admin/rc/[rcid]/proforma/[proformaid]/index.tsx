@@ -139,11 +139,11 @@ const fixed_columns: GridColDef[] = [
       </Button>
     ),
   },
-  // {
-  //   field: "specialization",
-  //   headerName: "Specialisation",
-  //   hide: true,
-  // },
+  {
+    field: "specialization",
+    headerName: "Stage of PhD",
+    hide: true,
+  },
   // {
   //   field: "preference",
   //   headerName: "Preference",
