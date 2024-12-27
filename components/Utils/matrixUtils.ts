@@ -330,9 +330,6 @@ export const func = {
     "Stochastic-PDE-and-process": "221",
     "Design-of-Experiments": "222",
   },
-    NET:{
-    
-  }
 };
 
 export const rev = {
