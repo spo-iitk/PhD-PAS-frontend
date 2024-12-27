@@ -61,7 +61,7 @@ function Edit() {
     };
     if (router.isReady) fetch();
   }, [token, sId, reset, router]);
- 
+
   const onSubmit = async (data: Student) => {
     let program_department_id = getId(
       getValues("program"),
@@ -81,7 +81,6 @@ function Edit() {
     if (response) {
       router.push(`/admin/student/${sId}`);
     }
-  
   };
   return (
     <div>
@@ -170,146 +169,175 @@ function Edit() {
                     {...register("roll_no")}
                   />
                 </Grid>
-              <Grid item xs={12} sm={6}>
-  <p>Department</p>
-  <FormControl fullWidth variant="standard" error={!!errors.department}>
-    <Select
-      {...register("department", { required: "Department is required" })}
-      onChange={(e) => setDept(e.target.value)}
-    >
-      <MenuItem value="" />
-      <MenuItem value="NA">None</MenuItem>
-      {Branches.map((branch) => (
-        <MenuItem key={branch} value={branch}>
-          {branch}
-        </MenuItem>
-      ))}
-    </Select>
-    {errors.department && (
-      <FormHelperText>{errors.department.message}</FormHelperText>
-    )}
-  </FormControl>
-</Grid>
-<Grid item xs={12} sm={6}>
-  <FormControl
-    fullWidth
-    variant="standard"
-    error={!!errors.program}
-  >
-    <p>Program</p>
-    {dept !== "" ? (
-      <Select
-        {...register("program", { required: "Program is required" })}
-      >
-        <MenuItem value="" />
-        <MenuItem value="NA">None</MenuItem>
-        {Object.keys(func[dept as keyof typeof func] || []).map((keyword) => (
-          <MenuItem key={keyword} value={keyword}>
-            {keyword}
-          </MenuItem>
-        ))}
-      </Select>
-    ) : (
-      <Select
-        {...register("program")}
-      >
-        <MenuItem value="" />
-        <MenuItem value="NA">None</MenuItem>
-      </Select>
-    )}
-    {errors.program && (
-      <FormHelperText>{errors.program.message}</FormHelperText>
-    )}
-  </FormControl>
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>Department</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.department}
+                  >
+                    <Select
+                      {...register("department", {
+                        required: "Department is required",
+                      })}
+                      onChange={(e) => setDept(e.target.value)}
+                    >
+                      <MenuItem value="" />
+                      <MenuItem value="NA">None</MenuItem>
+                      {Branches.map((branch) => (
+                        <MenuItem key={branch} value={branch}>
+                          {branch}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    {errors.department && (
+                      <FormHelperText>
+                        {errors.department.message}
+                      </FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.program}
+                  >
+                    <p>Program</p>
+                    {dept !== "" ? (
+                      <Select
+                        {...register("program", {
+                          required: "Program is required",
+                        })}
+                      >
+                        <MenuItem value="" />
+                        <MenuItem value="NA">None</MenuItem>
+                        {Object.keys(func[dept as keyof typeof func] || []).map(
+                          (keyword) => (
+                            <MenuItem key={keyword} value={keyword}>
+                              {keyword}
+                            </MenuItem>
+                          )
+                        )}
+                      </Select>
+                    ) : (
+                      <Select {...register("program")}>
+                        <MenuItem value="" />
+                        <MenuItem value="NA">None</MenuItem>
+                      </Select>
+                    )}
+                    {errors.program && (
+                      <FormHelperText>{errors.program.message}</FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
 
                 <Grid item xs={12} sm={6}>
-  <p>Stage of PhD</p>
-  <FormControl
-    fullWidth
-    variant="standard"
-    error={!!errors.stage_of_phd} // Highlight error state
-  >
-    <InputLabel>Stage of PhD</InputLabel>
-    <Select
-      {...register("stage_of_phd", { required: "Stage of PhD is required" })}
-      defaultValue="" // Ensure default empty value
-    >
-      <MenuItem value="">
-        <em>Select a stage</em>
-      </MenuItem>
-      {StagesofPhD.map((stage) => (
-        <MenuItem key={stage} value={stage}>
-          {stage}
-        </MenuItem>
-      ))}
-    </Select>
-    <FormHelperText>
-      {errors.stage_of_phd ? errors.stage_of_phd.message : ""}
-    </FormHelperText>
-  </FormControl>
-</Grid>
+                  <p>Stage of PhD</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.stage_of_phd} // Highlight error state
+                  >
+                    <InputLabel>Stage of PhD</InputLabel>
+                    <Select
+                      {...register("stage_of_phd", {
+                        required: "Stage of PhD is required",
+                      })}
+                      defaultValue="" // Ensure default empty value
+                    >
+                      <MenuItem value="">
+                        <em>Select a stage</em>
+                      </MenuItem>
+                      {StagesofPhD.map((stage) => (
+                        <MenuItem key={stage} value={stage}>
+                          {stage}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>
+                      {errors.stage_of_phd ? errors.stage_of_phd.message : ""}
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
 
-               <Grid item xs={12} sm={6}>
-  <p>Gender</p>
-  <FormControl fullWidth variant="standard" error={!!errors.gender}>
-    <Select
-      value={watchGender || ""}
-      {...register("gender", { required: "Gender is required" })}
-    >
-      <MenuItem value="" />
-      <MenuItem value="NA">None</MenuItem>
-      <MenuItem value="Male">Male</MenuItem>
-      <MenuItem value="Female">Female</MenuItem>
-    </Select>
-    {errors.gender && (
-      <FormHelperText>{errors.gender.message}</FormHelperText>
-    )}
-  </FormControl>
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>Gender</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.gender}
+                  >
+                    <Select
+                      value={watchGender || ""}
+                      {...register("gender", {
+                        required: "Gender is required",
+                      })}
+                    >
+                      <MenuItem value="" />
+                      <MenuItem value="NA">None</MenuItem>
+                      <MenuItem value="Male">Male</MenuItem>
+                      <MenuItem value="Female">Female</MenuItem>
+                    </Select>
+                    {errors.gender && (
+                      <FormHelperText>{errors.gender.message}</FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>Personal Email</p>
-  <FormControl fullWidth variant="standard" error={!!errors.personal_email}>
-    <TextField
-      type="text"
-      id="standard-basic"
-      variant="standard"
-      {...register("personal_email", {
-        required: "Personal Email is required",
-        pattern: {
-          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          message: "Invalid email format",
-        },
-      })}
-      error={!!errors.personal_email}
-    />
-    {errors.personal_email && (
-      <FormHelperText>{errors.personal_email.message}</FormHelperText>
-    )}
-  </FormControl>
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>Personal Email</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.personal_email}
+                  >
+                    <TextField
+                      type="text"
+                      id="standard-basic"
+                      variant="standard"
+                      {...register("personal_email", {
+                        required: "Personal Email is required",
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: "Invalid email format",
+                        },
+                      })}
+                      error={!!errors.personal_email}
+                    />
+                    {errors.personal_email && (
+                      <FormHelperText>
+                        {errors.personal_email.message}
+                      </FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>Date Of Birth</p>
-  <FormControl fullWidth variant="standard" error={!!errors.dob}>
-    <TextField
-      type="date"
-      id="standard-basic"
-      variant="standard"
-      {...register("dob", {
-        required: "Date of Birth is required",
-        setValueAs: (date) => {
-          const d = new Date(date);
-          return d.getTime(); // Convert to epoch time
-        },
-      })}
-      error={!!errors.dob}
-    />
-    {errors.dob && <FormHelperText>{errors.dob.message}</FormHelperText>}
-  </FormControl>
-</Grid>
-
+                <Grid item xs={12} sm={6}>
+                  <p>Date Of Birth</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.dob}
+                  >
+                    <TextField
+                      type="date"
+                      id="standard-basic"
+                      variant="standard"
+                      {...register("dob", {
+                        required: "Date of Birth is required",
+                        setValueAs: (date) => {
+                          const d = new Date(date);
+                          return d.getTime(); // Convert to epoch time
+                        },
+                      })}
+                      error={!!errors.dob}
+                    />
+                    {errors.dob && (
+                      <FormHelperText>{errors.dob.message}</FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
 
                 <Grid item xs={12} sm={6}>
                   <p>Contact Number</p>
@@ -322,7 +350,11 @@ function Edit() {
                     helperText={
                       errors.phone ? "Contact No. must contain 10 digits!" : ""
                     }
-                    {...register("phone", { minLength: 10, maxLength: 10, required: "Contact Number is required" })}
+                    {...register("phone", {
+                      minLength: 10,
+                      maxLength: 10,
+                      required: "Contact Number is required",
+                    })}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -366,164 +398,174 @@ function Edit() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-  <p>Current CPI</p>
-  <TextField
-    fullWidth
-    type="text"
-    id="current-cpi"
-    variant="standard"
-    error={!!errors.current_cpi}
-    helperText={errors.current_cpi?.message}
-    {...register("current_cpi", {
-      required: "Current CPI is required",
-      validate: (value) =>
-        !isNaN(parseFloat(value.toString())) || "Please enter a valid number",
-      setValueAs: (value) => parseFloat(value),
-    })}
-  />
-</Grid>
+                  <p>Current CPI</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="current-cpi"
+                    variant="standard"
+                    error={!!errors.current_cpi}
+                    helperText={errors.current_cpi?.message}
+                    {...register("current_cpi", {
+                      required: "Current CPI is required",
+                      validate: (value) =>
+                        !isNaN(parseFloat(value.toString())) ||
+                        "Please enter a valid number",
+                      setValueAs: (value) => parseFloat(value),
+                    })}
+                  />
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>PG CPI</p>
-  <TextField
-    fullWidth
-    type="text"
-    id="pg-cpi"
-    variant="standard"
-    error={!!errors.ug_cpi}
-    helperText={errors.ug_cpi?.message}
-    {...register("ug_cpi", {
-      required: "PG CPI is required",
-      validate: (value) =>
-        !isNaN(parseFloat(value.toString())) || "Please enter a valid number",
-      setValueAs: (value) => parseFloat(value),
-    })}
-  />
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>PG CPI</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="pg-cpi"
+                    variant="standard"
+                    error={!!errors.ug_cpi}
+                    helperText={errors.ug_cpi?.message}
+                    {...register("ug_cpi", {
+                      required: "PG CPI is required",
+                      validate: (value) =>
+                        !isNaN(parseFloat(value.toString())) ||
+                        "Please enter a valid number",
+                      setValueAs: (value) => parseFloat(value),
+                    })}
+                  />
+                </Grid>
 
+                <Grid item xs={12} sm={6}>
+                  <p>10th Board</p>
+                  <Autocomplete
+                    freeSolo
+                    options={["CBSE", "ICSE"]}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        error={!!errors.tenth_board}
+                        helperText={
+                          errors.tenth_board ? "10th Board is required" : ""
+                        }
+                        {...register("tenth_board", {
+                          required: "10th Board is required",
+                        })}
+                      />
+                    )}
+                  />
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>10th Board</p>
-  <Autocomplete
-    freeSolo
-    options={["CBSE", "ICSE"]}
-    renderInput={(params) => (
-      <TextField
-        {...params}
-        variant="standard"
-        error={!!errors.tenth_board}
-        helperText={errors.tenth_board ? "10th Board is required" : ""}
-        {...register("tenth_board", {
-          required: "10th Board is required",
-        })}
-      />
-    )}
-  />
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>10th Board Year</p>
+                  <TextField
+                    fullWidth
+                    type="number"
+                    id="tenth-board-year"
+                    variant="standard"
+                    error={!!errors.tenth_year}
+                    helperText={errors.tenth_year?.message}
+                    {...register("tenth_year", {
+                      required: "10th Board Year is required",
+                      setValueAs: (value) => parseInt(value, 10),
+                      validate: (value) =>
+                        (value >= 1000 && value <= 9999) ||
+                        "Year must be between 1000 and 9999",
+                    })}
+                    onWheel={(event) =>
+                      (event.target as HTMLInputElement).blur()
+                    } // Prevent number scrolling
+                  />
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>10th Board Year</p>
-  <TextField
-    fullWidth
-    type="number"
-    id="tenth-board-year"
-    variant="standard"
-    error={!!errors.tenth_year}
-    helperText={errors.tenth_year?.message}
-    {...register("tenth_year", {
-      required: "10th Board Year is required",
-      setValueAs: (value) => parseInt(value, 10),
-      validate: (value) =>
-        value >= 1000 && value <= 9999 || "Year must be between 1000 and 9999",
-    })}
-    onWheel={(event) => (event.target as HTMLInputElement).blur()} // Prevent number scrolling
-  />
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>10th Marks (CGPA / Percentage)</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="tenth-marks"
+                    variant="standard"
+                    error={!!errors.tenth_marks}
+                    helperText={errors.tenth_marks?.message}
+                    {...register("tenth_marks", {
+                      required: "10th Marks are required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const marks = parseFloat(value.toString());
+                        if (isNaN(marks)) return "Marks must be a valid number";
+                        if (marks < 0) return "Marks must be at least 0";
+                        if (marks > 100) return "Marks cannot exceed 100";
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>10th Marks (CGPA / Percentage)</p>
-  <TextField
-    fullWidth
-    type="text"
-    id="tenth-marks"
-    variant="standard"
-    error={!!errors.tenth_marks}
-    helperText={errors.tenth_marks?.message}
-    {...register("tenth_marks", {
-      required: "10th Marks are required",
-      setValueAs: (value) => parseFloat(value),
-      validate: (value) => {
-        const marks = parseFloat(value.toString());
-        if (isNaN(marks)) return "Marks must be a valid number";
-        if (marks < 0) return "Marks must be at least 0";
-        if (marks > 100) return "Marks cannot exceed 100";
-        return true;
-      },
-    })}
-  />
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>12th Board</p>
+                  <Autocomplete
+                    freeSolo
+                    options={["CBSE", "ICSE"]}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant="standard"
+                        error={!!errors.twelfth_board}
+                        helperText={
+                          errors.twelfth_board ? "12th Board is required" : ""
+                        }
+                        {...register("twelfth_board", {
+                          required: "12th Board is required",
+                        })}
+                      />
+                    )}
+                  />
+                </Grid>
 
+                <Grid item xs={12} sm={6}>
+                  <p>12th Board Year</p>
+                  <TextField
+                    fullWidth
+                    type="number"
+                    id="twelfth-board-year"
+                    variant="standard"
+                    error={!!errors.twelfth_year}
+                    helperText={errors.twelfth_year?.message}
+                    {...register("twelfth_year", {
+                      required: "12th Board Year is required",
+                      setValueAs: (value) => parseInt(value, 10),
+                      validate: (value) =>
+                        (value >= 1000 && value <= 9999) ||
+                        "Year must be between 1000 and 9999",
+                    })}
+                    onWheel={(event) =>
+                      (event.target as HTMLInputElement).blur()
+                    } // Prevent scrolling
+                  />
+                </Grid>
 
-<Grid item xs={12} sm={6}>
-  <p>12th Board</p>
-  <Autocomplete
-    freeSolo
-    options={["CBSE", "ICSE"]}
-    renderInput={(params) => (
-      <TextField
-        {...params}
-        variant="standard"
-        error={!!errors.twelfth_board}
-        helperText={errors.twelfth_board ? "12th Board is required" : ""}
-        {...register("twelfth_board", {
-          required: "12th Board is required",
-        })}
-      />
-    )}
-  />
-</Grid>
-
-<Grid item xs={12} sm={6}>
-  <p>12th Board Year</p>
-  <TextField
-    fullWidth
-    type="number"
-    id="twelfth-board-year"
-    variant="standard"
-    error={!!errors.twelfth_year}
-    helperText={errors.twelfth_year?.message}
-    {...register("twelfth_year", {
-      required: "12th Board Year is required",
-      setValueAs: (value) => parseInt(value, 10),
-      validate: (value) =>
-        value >= 1000 && value <= 9999 || "Year must be between 1000 and 9999",
-    })}
-    onWheel={(event) => (event.target as HTMLInputElement).blur()} // Prevent scrolling
-  />
-</Grid>
-
-<Grid item xs={12} sm={6}>
-  <p>12th Marks (CGPA / Percentage)</p>
-  <TextField
-    fullWidth
-    type="text"
-    id="twelfth-marks"
-    variant="standard"
-    error={!!errors.twelfth_marks}
-    helperText={errors.twelfth_marks?.message}
-    {...register("twelfth_marks", {
-      required: "12th Marks are required",
-      setValueAs: (value) => parseFloat(value),
-      validate: (value) => {
-        const marks = parseFloat(value.toString());
-        if (isNaN(marks)) return "Marks must be a valid number";
-        if (marks < 0) return "Marks must be at least 0";
-        if (marks > 100) return "Marks cannot exceed 100";
-        return true;
-      },
-    })}
-  />
-</Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>12th Marks (CGPA / Percentage)</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="twelfth-marks"
+                    variant="standard"
+                    error={!!errors.twelfth_marks}
+                    helperText={errors.twelfth_marks?.message}
+                    {...register("twelfth_marks", {
+                      required: "12th Marks are required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const marks = parseFloat(value.toString());
+                        if (isNaN(marks)) return "Marks must be a valid number";
+                        if (marks < 0) return "Marks must be at least 0";
+                        if (marks > 100) return "Marks cannot exceed 100";
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
 
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>
@@ -534,10 +576,15 @@ function Edit() {
                     variant="standard"
                     multiline
                     minRows={3}
-                    {...register("current_address",{required:"Current Address is required"})}
+                    {...register("current_address", {
+                      required: "Current Address is required",
+                    })}
                     error={!!errors.current_address}
-                    helperText={errors.current_address ? errors.current_address.message : ""}
-
+                    helperText={
+                      errors.current_address
+                        ? errors.current_address.message
+                        : ""
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -549,9 +596,15 @@ function Edit() {
                     variant="standard"
                     multiline
                     minRows={3}
-                    {...register("permanent_address",{required:"Permanent Address is required"})}
+                    {...register("permanent_address", {
+                      required: "Permanent Address is required",
+                    })}
                     error={!!errors.permanent_address}
-                    helperText={errors.permanent_address ? errors.permanent_address.message : ""}
+                    helperText={
+                      errors.permanent_address
+                        ? errors.permanent_address.message
+                        : ""
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -584,57 +637,76 @@ function Edit() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-  <p>Disability</p>
-  <FormControl fullWidth variant="standard" error={!!errors.disability}>
-    <Select
-      value={watchDisability || "No"}
-      {...register("disability", { required: "Disability is required" })}
-    >
-      <MenuItem value="Yes">Yes</MenuItem>
-      <MenuItem value="No">No</MenuItem>
-    </Select>
-    {errors.disability && (
-      <FormHelperText>{errors.disability.message}</FormHelperText>
-    )}
-  </FormControl>
-</Grid>
-<Grid item xs={12} sm={6}>
-<p>GATE Score</p>
+                  <p>Disability</p>
+                  <FormControl
+                    fullWidth
+                    variant="standard"
+                    error={!!errors.disability}
+                  >
+                    <Select
+                      value={watchDisability || "No"}
+                      {...register("disability", {
+                        required: "Disability is required",
+                      })}
+                    >
+                      <MenuItem value="Yes">Yes</MenuItem>
+                      <MenuItem value="No">No</MenuItem>
+                    </Select>
+                    {errors.disability && (
+                      <FormHelperText>
+                        {errors.disability.message}
+                      </FormHelperText>
+                    )}
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <p>GATE Score</p>
                   <TextField
                     fullWidth
                     type="text"
                     id="standard-basic"
                     variant="standard"
-                    {...register("gate_score", { required: "This field is required" })}
+                    {...register("gate_score", {
+                      required: "This field is required",
+                    })}
                     error={!!errors.gate_score}
-                    helperText={errors.gate_score ? errors.gate_score.message : ""}
+                    helperText={
+                      errors.gate_score ? errors.gate_score.message : ""
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-<p>JAM Score</p>
+                  <p>JAM Score</p>
                   <TextField
                     fullWidth
                     type="text"
                     id="standard-basic"
                     variant="standard"
-                    {...register("jam_score", { required: "This field is required" })}
+                    {...register("jam_score", {
+                      required: "This field is required",
+                    })}
                     error={!!errors.jam_score}
-                    helperText={errors.jam_score ? errors.jam_score.message : ""}
+                    helperText={
+                      errors.jam_score ? errors.jam_score.message : ""
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-<p>NET Score</p>
+                  <p>NET Score</p>
                   <TextField
                     fullWidth
                     type="text"
                     id="standard-basic"
                     variant="standard"
-                    {...register("net_score", { required: "This field is required" })}
+                    {...register("net_score", {
+                      required: "This field is required",
+                    })}
                     error={!!errors.gate_score}
-                    helperText={errors.net_score? errors.net_score.message : ""}
+                    helperText={
+                      errors.net_score ? errors.net_score.message : ""
+                    }
                   />
                 </Grid>
-
               </Grid>
             </Card>
           </Stack>
