@@ -492,7 +492,8 @@ function Edit() {
                       setValueAs: (value) => parseFloat(value),
                       validate: (value) => {
                         const marks = parseFloat(value.toString());
-                        if (Number.isNaN(marks)) return "Marks must be a valid number";
+                        if (Number.isNaN(marks))
+                          return "Marks must be a valid number";
                         if (marks < 0) return "Marks must be at least 0";
                         if (marks > 100) return "Marks cannot exceed 100";
                         return true;
@@ -558,7 +559,8 @@ function Edit() {
                       setValueAs: (value) => parseFloat(value),
                       validate: (value) => {
                         const marks = parseFloat(value.toString());
-                        if (Number.isNaN(marks)) return "Marks must be a valid number";
+                        if (Number.isNaN(marks))
+                          return "Marks must be a valid number";
                         if (marks < 0) return "Marks must be at least 0";
                         if (marks > 100) return "Marks cannot exceed 100";
                         return true;
