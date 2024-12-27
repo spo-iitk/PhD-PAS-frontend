@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import Meta from "@components/Meta";
@@ -32,14 +32,11 @@ function Edit() {
     formState: { errors },
     getValues,
     watch,
-    control,
   } = useForm<Student>({
     defaultValues: StudentData,
   });
   // const watchPreference = watch("preference");
   const watchGender = watch("gender");
-  const watchTenthBoard = watch("tenth_board");
-  const watchTwelfthBoard = watch("twelfth_board");
   // const watchEntranceExam = watch("entrance_exam");
   // const watchCategory = watch("category");
   const watchDisability = watch("disability");
@@ -146,7 +143,7 @@ function Edit() {
                     type="text"
                     id="standard-basic"
                     variant="standard"
-                    {...register("name",{required:"Name is required"})}
+                    {...register("name", { required: "Name is required" })}
                     error={!!errors.name}
                     helperText={errors.name ? errors.name.message : ""}
                   />
