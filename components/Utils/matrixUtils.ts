@@ -50,7 +50,7 @@ export const Branches = [
   "DES",
   "MSP",
   "CHM",
-  "NET"
+  "NET",
   "MTH",
 ];
 
