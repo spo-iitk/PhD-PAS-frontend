@@ -51,6 +51,7 @@ export const Branches = [
   "MSP",
   "CHM",
   "MTH",
+  "Eco",
 ];
 
 export type programType = {
@@ -329,6 +330,7 @@ export const func = {
     "Stochastic-PDE-and-process": "221",
     "Design-of-Experiments": "222",
   },
+  Eco: {},
 };
 
 export const rev = {
