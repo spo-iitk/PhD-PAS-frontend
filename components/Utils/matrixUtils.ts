@@ -1,18 +1,3 @@
-// export const programExpanded = [
-//   "BT",
-//   "BS",
-//   "DoubleMajor",
-//   "DualA",
-//   "DualB",
-//   "DualC",
-//   "MT",
-//   "MSR",
-//   "MSc",
-//   "MDes",
-//   "MBA",
-//   "PhD",
-// ];
-
 export const programPhDExpanded = ["PhD"];
 
 // export const programCondensed = [
