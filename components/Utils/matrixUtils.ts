@@ -1,3 +1,18 @@
+// export const programExpanded = [
+//   "BT",
+//   "BS",
+//   "DoubleMajor",
+//   "DualA",
+//   "DualB",
+//   "DualC",
+//   "MT",
+//   "MSR",
+//   "MSc",
+//   "MDes",
+//   "MBA",
+//   "PhD",
+// ];
+
 export const programPhDExpanded = ["PhD"];
 
 // export const programCondensed = [
@@ -36,7 +51,7 @@ export const Branches = [
   "MSP",
   "CHM",
   "MTH",
-  "ECO",
+  "Eco",
 ];
 
 export type programType = {
@@ -315,7 +330,7 @@ export const func = {
     "Stochastic-PDE-and-process": "221",
     "Design-of-Experiments": "222",
   },
-  ECO: {},
+  Eco: {},
 };
 
 export const rev = {
