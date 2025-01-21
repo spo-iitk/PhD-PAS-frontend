@@ -252,11 +252,11 @@ function Edit() {
                   <FormControl
                     fullWidth
                     variant="standard"
-                    error={!!errors.stage_of_phd} // Highlight error state
+                    error={!!errors.specialization} // Highlight error state
                   >
                     <InputLabel>Stage of PhD</InputLabel>
                     <Select
-                      {...register("stage_of_phd", {
+                      {...register("specialization", {
                         required: "Stage of PhD is required",
                       })}
                       defaultValue="" // Ensure default empty value
@@ -271,7 +271,9 @@ function Edit() {
                       ))}
                     </Select>
                     <FormHelperText>
-                      {errors.stage_of_phd ? errors.stage_of_phd.message : ""}
+                      {errors.specialization
+                        ? errors.specialization.message
+                        : ""}
                     </FormHelperText>
                   </FormControl>
                 </Grid>
