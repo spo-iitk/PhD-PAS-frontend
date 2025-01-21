@@ -306,7 +306,6 @@ function ProfileEdit() {
                     {...register("specialization", {
                       required: "Stage of PhD is required",
                     })}
-                    error={!!errors.specialization} // Highlight error state
                   >
                     <MenuItem value="" />
                     {StagesofPhD.map((stage) => (
