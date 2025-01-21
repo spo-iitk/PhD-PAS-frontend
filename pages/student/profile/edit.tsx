@@ -297,7 +297,6 @@ function ProfileEdit() {
                     )}
                   </FormControl>
                 </Grid>
-
                 <Grid item xs={12} sm={6}>
                   <p>Stage of PhD</p>
                   <Select
@@ -307,12 +306,9 @@ function ProfileEdit() {
                     {...register("specialization", {
                       required: "Stage of PhD is required",
                     })}
-                    // onChange={(e) => {
-                    //   setDept(e.target.value as string);
-                    // }}
+                    error={!!errors.specialization} // Correctly referencing the registered field
                   >
                     <MenuItem value="" />
-                    {/* <MenuItem value="NA">None</MenuItem> */}
                     {StagesofPhD.map((stage) => (
                       <MenuItem key={stage} value={stage}>
                         {stage}
