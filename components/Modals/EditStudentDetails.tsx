@@ -117,7 +117,7 @@ function EditStudent({
             onChange={(e) => {
               handleChange(e.target.value);
             }}
-            // {...register("ID")}
+          // {...register("ID")}
           >
             {studentData.map((student: Student) => (
               <MenuItem value={student.ID}>{student.ID}</MenuItem>

@@ -418,10 +418,10 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         // conditional rendering
         role === 100 || role === 101
           ? {
-              avatar: <BarChartIcon />,
-              name: "Master Database (Company)",
-              id: "/company",
-            }
+            avatar: <BarChartIcon />,
+            name: "Master Database (Company)",
+            id: "/company",
+          }
           : { avatar: <></>, name: "", id: "", hidden: true },
         // role === 100 || role === 101
         // ?
@@ -472,17 +472,17 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         },
         role === 100 || role === 101 || role === 102
           ? {
-              avatar: <ArticleIcon />,
-              name: "Proforma",
-              id: "/proforma",
-            }
+            avatar: <ArticleIcon />,
+            name: "Proforma",
+            id: "/proforma",
+          }
           : { avatar: <></>, name: "", id: "", hidden: true },
         role === 100 || role === 101 || role === 102
           ? {
-              avatar: <ArticleIcon />,
-              name: "Resume",
-              id: "/resume",
-            }
+            avatar: <ArticleIcon />,
+            name: "Resume",
+            id: "/resume",
+          }
           : { avatar: <></>, name: "", id: "", hidden: true },
         {
           avatar: <ApartmentIcon />,
@@ -496,10 +496,10 @@ function LayoutWrapper({ children }: { children: JSX.Element }) {
         },
         role === 100 || role === 101 || role === 102
           ? {
-              avatar: <CalendarMonthIcon />,
-              name: "Events",
-              id: "/event",
-            }
+            avatar: <CalendarMonthIcon />,
+            name: "Events",
+            id: "/event",
+          }
           : { avatar: <></>, name: "", id: "", hidden: true },
         {
           avatar: <BarChartIcon />,

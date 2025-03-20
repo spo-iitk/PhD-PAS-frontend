@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import { successNotification,errorNotification } from "@callbacks/notifcation";
+import { successNotification, errorNotification } from "@callbacks/notifcation";
 
 import { AUTH_URL, ErrorType, SERVER_ERROR, setConfig } from "../../constants";
 

@@ -124,14 +124,14 @@ function Footer() {
                     </a>
 
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EQg0xHNghM5Gpg9rO1HiTMgBrvASDlwPsz1S_nVKIQltQA?e=WYvgIt"
+                      href="/Brochures/InternshipProforma.pdf"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Internship Proforma</Typography>
                     </a>
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EVhj_9d8sutKmcpK_u10STIBcxCUAkCOpfrb4hKaafSdLA?e=f5vY2Y"
+                      href="/Brochures/JAF.pdf"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -173,9 +173,9 @@ function Footer() {
                     </a>
 
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EeEGPK8DLvVJr9zNCfW1-IkBhY2NT_GOBncyqV_P9lZNNQ?e=TRuTxM"
+                      href="/Brochures/OPC-DPC Contacts.pdf"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       <Typography variant="body2">PhD OPC-DPC Contact List</Typography>
                     </a>
@@ -221,11 +221,11 @@ function Footer() {
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <MailIcon />
                   <a
-                    href="mailto:spo@iitk.ac.in"
+                    href="mailto:phdplacement@iitk.ac.in"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <Typography variant="body2">spo@iitk.ac.in</Typography>
+                    <Typography variant="body2">phdplacement@iitk.ac.in</Typography>
                   </a>
                 </Stack>
                 <Stack direction="row" alignItems="center" spacing={1}>
@@ -345,11 +345,11 @@ function Footer() {
               <Stack direction="row" alignItems="center" spacing={1}>
                 <MailIcon />
                 <a
-                  href="mailto:spo@iitk.ac.in"
+                  href="mailto:phdplacement@iitk.ac.in"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Typography variant="body2">spo@iitk.ac.in</Typography>
+                  <Typography variant="body2">phdplacement@iitk.ac.in</Typography>
                 </a>
               </Stack>
               <Stack direction="row" alignItems="center" spacing={1}>

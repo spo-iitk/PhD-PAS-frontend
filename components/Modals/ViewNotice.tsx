@@ -58,7 +58,7 @@ function ViewNotice({ currentNotice }: { currentNotice: NoticeParams }) {
         <small style={{ fontWeight: 300 }}>Description</small>
         <RichText
           // eslint-disable-next-line @typescript-eslint/no-empty-function
-          onChange={() => {}}
+          onChange={() => { }}
           readOnly
           value={currentNotice.description}
         />

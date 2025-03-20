@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { AxiosError, AxiosResponse } from "axios";
 
 export const BASE_URL = "https://phdplacement.iitk.ac.in";
