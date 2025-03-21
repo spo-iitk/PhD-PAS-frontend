@@ -137,6 +137,13 @@ function Footer() {
                     >
                       <Typography variant="body2">Job Announcement Form</Typography>
                     </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EVM6u2bjQq9HpXOATXiozM0BdxEWLsxVAdBWpDVS832EzA?e=2kOguW"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">PhD Overall Brochure</Typography>
+                    </a>
                   </Stack>
                 </Grid>
                 <Grid item xs={6}>
@@ -149,19 +156,27 @@ function Footer() {
                       <Typography variant="body2">Guide's consent Form (Internship)</Typography>
                     </a>
                     <a
-                      href="https://iitk-my.sharepoint.com/personal/krvaibhav_iitk_ac_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload%2FConsent%20Form%5FPhD%20Placement%2Epdf&parent=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload&ga=1"
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EWBNWzlshahLnaJnUwG-ocABuZ51UrdRCo8k5anjz0Js4w?e=oBBIn5"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Guide's consent Form (Placement)</Typography>
                     </a>
                     <a
-                      href="https://spo.iitk.ac.in/assets/companies_links/IITK_Recruitment_Guide_2022-23.pdf"
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EeVgZ-NRXuZHu07oQGGnm7UBHSdhCWjQ_Ib_rH6WCsqEyA?e=GM9tt8"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Recruitment Guide</Typography>
                     </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EXpGTMmPyrREnZrWzyqwsAoBUtPaqcf1rbto2N93R45eQA?e=7tlu4v"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">PhD Placement Policy for Students</Typography>
+                    </a>
+
                     <a
                       href="https://spo.iitk.ac.in/companies#steps"
                       target="_blank"
@@ -186,6 +201,7 @@ function Footer() {
                     >
                       <Typography variant="body2">Contact Us</Typography>
                     </a>
+
                   </Stack>
                 </Grid>
 
