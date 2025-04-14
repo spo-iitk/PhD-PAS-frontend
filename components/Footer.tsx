@@ -98,7 +98,7 @@ function Footer() {
                       </Typography>
                     </a>
                     <a
-                      href="https://spo.iitk.ac.in/departmental-brochure"
+                      href="https://spo.iitk.ac.in/phd-departmental-brochure"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -279,7 +279,7 @@ function Footer() {
                 </Typography>
               </a>
               <a
-                href="https://spo.iitk.ac.in/departmental-brochure"
+                href="https://spo.iitk.ac.in/phd-departmental-brochure"
                 target="_blank"
                 rel="noreferrer"
               >
