@@ -98,7 +98,7 @@ function Footer() {
                       </Typography>
                     </a>
                     <a
-                      href="https://spo.iitk.ac.in/departmental-brochure"
+                      href="https://spo.iitk.ac.in/phd-departmental-brochure"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -124,25 +124,32 @@ function Footer() {
                     </a>
 
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EQg0xHNghM5Gpg9rO1HiTMgBrvASDlwPsz1S_nVKIQltQA?e=WYvgIt"
+                      href="/Brochures/InternshipProforma.pdf"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Internship Proforma</Typography>
                     </a>
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EVhj_9d8sutKmcpK_u10STIBcxCUAkCOpfrb4hKaafSdLA?e=f5vY2Y"
+                      href="/Brochures/JAF.pdf"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Job Announcement Form</Typography>
+                    </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EVM6u2bjQq9HpXOATXiozM0BdxEWLsxVAdBWpDVS832EzA?e=2kOguW"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">PhD Overall Brochure</Typography>
                     </a>
                   </Stack>
                 </Grid>
                 <Grid item xs={6}>
                   <Stack direction="column" justifyContent="center" spacing={2}>
                     <a
-                      href="https://iitk-my.sharepoint.com/personal/krvaibhav_iitk_ac_in/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload%2FConsent%20Form%5FPhD%20Internship%2Epdf&parent=%2Fpersonal%2Fkrvaibhav%5Fiitk%5Fac%5Fin%2FDocuments%2FPhD%20Portal%20Forms%20to%20upload&ga=1"
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EWBNWzlshahLnaJnUwG-ocABuZ51UrdRCo8k5anjz0Js4w?e=oBBIn5"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -156,11 +163,18 @@ function Footer() {
                       <Typography variant="body2">Guide's consent Form (Placement)</Typography>
                     </a>
                     <a
-                      href="https://spo.iitk.ac.in/assets/companies_links/IITK_Recruitment_Guide_2022-23.pdf"
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EeVgZ-NRXuZHu07oQGGnm7UBHSdhCWjQ_Ib_rH6WCsqEyA?e=GM9tt8"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <Typography variant="body2">Recruitment Guide</Typography>
+                    </a>
+                    <a
+                      href="https://iitk-my.sharepoint.com/:b:/g/personal/krvaibhav_iitk_ac_in/EXpGTMmPyrREnZrWzyqwsAoBUtPaqcf1rbto2N93R45eQA?e=7tlu4v"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Typography variant="body2">PhD Placement Policy for Students</Typography>
                     </a>
                     <a
                       href="https://spo.iitk.ac.in/companies#steps"
@@ -173,9 +187,9 @@ function Footer() {
                     </a>
 
                     <a
-                      href="https://iitk-my.sharepoint.com/:w:/g/personal/krvaibhav_iitk_ac_in/EeEGPK8DLvVJr9zNCfW1-IkBhY2NT_GOBncyqV_P9lZNNQ?e=TRuTxM"
+                      href="/Brochures/OPC-DPC Contacts.pdf"
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                     >
                       <Typography variant="body2">PhD OPC-DPC Contact List</Typography>
                     </a>
@@ -221,7 +235,7 @@ function Footer() {
                 <Stack direction="row" alignItems="center" spacing={1}>
                   <MailIcon />
                   <a
-                    href="mailto:spo@iitk.ac.in"
+                    href="mailto:phdplacement@iitk.ac.in"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -265,7 +279,7 @@ function Footer() {
                 </Typography>
               </a>
               <a
-                href="https://spo.iitk.ac.in/departmental-brochure"
+                href="https://spo.iitk.ac.in/phd-departmental-brochure"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -345,7 +359,7 @@ function Footer() {
               <Stack direction="row" alignItems="center" spacing={1}>
                 <MailIcon />
                 <a
-                  href="mailto:spo@iitk.ac.in"
+                  href="mailto:phdplacement@iitk.ac.in"
                   target="_blank"
                   rel="noreferrer"
                 >
