@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 
-export const BASE_URL = "https://phdplacement.iitk.ac.in";
+export const BASE_URL = "http://phdplacement.iitk.ac.in";
 
 export const AUTH_URL = `${BASE_URL}/api/auth`;
 export const RAS_URL = `${BASE_URL}/api/ras`;
@@ -13,7 +13,7 @@ export const ADMIN_STUDENT_URL = `${BASE_URL}/api/admin/student`;
 export const ADMIN_COMPANY_URL = `${BASE_URL}/api/admin/company`;
 export const ADMIN_APPLICATION_URL = `${BASE_URL}/api/admin/application`;
 
-export const CDN_URL = `https://phdplacement.iitk.ac.in/cdn`;
+export const CDN_URL = `http://phdplacement.iitk.ac.in/cdn`;
 
 export const SERVER_ERROR = "Aw, Snap! Server maybe down.";
 
