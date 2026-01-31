@@ -42,12 +42,7 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       disabled: true,
       api_id: "department",
     },
-    {
-      field: "Program",
-      value: "Select your Program",
-      disabled: true,
-      api_id: "program",
-    },
+
     // {
     //   field: "Secondary Department",
     //   value: "Select your Department",
@@ -224,15 +219,11 @@ function Profile() {
     };
     fetch();
   }, [token]);
-  const photoLink = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${240920}_0.jpg`;
+  const photoLink = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${StudentData.roll_no}_0.jpg`;
   const handleValue = (val: string) => {
     switch (val) {
       case "dob":
         return new Date(StudentData.dob).toLocaleDateString("en-GB");
-      case "program":
-        return getProgram(StudentData.program_department_id);
-      case "program_2":
-        return getProgram(StudentData.secondary_program_department_id);
       case "department":
         return getDepartment(StudentData.program_department_id);
       case "department_2":

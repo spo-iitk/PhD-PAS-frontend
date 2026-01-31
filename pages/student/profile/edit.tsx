@@ -17,8 +17,14 @@ import { useRouter } from "next/router";
 import Meta from "@components/Meta";
 import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
-import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
+import {
+  Branches,
+  StagesofPhD,
+  func,
+  funcDepartmentWise,
+} from "@components/Utils/matrixUtils";
 import { getId } from "@components/Parser/parser";
+import { getDepartment } from "@components/Parser/parser";
 
 function ProfileEdit() {
   const [StudentData, setStudentData] = useState<Student>({ ID: 0 } as Student);
@@ -54,7 +60,7 @@ function ProfileEdit() {
         roll_no: student.roll_no,
         specialization: student.specialization,
         program: student.program,
-        department: student.department,
+        department: getDepartment(student.program_department_id),
         gender: student.gender,
         personal_email: student.personal_email,
         dob: student.dob,
@@ -80,29 +86,22 @@ function ProfileEdit() {
   }, [token, reset]);
 
   const onSubmit = async (data: Student) => {
-    let program_department_id = getId(
-      getValues("program"),
-      getValues("department")
-    );
+    const dept = getValues("department") as keyof typeof funcDepartmentWise;
 
-    let secondary_program_department_id = getId(
-      getValues("program_2"),
-      getValues("department_2")
-    );
-
-    if (secondary_program_department_id === 200)
-      secondary_program_department_id = 0;
+    const program_department_id =
+      funcDepartmentWise[dept as keyof typeof funcDepartmentWise];
 
     const response = await studentRequest.update(token, {
       ...data,
       program_department_id,
-      secondary_program_department_id,
+      secondary_program_department_id: 0, // explicitly none
     });
 
     if (response) {
-      router.push("/student/profile");
+      router.replace("/student/profile");
     }
   };
+
   return (
     <div>
       <Meta title="Edit Profile - Student Dashboard " />
@@ -232,7 +231,15 @@ function ProfileEdit() {
                       {...register("department", {
                         required: "Department is required",
                       })}
-                      onChange={(e) => setDept(e.target.value)}
+                      onChange={(e) => {
+                        const value = e.target.value as string;
+
+                        setDept(value);
+                        setValue("department", value, {
+                          shouldDirty: true,
+                          shouldValidate: true,
+                        });
+                      }}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -249,7 +256,7 @@ function ProfileEdit() {
                     )}
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <FormControl
                     fullWidth
                     variant="standard"
@@ -296,7 +303,7 @@ function ProfileEdit() {
                       <FormHelperText>{errors.program.message}</FormHelperText>
                     )}
                   </FormControl>
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                   <p>Stage of PhD</p>
