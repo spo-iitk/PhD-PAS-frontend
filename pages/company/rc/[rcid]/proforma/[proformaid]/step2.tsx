@@ -50,7 +50,7 @@ function Step2() {
   }, [rid, pid, token]);
   const handleNext = async () => {
     const info = {
-      eligibility: str,
+      eligibility: strDep,
       ID: parseInt(pid, 10),
     } as ProformaType;
     await proformaRequest.put(token, rid, info).then(() => {
