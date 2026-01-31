@@ -224,7 +224,7 @@ function Profile() {
     };
     fetch();
   }, [token]);
-  const photoLink = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${StudentData.roll_no}_0.jpg`;
+  const photoLink = `https://oa.cc.iitk.ac.in/Oa/Jsp/Photo/${240920}_0.jpg`;
   const handleValue = (val: string) => {
     switch (val) {
       case "dob":

@@ -86,7 +86,7 @@ function Step2() {
   };
 
   const handleCheckDepartmentWise = (dept: keyof typeof funcDepartmentWise) => {
-    const index = funcDepartmentWise[dept] - 1;
+    const index = funcDepartmentWise[dept];
 
     const newStrDep =
       strDep[index] === "1"
