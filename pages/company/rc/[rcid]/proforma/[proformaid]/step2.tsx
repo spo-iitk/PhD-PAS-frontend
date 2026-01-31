@@ -30,7 +30,7 @@ function Step2() {
     new Array(Object.keys(funcDepartmentWise).length + 1).join("0"),
   );
 
-  console.log("strDep", strDep);
+  // console.log("strDep", strDep);
 
   const router = useRouter();
   const { token } = useStore();
@@ -123,8 +123,7 @@ function Step2() {
             <Stack direction="row" flexWrap="wrap">
               {Object.keys(funcDepartmentWise).map((dept) => {
                 const index =
-                  funcDepartmentWise[dept as keyof typeof funcDepartmentWise] -
-                  1;
+                  funcDepartmentWise[dept as keyof typeof funcDepartmentWise];
 
                 return (
                   <Stack
