@@ -69,6 +69,9 @@ function ProfileEdit() {
         twelfth_board: student.twelfth_board,
         twelfth_marks: student.twelfth_marks,
         twelfth_year: student.twelfth_year,
+        gate_score: student.gate_score,
+        net_score: student.net_score,
+        jam_score: student.jam_score,
         current_address: student.current_address,
         permanent_address: student.permanent_address,
         friend_name: student.friend_name,
@@ -660,6 +663,72 @@ function ProfileEdit() {
                     })}
                   />
                 </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <p>GATE Score</p>
+                  <TextField  
+                    fullWidth 
+                    type="number"
+                    id="gatescore"
+                    variant="standard"
+                    error={!!errors.gate_score}
+                    helperText={errors.gate_score?.message}
+                    {...register("gate_score", {
+                      required: "GATE Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const score = parseFloat(value.toString());
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+         <Grid item xs={12} sm={6}>
+                  <p>Jam Score</p>
+                  <TextField  
+                    fullWidth 
+                    type="number"
+                    id="jamscore"
+                    variant="standard"
+                    error={!!errors.jam_score}
+                    helperText={errors.jam_score?.message}
+                    {...register("jam_score", {
+                      required: "JAM Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const score = parseFloat(value.toString());
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+  
+  <Grid item xs={12} sm={6}>
+                  <p>NET Score</p>
+                  <TextField  
+                    fullWidth
+                    type="number"
+                    id="netscore"
+                    variant="standard"
+                    error={!!errors.net_score}
+                    helperText={errors.net_score?.message}
+                    {...register("net_score", {
+                      required: "NET Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const score = parseFloat(value.toString());
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+
+
+
+
+
+
+
 
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>

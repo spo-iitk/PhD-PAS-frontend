@@ -48,6 +48,9 @@ export interface Student {
   friend_name: string;
   friend_phone: string;
   is_editable: string;
+  gate_score: number;
+  net_score: number;
+  jam_score: number;
   is_verified: boolean;
 }
 
