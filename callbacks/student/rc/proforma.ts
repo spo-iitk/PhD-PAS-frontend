@@ -32,10 +32,7 @@ const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 const SProformaRequest = {
   getAllProforma: (token: string, rid: string) =>
     instance
-      .get<ProformaParams[]>(
-        `/application/rc/${rid}/proforma`,
-        setConfig(token)
-      )
+      .get<ProformaParams[]>(`/application/rc/${rid}/opening`, setConfig(token))
       .then(responseBody)
       .catch((err: ErrorType) => {
         errorNotification("Error", err.response?.data?.error || err.message);
@@ -53,7 +50,7 @@ const SProformaRequest = {
     instance
       .get<ProformaType>(
         `/application/rc/${rid}/proforma/${pid}`,
-        setConfig(token)
+        setConfig(token),
       )
       .then(responseBody)
       .catch((err: ErrorType) => {
@@ -70,7 +67,7 @@ const SProformaRequest = {
     instance
       .get<ProformaEvent[]>(
         `/application/rc/${rid}/proforma/${pid}/event`,
-        setConfig(token)
+        setConfig(token),
       )
       .then(responseBody)
       .catch((err: ErrorType) => {

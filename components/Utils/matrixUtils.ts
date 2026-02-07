@@ -92,6 +92,7 @@ export const funcDepartmentWise = {
   CHM: 18,
   MTH: 19,
   ECO: 20,
+  NET: 21,
 };
 
 export const func = {
