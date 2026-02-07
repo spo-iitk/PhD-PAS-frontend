@@ -151,17 +151,29 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       api_id: "twelfth_year",
     },
     {
-      field: "12th Board Marks",
+      field: "12th Marks",
       value: "Enter your 12th Board Marks",
       disabled: false,
       api_id: "twelfth_marks",
     },
-    // {
-    //   field: "Entrance Exam",
-    //   value: "Enter your Entrance Exam",
-    //   disabled: false,
-    //   api_id: "entrance_exam",
-    // },
+    {
+      field: "JAM Score",
+      value: "Enter your JAM Score",
+      disabled: false,
+      api_id: "jam_score",
+    },
+    {
+      field: "GATE Score",
+      value: "Enter your GATE Score",
+      disabled: false,
+      api_id: "gate_score",
+    },
+    {
+      field: "NET Score",
+      value: "Enter your NET Score",
+      disabled: false,
+      api_id: "net_score",
+    },
     // {
     //   field: "Entrance Exam Rank",
     //   value: "Enter your Entrance Exam Rank",
@@ -333,7 +345,7 @@ function Profile() {
                       value={handleValue(item.api_id)}
                     />
                     <b>
-                      {item.field === "12th Marks" &&
+                      {/* {item.field === "12th Marks" &&
                         (parseFloat(handleValue("twelfth_marks")?.toString()) <=
                         10
                           ? "CGPA"
@@ -342,7 +354,7 @@ function Profile() {
                         (parseFloat(handleValue("tenth_marks")?.toString()) <=
                         10
                           ? "CGPA"
-                          : "Percentage")}
+                          : "Percentage")} */}
                     </b>
                   </Stack>
                 </Grid>

@@ -10,7 +10,7 @@ import {
 import { errorNotification, successNotification } from "@callbacks/notifcation";
 
 export interface Student {
-  ID: number;
+ ID: number;
   roll_no: string;
   name: string;
   program: string;
@@ -20,16 +20,20 @@ export interface Student {
   specialization: string;
   preference: string;
   gender: string;
+  gate_score: number;
   disability: string;
-  dob: number;
+  dob: string;
   expected_graduation_year: number;
   iitk_email: string;
+  jam_score: number;
+  net_score: number;
   personal_email: string;
   phone: string;
   alternate_phone: string;
   whatsapp_number: string;
   program_department_id: number;
   secondary_program_department_id: number;
+  stage_of_phd: string;
   current_cpi: number;
   ug_cpi: number;
   tenth_board: string;

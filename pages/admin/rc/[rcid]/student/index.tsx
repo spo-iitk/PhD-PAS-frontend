@@ -21,6 +21,7 @@ import Freeze from "@components/Modals/Freeze";
 import Unfreeze from "@components/Modals/Unfreeze";
 import { getDeptProgram } from "@components/Parser/parser";
 import DeleteConfirmation from "@components/Modals/DeleteConfirmation";
+import AdminStudentRequest, {Student as AdminStudent,} from "@callbacks/admin/student/adminStudent";
 
 function DeleteStudents(props: { id: string }) {
   const { token } = useStore();
@@ -115,6 +116,11 @@ const columns: GridColDef[] = [
     width: 100,
   },
   {
+    field: "stage_of_phd",
+    headerName: "stage of phd",
+    width: 100,
+  },
+  {
     field: "options",
     headerName: "",
     align: "center",
@@ -165,40 +171,44 @@ function Index() {
   // };
 
   const fetchAllStudents = useCallback(async () => {
-    if (rid === undefined || rid === "") return;
-    await getStudents
-      .getAllStudents(token, rid)
-      .then((res) => {
-        setRows(
-          res.map((student: Student) => ({
-            created_at: student.CreatedAt,
-            deleted_at: student.DeletedAt,
-            updated_at: student.UpdatedAt,
-            comment: student.comment,
-            id: student.ID,
-            ID: student.ID,
-            name: student.name,
-            email: student.email,
-            cpi: student.cpi,
-            program_department_id: student.program_department_id,
-            secondary_program_department_id:
-              student.secondary_program_department_id,
-            recruitment_cycle_id: student.recruitment_cycle_id,
-            student_id: student.student_id,
-            is_frozen: student.is_frozen,
-            type: student.type,
-            roll_no: student.roll_no,
-          }))
-        );
-        setLoading(false);
-      })
-      .catch((err) => {
-        errorNotification(
-          "Failed to get Students",
-          err.response?.data?.message
-        );
-      });
-  }, [rid, token]);
+  if (!rid) return;
+
+  setLoading(true);
+
+  try {
+    const rcStudents = await getStudents.getAllStudents(token, rid);
+
+    const adminStudents = await AdminStudentRequest.getAll(token);
+
+    const stageMap = new Map<number, string>();
+    adminStudents.forEach((s: AdminStudent) => {
+      stageMap.set(s.ID, s.stage_of_phd);
+    });
+    console.log(adminStudents)
+    console.log(rcStudents)
+
+    setRows(
+      rcStudents.map((student) => ({
+        id: student.ID,
+        name: student.name,
+        email: student.email,
+        roll_no: student.roll_no,
+        cpi: student.cpi,
+        program_department_id: student.program_department_id,
+        secondary_program_department_id: student.secondary_program_department_id,
+        recruitment_cycle_id: student.recruitment_cycle_id,
+        student_id: student.student_id,
+        is_frozen: student.is_frozen,
+        type: student.type,
+        stage_of_phd: stageMap.get(student.student_id) || "",
+      }))
+    );
+  } catch (err) {
+    errorNotification("Failed to get Students", "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+}, [rid, token]);
 
   const [openSync, setOpenSync] = useState(false);
   const handleOpenSync = () => {

@@ -21,6 +21,7 @@ import requestProforma, {
   ProformaEmailRequest,
 } from "@callbacks/admin/rc/adminproforma";
 import eventRequest, { Event } from "@callbacks/admin/rc/proforma/event";
+import AdminStudentRequest, { Student as AdminStudent, } from "@callbacks/admin/student/adminStudent";
 import StudentRequest from "@callbacks/admin/rc/proforma/students";
 import { CDN_URL } from "@callbacks/constants";
 import DataGrid from "@components/DataGrid";
@@ -119,6 +120,10 @@ const fixed_columns: GridColDef[] = [
     headerName: "Department",
     valueGetter: (params) => getDepartment(params.row.program_department_id),
   },
+  {
+    field: "stage_of_phd",
+    headerName: "stage of phd",
+  },
   // {
   //   field: "program_dept_2",
   //   headerName: "Secondary Program/Dept",
@@ -142,7 +147,7 @@ const fixed_columns: GridColDef[] = [
   {
     field: "specialization",
     headerName: "Stage of PhD",
-    hide: true,
+    // hide: true,
   },
   // {
   //   field: "preference",
@@ -335,8 +340,24 @@ function Index() {
       setColumns(fixed_columns);
       const company = await requestProforma.get(token, rid, pid);
       setCompanyName(company.company_name);
+
       const response = await StudentRequest.get(token, rid, pid);
-      if (response) setRows(response);
+
+      const adminStudents = await AdminStudentRequest.getAll(token);
+
+      const stageMap = new Map<number, string>();
+      adminStudents.forEach((s: AdminStudent) => {
+        stageMap.set(s.ID, s.stage_of_phd);
+      });
+
+      if (response) {
+        setRows(
+          response.map((row: any) => ({
+            ...row,
+            stage_of_phd: stageMap.get(row.student_id) || "",
+          }))
+        );
+      }
     };
     setLoading(false);
 
