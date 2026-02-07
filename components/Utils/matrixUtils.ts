@@ -52,6 +52,7 @@ export const Branches = [
   "CHM",
   "MTH",
   "ECO",
+  "NET",
 ];
 
 export type programType = {
