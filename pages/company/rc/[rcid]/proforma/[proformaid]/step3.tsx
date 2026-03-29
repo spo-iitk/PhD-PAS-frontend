@@ -16,7 +16,8 @@ function Step3() {
   const rid = (rcid || "").toString();
   const pid = (proformaid || "").toString();
   const { token } = useStore();
-  const [ctc, changeCTC] = useState("");
+ const [ctc, changeCTC] = useState("");
+  const [cost_to_company_foreign, changeCTCforeign] = useState("");
   const [pkgDetails, changePkg] = useState("");
   const [fetchData, setFetch] = useState<ProformaType>({
     ID: 0,
@@ -35,7 +36,8 @@ function Step3() {
       ...data,
       ID: parseInt(pid, 10),
       package_details: pkgDetails,
-      cost_to_company: ctc,
+      cost_to_company: data.cost_to_company,
+      cost_to_company_foreign: data.cost_to_company_foreign,
     };
     const response = await proformaRequest.put(token, rid, info);
     if (response) {
@@ -43,8 +45,9 @@ function Step3() {
         bond: false,
         bond_details: "",
         medical_requirements: "",
+        cost_to_company: "",
+        cost_to_company_foreign: "",
       });
-      changeCTC("");
       changePkg("");
       router.push({
         pathname: ROUTE,
@@ -78,14 +81,36 @@ function Step3() {
           <h2>Step 3/4 : Package Details</h2>
           {fetchData.ID !== 0 && (
             <FormControl sx={{ m: 1 }}>
-              <p style={{ fontWeight: 300 }}>Cost to Company</p>
-              <RichText
-                value={ctc}
-                onChange={changeCTC}
+              <p style={{ fontWeight: 300 }}>CTC (in rupees)</p>
+              <TextField
+                id="ctc"
+                fullWidth
+                variant="standard"
                 style={{ minHeight: 200 }}
+                required
+                error={!!errors.cost_to_company}
+                helperText={
+                  errors.cost_to_company && "This field is required"
+                }
+                {...register("cost_to_company", { required: true })}
               />
             </FormControl>
           )}
+
+          <FormControl sx={{ m: 1 }}>
+            <p style={{ fontWeight: 300 }}>CTC (in foreign currency)</p>
+            <TextField
+              id="ctcfr"
+              required
+              error={!!errors.cost_to_company_foreign}
+              helperText={
+                errors.cost_to_company_foreign && "This field is required"
+              }
+              fullWidth
+              variant="standard"
+              {...register("cost_to_company_foreign", { required: true })}
+            />
+          </FormControl>
           {fetchData.ID !== 0 && (
             <FormControl sx={{ m: 1 }}>
               <p style={{ fontWeight: 300 }}>Package Details</p>
