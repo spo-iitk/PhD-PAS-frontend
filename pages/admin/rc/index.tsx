@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { IconButton, Stack } from "@mui/material";
-import { GridAddIcon, GridColDef } from "@mui/x-data-grid";
+import { IconButton, Modal, Stack } from "@mui/material";
+import { GridColDef } from "@mui/x-data-grid";
 import { useRouter } from "next/router";
+import AddIcon from "@mui/icons-material/Add";
 
 import DataGrid from "@components/DataGrid";
 import Meta from "@components/Meta";
@@ -10,9 +11,7 @@ import rcRequest, { RC } from "@callbacks/admin/rc/rc";
 import ActiveButton from "@components/Buttons/ActiveButton";
 import useStore from "@store/store";
 import AddRC from "@components/Modals/AddRC";
-import AddIcon from "@mui/icons-material/Add";
 
-import { Modal } from "@mui/material";
 const columns: GridColDef[] = [
   {
     field: "ID",
@@ -74,7 +73,6 @@ function Index() {
   const [loading, setLoading] = useState(true);
   const handleOpenNew = () => {
     setOpenNew(true);
-    
   };
   const handleCloseNew = () => {
     setOpenNew(false);
@@ -108,10 +106,9 @@ function Index() {
             <h2>Recruitment Cycle</h2>
           </div>
           <div>
-                 <IconButton onClick={handleOpenNew}>
+            <IconButton onClick={handleOpenNew}>
               <AddIcon />
             </IconButton>
-
           </div>
         </Stack>
 

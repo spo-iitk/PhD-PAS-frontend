@@ -39,7 +39,7 @@ function Step3() {
       ID: parseInt(pid, 10),
       package_details: pkgDetails,
       cost_to_company: ctc,
-     cost_to_company_foreign:cost_to_company_foreign
+      cost_to_company_foreign,
     };
     const response = await requestProforma.put(token, rid, info);
     if (response) {
@@ -49,7 +49,7 @@ function Step3() {
         medical_requirements: "",
       });
       changeCTC("");
-        changeCTCforeign("");
+      changeCTCforeign("");
       changePkg("");
       router.push({
         pathname: ROUTE,

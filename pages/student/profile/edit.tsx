@@ -11,14 +11,19 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import Meta from "@components/Meta";
 import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
-import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
-import { getId, getProgram, getDepartment } from "@components/Parser/parser";
+import {
+  Branches,
+  StagesofPhD,
+  func,
+  funcDepartmentWise,
+} from "@components/Utils/matrixUtils";
+import { getDepartment, getId, getProgram } from "@components/Parser/parser";
 
 function ProfileEdit() {
   const [StudentData, setStudentData] = useState<Student>({ ID: 0 } as Student);
@@ -62,7 +67,9 @@ function ProfileEdit() {
         stage_of_phd: student.stage_of_phd,
         gender: student.gender,
         personal_email: student.personal_email,
-        dob: student.dob ? new Date(student.dob).toISOString().split("T")[0] : "",
+        dob: student.dob
+          ? new Date(student.dob).toISOString().split("T")[0]
+          : "",
         phone: student.phone,
         alternate_phone: student.alternate_phone,
         whatsapp_number: student.whatsapp_number,
@@ -82,9 +89,6 @@ function ProfileEdit() {
         friend_name: student.friend_name,
         friend_phone: student.friend_phone,
         disability: student.disability,
-        gate_score: student.gate_score, 
-        jam_score: student.jam_score,
-        net_score: student.net_score,
       });
     };
     fetch();
@@ -234,9 +238,13 @@ function ProfileEdit() {
                   >
                     <Select
                       value={watchDepartment || ""}
-                      {...register("department", { required: "Department is required" })}
+                      {...register("department", {
+                        required: "Department is required",
+                      })}
                       onChange={(e) => {
-                        setValue("department", e.target.value, { shouldValidate: true });
+                        setValue("department", e.target.value, {
+                          shouldValidate: true,
+                        });
                         setDept(e.target.value);
                       }}
                     >
@@ -286,7 +294,9 @@ function ProfileEdit() {
                       required: "Stage of PhD is required",
                     })}
                     onChange={(e) => {
-                      setValue("stage_of_phd", e.target.value, { shouldValidate: true });
+                      setValue("stage_of_phd", e.target.value, {
+                        shouldValidate: true,
+                      });
                       setDept(e.target.value);
                     }}
                     // onChange={(e) => {
@@ -623,8 +633,8 @@ function ProfileEdit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>GATE Score</p>
-                  <TextField  
-                    fullWidth 
+                  <TextField
+                    fullWidth
                     type="number"
                     id="gatescore"
                     variant="standard"
@@ -640,10 +650,10 @@ function ProfileEdit() {
                     })}
                   />
                 </Grid>
-         <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
                   <p>Jam Score</p>
-                  <TextField  
-                    fullWidth 
+                  <TextField
+                    fullWidth
                     type="number"
                     id="jamscore"
                     variant="standard"
@@ -659,10 +669,10 @@ function ProfileEdit() {
                     })}
                   />
                 </Grid>
-  
-  <Grid item xs={12} sm={6}>
+
+                <Grid item xs={12} sm={6}>
                   <p>NET Score</p>
-                  <TextField  
+                  <TextField
                     fullWidth
                     type="number"
                     id="netscore"
@@ -679,13 +689,6 @@ function ProfileEdit() {
                     })}
                   />
                 </Grid>
-
-
-
-
-
-
-
 
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>
@@ -783,7 +786,6 @@ function ProfileEdit() {
                     )}
                   </FormControl>
                 </Grid>
-                
               </Grid>
             </Card>
           </Stack>

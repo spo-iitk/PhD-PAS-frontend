@@ -152,23 +152,22 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       api_id: "twelfth_marks",
     },
     {
-      field:"Gate Score (If applicable)",
-      value:"Enter your GATE Score",
-      disabled:false,
-      api_id:"gate_score",
-    }
-    ,{
-      field:"NET Score (If applicable)",
-      value:"Enter your NET Score",
-      disabled:false,
-      api_id:"net_score",
-
-    }
-    ,{
-      field:"JAM Score (If applicable)",
-      value:"Enter your JAM Score",
-      disabled:false,
-      api_id:"jam_score",
+      field: "Gate Score (If applicable)",
+      value: "Enter your GATE Score",
+      disabled: false,
+      api_id: "gate_score",
+    },
+    {
+      field: "NET Score (If applicable)",
+      value: "Enter your NET Score",
+      disabled: false,
+      api_id: "net_score",
+    },
+    {
+      field: "JAM Score (If applicable)",
+      value: "Enter your JAM Score",
+      disabled: false,
+      api_id: "jam_score",
     },
     // {
     //   field: "Entrance Exam",
@@ -195,7 +194,6 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
     //   api_id: "category_rank",
     // },
 
-    
     {
       field: "Current Address",
       value: "Enter your Current Address",

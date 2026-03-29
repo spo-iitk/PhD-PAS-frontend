@@ -21,7 +21,9 @@ import requestProforma, {
   ProformaEmailRequest,
 } from "@callbacks/admin/rc/adminproforma";
 import eventRequest, { Event } from "@callbacks/admin/rc/proforma/event";
-import AdminStudentRequest, { Student as AdminStudent, } from "@callbacks/admin/student/adminStudent";
+import AdminStudentRequest, {
+  Student as AdminStudent,
+} from "@callbacks/admin/student/adminStudent";
 import StudentRequest from "@callbacks/admin/rc/proforma/students";
 import { CDN_URL } from "@callbacks/constants";
 import DataGrid from "@components/DataGrid";

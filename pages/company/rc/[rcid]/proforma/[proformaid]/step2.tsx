@@ -1,4 +1,4 @@
-import { Button, Card, IconButton, Stack } from "@mui/material";
+import { Button, Card, Stack } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -25,9 +25,9 @@ const ROUTE = "/company/rc/[rcid]/proforma/[proformaid]/step3";
 function Step2() {
   const [str, setStr] = useState(new Array(totalDeptKeywords + 1).join("0"));
 
-  //chaging in the code for the department wise recuritment
+  // chaging in the code for the department wise recuritment
   const [strDep, setStrDep] = useState(
-    new Array(Object.keys(funcDepartmentWise).length + 1).join("0"),
+    new Array(Object.keys(funcDepartmentWise).length + 1).join("0")
   );
 
   // console.log("strDep", strDep);
@@ -38,7 +38,7 @@ function Step2() {
   const rid = (rcid || "").toString();
   const pid = (proformaid || "").toString();
 
-  //requries changes here the function to return only now the array for the department wise recruitment
+  // requries changes here the function to return only now the array for the department wise recruitment
   useEffect(() => {
     if (!(rid && pid)) return;
     const getStep2 = async () => {
@@ -90,8 +90,8 @@ function Step2() {
 
     const newStrDep =
       strDep[index] === "1"
-        ? strDep.substring(0, index) + "0" + strDep.substring(index + 1)
-        : strDep.substring(0, index) + "1" + strDep.substring(index + 1);
+        ? `${strDep.substring(0, index)}0${strDep.substring(index + 1)}`
+        : `${strDep.substring(0, index)}1${strDep.substring(index + 1)}`;
 
     setStrDep(newStrDep);
   };
@@ -136,7 +136,7 @@ function Step2() {
                       checked={strDep[index] === "1"}
                       onChange={() =>
                         handleCheckDepartmentWise(
-                          dept as keyof typeof funcDepartmentWise,
+                          dept as keyof typeof funcDepartmentWise
                         )
                       }
                     />
@@ -164,8 +164,8 @@ function Step2() {
               onClick={() =>
                 setStrDep(
                   new Array(Object.keys(funcDepartmentWise).length + 1).join(
-                    "0",
-                  ),
+                    "0"
+                  )
                 )
               }
             >

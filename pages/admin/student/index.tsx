@@ -122,15 +122,8 @@ const columns: GridColDef[] = [
     headerName: "GATE Score",
     hide: true,
   },
-  {field: "net_score",
-    headerName: "NET Score",
-    hide: true,
-  },
-  {field: "jam_score",
-    headerName: "JAM Score",
-    hide: true,
-
-  },
+  { field: "net_score", headerName: "NET Score", hide: true },
+  { field: "jam_score", headerName: "JAM Score", hide: true },
   {
     field: "tenth_board",
     headerName: "10th Board",

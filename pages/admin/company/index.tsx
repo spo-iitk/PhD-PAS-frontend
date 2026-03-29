@@ -90,11 +90,11 @@ function Index() {
     while (fetchedRecords === batchSize) {
       // eslint-disable-next-line no-await-in-loop
       const res = await getCompanyInBatch(batchSize, lastFetchedId);
-            
-      console.log(res)
+
+      console.log(res);
       fetchedRecords = res.length;
-      lastFetchedId = res.length>0 ? res[res.length - 1].ID : 0;
-      
+      lastFetchedId = res.length > 0 ? res[res.length - 1].ID : 0;
+
       setLoading(false);
     }
   }, [getCompanyInBatch]);

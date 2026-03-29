@@ -1,7 +1,7 @@
-import { func, rev, funcDepartmentWise } from "@components/Utils/matrixUtils";
+import { func, funcDepartmentWise, rev } from "@components/Utils/matrixUtils";
 
 const departmentById: Record<number, string> = Object.fromEntries(
-  Object.entries(funcDepartmentWise).map(([k, v]) => [v, k]),
+  Object.entries(funcDepartmentWise).map(([k, v]) => [v, k])
 );
 
 export const getProgram = (id: number) => {

@@ -21,13 +21,12 @@ export interface Student {
   specialization: string;
   preference: string;
   gender: string;
-  gate_score: number;
+
   disability: string;
   dob: string;
   expected_graduation_year: number;
   iitk_email: string;
-  jam_score: number;
-  net_score: number;
+
   personal_email: string;
   phone: string;
   alternate_phone: string;
