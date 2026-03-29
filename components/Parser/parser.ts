@@ -1,4 +1,8 @@
-import { func, rev } from "@components/Utils/matrixUtils";
+import { func, rev, funcDepartmentWise } from "@components/Utils/matrixUtils";
+
+const departmentById: Record<number, string> = Object.fromEntries(
+  Object.entries(funcDepartmentWise).map(([k, v]) => [v, k]),
+);
 
 export const getProgram = (id: number) => {
   if (id === 223 || id === 0) return "NA";
@@ -7,7 +11,7 @@ export const getProgram = (id: number) => {
 
 export const getDepartment = (id: number) => {
   if (id === 223 || id === 0) return "NA";
-  return rev[id as keyof typeof rev]?.split("-")[0];
+  return departmentById[id] ?? "NA";
 };
 
 export const getDeptProgram = (id: number) => {

@@ -13,6 +13,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {
   Branches,
   func,
+  funcDepartmentWise,
   totalDeptKeywords,
 } from "@components/Utils/matrixUtils";
 import Meta from "@components/Meta";
@@ -23,11 +24,21 @@ const ROUTE = "/company/rc/[rcid]/proforma/[proformaid]/step3";
 
 function Step2() {
   const [str, setStr] = useState(new Array(totalDeptKeywords + 1).join("0"));
+
+  //chaging in the code for the department wise recuritment
+  const [strDep, setStrDep] = useState(
+    new Array(Object.keys(funcDepartmentWise).length + 1).join("0"),
+  );
+
+  // console.log("strDep", strDep);
+
   const router = useRouter();
   const { token } = useStore();
   const { rcid, proformaid } = router.query;
   const rid = (rcid || "").toString();
   const pid = (proformaid || "").toString();
+
+  //requries changes here the function to return only now the array for the department wise recruitment
   useEffect(() => {
     if (!(rid && pid)) return;
     const getStep2 = async () => {
@@ -39,7 +50,7 @@ function Step2() {
   }, [rid, pid, token]);
   const handleNext = async () => {
     const info = {
-      eligibility: str,
+      eligibility: strDep,
       ID: parseInt(pid, 10),
     } as ProformaType;
     await proformaRequest.put(token, rid, info).then(() => {
@@ -49,6 +60,8 @@ function Step2() {
       });
     });
   };
+
+  /// changes to be made here for department wise recruitment
 
   const handleCheckAll = () => {
     setStr(new Array(totalDeptKeywords + 2).join("1"));
@@ -72,6 +85,17 @@ function Step2() {
     setStr(newStr);
   };
 
+  const handleCheckDepartmentWise = (dept: keyof typeof funcDepartmentWise) => {
+    const index = funcDepartmentWise[dept];
+
+    const newStrDep =
+      strDep[index] === "1"
+        ? strDep.substring(0, index) + "0" + strDep.substring(index + 1)
+        : strDep.substring(0, index) + "1" + strDep.substring(index + 1);
+
+    setStrDep(newStrDep);
+  };
+
   const handleCheck = (branch: string, keyword: string) => {
     const temp = func[branch as keyof typeof func];
     const idx = func[branch as keyof typeof func][keyword as keyof typeof temp];
@@ -87,78 +111,63 @@ function Step2() {
 
   return (
     <div>
-      <Meta title="Step 2 - New Opening" />
+      <Meta title="Step 2 - Department Selection" />
       <Card sx={{ padding: 3 }}>
-        <h2>Step 2/4 (Eligibility Matrix)</h2>
-        <Stack spacing={4} alignItems="center">
-          <Stack spacing={1}>
-            <Stack spacing={4} direction="row" alignItems="center">
-              <IconButton onClick={handleCheckAll}>
-                <CheckCircleIcon />
-              </IconButton>
-              <h3>Select all</h3>
+        <h2>Step 2/4 (Department-wise Eligibility)</h2>
+
+        <Stack spacing={3}>
+          {/* Department checkboxes */}
+          <Card variant="outlined" sx={{ padding: 2 }}>
+            <h3>Select Departments</h3>
+
+            <Stack direction="row" flexWrap="wrap">
+              {Object.keys(funcDepartmentWise).map((dept) => {
+                const index =
+                  funcDepartmentWise[dept as keyof typeof funcDepartmentWise];
+
+                return (
+                  <Stack
+                    key={dept}
+                    direction="row"
+                    alignItems="center"
+                    sx={{ width: "120px" }}
+                  >
+                    <Checkbox
+                      checked={strDep[index] === "1"}
+                      onChange={() =>
+                        handleCheckDepartmentWise(
+                          dept as keyof typeof funcDepartmentWise,
+                        )
+                      }
+                    />
+                    <span>{dept}</span>
+                  </Stack>
+                );
+              })}
             </Stack>
-          </Stack>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableBody>
-                {Branches.map((branch) => (
-                  <TableRow>
-                    <TableCell
-                      component="th"
-                      scope="row"
-                      sx={{ fontWeight: 600 }}
-                    >
-                      <Button onClick={() => handleBranchWise(branch)}>
-                        {branch}
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        {Object.keys(func[branch as keyof typeof func]).map(
-                          (keyword) => {
-                            const temp = func[branch as keyof typeof func];
-                            const value =
-                              func[branch as keyof typeof func][
-                                keyword as keyof typeof temp
-                              ];
-                            return (
-                              <TableRow>
-                                <TableCell>{keyword}</TableCell>
-                                <TableCell>
-                                  <Checkbox
-                                    checked={str[parseInt(value, 10)] === "1"}
-                                    onClick={() => handleCheck(branch, keyword)}
-                                  />
-                                </TableCell>
-                              </TableRow>
-                            );
-                          }
-                        )}
-                      </Table>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Stack
-            direction="row"
-            spacing={5}
-            sx={{ width: { xs: "330px", md: "500px" } }}
-          >
+          </Card>
+
+          {/* Navigation */}
+          <Stack direction="row" spacing={4}>
             <Button
               variant="contained"
-              sx={{ width: "100%" }}
+              fullWidth
               disabled={!router.isReady || rid === "" || pid === ""}
               onClick={handleNext}
             >
               Next
             </Button>
+
             <Button
-              variant="contained"
-              sx={{ width: "100%" }}
-              onClick={handleReset}
+              variant="outlined"
+              fullWidth
+              onClick={() =>
+                setStrDep(
+                  new Array(Object.keys(funcDepartmentWise).length + 1).join(
+                    "0",
+                  ),
+                )
+              }
             >
               Reset
             </Button>
@@ -171,3 +180,203 @@ function Step2() {
 
 Step2.layout = "companyPhaseDashboard";
 export default Step2;
+
+//   return (
+//     <div>
+//       <Meta title="Step 2 - New Opening" />
+//       <Card sx={{ padding: 3 }}>
+//         <h2>Step 2/4 (Eligibility Matrix)</h2>
+//         <Stack spacing={4} alignItems="center">
+//           <Stack spacing={1}>
+//             <Stack spacing={4} direction="row" alignItems="center">
+//               <IconButton onClick={handleCheckAll}>
+//                 <CheckCircleIcon />
+//               </IconButton>
+//               <h3>Select all</h3>
+//             </Stack>
+//           </Stack>
+//           <TableContainer component={Paper}>
+//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
+//               <TableBody>
+//                 {Branches.map((branch) => (
+//                   <TableRow>
+//                     <TableCell
+//                       component="th"
+//                       scope="row"
+//                       sx={{ fontWeight: 600 }}
+//                     >
+//                       <Button onClick={() => handleBranchWise(branch)}>
+//                         {branch}
+//                       </Button>
+//                     </TableCell>
+//                     <TableCell>
+//                       <Table sx={{ minWidth: 650 }} aria-label="simple table">
+//                         {Object.keys(func[branch as keyof typeof func]).map(
+//                           (keyword) => {
+//                             const temp = func[branch as keyof typeof func];
+//                             const value =
+//                               func[branch as keyof typeof func][
+//                                 keyword as keyof typeof temp
+//                               ];
+//                             return (
+//                               <TableRow>
+//                                 <TableCell>{keyword}</TableCell>
+//                                 <TableCell>
+//                                   <Checkbox
+//                                     checked={str[parseInt(value, 10)] === "1"}
+//                                     onClick={() => handleCheck(branch, keyword)}
+//                                   />
+//                                 </TableCell>
+//                               </TableRow>
+//                             );
+//                           },
+//                         )}
+//                       </Table>
+//                     </TableCell>
+//                   </TableRow>
+//                 ))}
+//               </TableBody>
+//             </Table>
+//           </TableContainer>
+//           <Stack
+//             direction="row"
+//             spacing={5}
+//             sx={{ width: { xs: "330px", md: "500px" } }}
+//           >
+//             <Button
+//               variant="contained"
+//               sx={{ width: "100%" }}
+//               disabled={!router.isReady || rid === "" || pid === ""}
+//               onClick={handleNext}
+//             >
+//               Next
+//             </Button>
+//             <Button
+//               variant="contained"
+//               sx={{ width: "100%" }}
+//               onClick={handleReset}
+//             >
+//               Reset
+//             </Button>
+//           </Stack>
+//         </Stack>
+//       </Card>
+//     </div>
+//   );
+// }
+
+//   return (
+//     <div>
+//       <Meta title="Step 2 - New Opening" />
+//       <Card sx={{ padding: 3 }}>
+//         <h2>Step 2/4 (Eligibility Matrix)</h2>
+
+//         <Stack spacing={4} alignItems="center">
+//           {/* Select all */}
+//           <Stack spacing={1}>
+//             <Stack spacing={4} direction="row" alignItems="center">
+//               <IconButton onClick={handleCheckAll}>
+//                 <CheckCircleIcon />
+//               </IconButton>
+//               <h3>Select all</h3>
+//             </Stack>
+//           </Stack>
+
+//           {/* Department-wise selection */}
+//           <Card sx={{ padding: 2, width: "100%" }} variant="outlined">
+//             <h3>Department-wise Selection</h3>
+//             <Stack direction="row" flexWrap="wrap" spacing={1}>
+//               {Object.keys(funcDepartmentWise).map((dept) => {
+//                 const index =
+//                   funcDepartmentWise[dept as keyof typeof funcDepartmentWise] -
+//                   1;
+
+//                 return (
+//                   <Button
+//                     key={dept}
+//                     variant={strDep[index] === "1" ? "contained" : "outlined"}
+//                     onClick={() => handleCheckDepartmentWise(dept)}
+//                     sx={{ minWidth: "80px" }}
+//                   >
+//                     {dept}
+//                   </Button>
+//                 );
+//               })}
+//             </Stack>
+//           </Card>
+
+//           {/* Keyword matrix */}
+//           <TableContainer component={Paper}>
+//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
+//               <TableBody>
+//                 {Branches.map((branch) => (
+//                   <TableRow key={branch}>
+//                     <TableCell
+//                       component="th"
+//                       scope="row"
+//                       sx={{ fontWeight: 600 }}
+//                     >
+//                       <Button onClick={() => handleBranchWise(branch)}>
+//                         {branch}
+//                       </Button>
+//                     </TableCell>
+
+//                     <TableCell>
+//                       <Table sx={{ minWidth: 650 }} aria-label="simple table">
+//                         {Object.keys(func[branch as keyof typeof func]).map(
+//                           (keyword) => {
+//                             const temp = func[branch as keyof typeof func];
+//                             const value =
+//                               func[branch as keyof typeof func][
+//                                 keyword as keyof typeof temp
+//                               ];
+
+//                             return (
+//                               <TableRow key={keyword}>
+//                                 <TableCell>{keyword}</TableCell>
+//                                 <TableCell>
+//                                   <Checkbox
+//                                     checked={str[parseInt(value, 10)] === "1"}
+//                                     onClick={() => handleCheck(branch, keyword)}
+//                                   />
+//                                 </TableCell>
+//                               </TableRow>
+//                             );
+//                           },
+//                         )}
+//                       </Table>
+//                     </TableCell>
+//                   </TableRow>
+//                 ))}
+//               </TableBody>
+//             </Table>
+//           </TableContainer>
+
+//           {/* Navigation */}
+//           <Stack
+//             direction="row"
+//             spacing={5}
+//             sx={{ width: { xs: "330px", md: "500px" } }}
+//           >
+//             <Button
+//               variant="contained"
+//               sx={{ width: "100%" }}
+//               disabled={!router.isReady || rid === "" || pid === ""}
+//               onClick={handleNext}
+//             >
+//               Next
+//             </Button>
+
+//             <Button
+//               variant="contained"
+//               sx={{ width: "100%" }}
+//               onClick={handleReset}
+//             >
+//               Reset
+//             </Button>
+//           </Stack>
+//         </Stack>
+//       </Card>
+//     </div>
+//   );
+// }

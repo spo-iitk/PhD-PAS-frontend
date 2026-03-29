@@ -52,6 +52,7 @@ export const Branches = [
   "CHM",
   "MTH",
   "ECO",
+  "NET",
 ];
 
 export type programType = {
@@ -67,6 +68,32 @@ export type programType = {
   PhD: number;
   MSc: number;
   MSR: number;
+};
+
+// the new func to  interate over the departement wise recruitment
+
+export const funcDepartmentWise = {
+  MSE: 1,
+  ME: 2,
+  EE: 3,
+  ES: 4,
+  CHE: 5,
+  BSBE: 6,
+  SEE: 7,
+  DOMS: 8,
+  CSE: 9,
+  CGS: 10,
+  HSS: 11,
+  CE: 12,
+  PSEP: 13,
+  PHY: 14,
+  AE: 15,
+  DES: 16,
+  MSP: 17,
+  CHM: 18,
+  MTH: 19,
+  ECO: 20,
+  NET: 21,
 };
 
 export const func = {
@@ -560,4 +587,4 @@ export const rev = {
 
 export const totalDeptKeywords = 222;
 
-export default { Branches, rev, func, totalDeptKeywords };
+export default { Branches, rev, func, funcDepartmentWise, totalDeptKeywords };
