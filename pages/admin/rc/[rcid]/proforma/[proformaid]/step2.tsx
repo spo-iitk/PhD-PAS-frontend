@@ -115,7 +115,7 @@ function Step2() {
                         {branch}
                       </Button>
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       <Table sx={{ minWidth: 650 }} aria-label="simple table">
                         {Object.keys(func[branch as keyof typeof func]).map(
                           (keyword) => {
@@ -138,7 +138,14 @@ function Step2() {
                           }
                         )}
                       </Table>
+                    </TableCell> */}
+                    <TableCell>
+                      <Checkbox
+                        // checked={str[parseInt(value, 10)] === "1"}
+                        onClick={() => handleBranchWise(branch)}
+                      />
                     </TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>

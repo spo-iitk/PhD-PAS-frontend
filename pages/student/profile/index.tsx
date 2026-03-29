@@ -151,7 +151,7 @@ const info: { field: string; value: string; disabled: boolean; api_id: any }[] =
       api_id: "twelfth_year",
     },
     {
-      field: "12th Board Marks",
+      field: "12th Marks",
       value: "Enter your 12th Board Marks",
       disabled: false,
       api_id: "twelfth_marks",
@@ -354,7 +354,7 @@ function Profile() {
                       value={handleValue(item.api_id)}
                     />
                     <b>
-                      {item.field === "12th Marks" &&
+                      {/* {item.field === "12th Marks" &&
                         (parseFloat(handleValue("twelfth_marks")?.toString()) <=
                         10
                           ? "CGPA"
@@ -363,7 +363,7 @@ function Profile() {
                         (parseFloat(handleValue("tenth_marks")?.toString()) <=
                         10
                           ? "CGPA"
-                          : "Percentage")}
+                          : "Percentage")} */}
                     </b>
                   </Stack>
                 </Grid>

@@ -11,14 +11,14 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import Meta from "@components/Meta";
 import studentRequest, { Student } from "@callbacks/student/student";
 import useStore from "@store/store";
 import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
-import { getId } from "@components/Parser/parser";
+import { getId, getProgram, getDepartment } from "@components/Parser/parser";
 
 function ProfileEdit() {
   const [StudentData, setStudentData] = useState<Student>({ ID: 0 } as Student);
@@ -29,12 +29,15 @@ function ProfileEdit() {
     setValue,
     getValues,
     formState: { errors },
+    control,
     watch,
   } = useForm<Student>({
     defaultValues: StudentData,
   });
   const watchGender = watch("gender");
   const watchDisability = watch("disability");
+  const watchDepartment = watch("department");
+  const watchStageOfPhd = watch("stage_of_phd");
 
   const [dept, setDept] = useState<any>("");
   // const [deptSec, setDeptSec] = useState<any>("");
@@ -48,16 +51,18 @@ function ProfileEdit() {
         .catch(() => ({ ID: 0 } as Student));
 
       setStudentData(student);
+      console.log(student);
       reset({
         name: student.name,
         iitk_email: student.iitk_email,
         roll_no: student.roll_no,
         specialization: student.specialization,
-        program: student.program,
-        department: student.department,
+        program: getProgram(student.program_department_id),
+        department: getDepartment(student.program_department_id),
+        stage_of_phd: student.stage_of_phd,
         gender: student.gender,
         personal_email: student.personal_email,
-        dob: student.dob,
+        dob: student.dob ? new Date(student.dob).toISOString().split("T")[0] : "",
         phone: student.phone,
         alternate_phone: student.alternate_phone,
         whatsapp_number: student.whatsapp_number,
@@ -77,6 +82,9 @@ function ProfileEdit() {
         friend_name: student.friend_name,
         friend_phone: student.friend_phone,
         disability: student.disability,
+        gate_score: student.gate_score, 
+        jam_score: student.jam_score,
+        net_score: student.net_score,
       });
     };
     fetch();
@@ -232,10 +240,12 @@ function ProfileEdit() {
                     error={!!errors.department}
                   >
                     <Select
-                      {...register("department", {
-                        required: "Department is required",
-                      })}
-                      onChange={(e) => setDept(e.target.value)}
+                      value={watchDepartment || ""}
+                      {...register("department", { required: "Department is required" })}
+                      onChange={(e) => {
+                        setValue("department", e.target.value, { shouldValidate: true });
+                        setDept(e.target.value);
+                      }}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -258,43 +268,14 @@ function ProfileEdit() {
                     variant="standard"
                     error={!!errors.program}
                   >
-                    <p>Program</p>
-                    {dept !== "" ? (
-                      <Autocomplete
-                        freeSolo
-                        options={Object.keys(
-                          func[dept as keyof typeof func] || []
-                        )}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            {...register("program", {
-                              required: "Program is required",
-                            })}
-                            label="Program"
-                            variant="standard"
-                          />
-                        )}
-                        onChange={(_, value) => {
-                          // Manually set the value when a predefined option is selected
-                          setValue("program", value || "", {
-                            shouldValidate: true,
-                          });
-                        }}
-                        onInputChange={(_, value) => {
-                          // Update the value as the user types
-                          setValue("program", value, { shouldValidate: true });
-                        }}
-                      />
-                    ) : (
+                    <p>Program</p>               
                       <TextField
                         {...register("program", {
                           required: "Program is required",
                         })}
-                        label="Program"
                         variant="standard"
                       />
-                    )}
+                      
                     {errors.program && (
                       <FormHelperText>{errors.program.message}</FormHelperText>
                     )}
@@ -307,9 +288,14 @@ function ProfileEdit() {
                     fullWidth
                     variant="standard"
                     required
-                    {...register("specialization", {
+                    value={watchStageOfPhd || ""}
+                    {...register("stage_of_phd", {
                       required: "Stage of PhD is required",
                     })}
+                    onChange={(e) => {
+                      setValue("stage_of_phd", e.target.value, { shouldValidate: true });
+                      setDept(e.target.value);
+                    }}
                     // onChange={(e) => {
                     //   setDept(e.target.value as string);
                     // }}
@@ -500,37 +486,27 @@ function ProfileEdit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>10th Board</p>
-                  <Autocomplete
-                    freeSolo
-                    options={["CBSE", "ICSE"]}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        error={!!errors.tenth_board}
-                        helperText={
-                          errors.tenth_board ? errors.tenth_board.message : ""
-                        }
-                        {...register("tenth_board", {
-                          required: "10th Board is required",
-                          validate: (value) =>
-                            value.trim() !== "" || "10th Board is required",
-                        })}
+                  <Controller
+                    name="tenth_board"
+                    control={control}
+                    rules={{ required: "10th Board is required" }}
+                    render={({ field }) => (
+                      <Autocomplete
+                        freeSolo
+                        options={["CBSE", "ICSE"]}
+                        value={field.value || null}
+                        onChange={(_, value) => field.onChange(value)}
+                        onInputChange={(_, value) => field.onChange(value)}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            error={!!errors.tenth_board}
+                            helperText={errors.tenth_board?.message}
+                          />
+                        )}
                       />
                     )}
-                    onChange={(_, value) => {
-                      // Update the field value when an option is selected
-                      setValue("tenth_board", value || "", {
-                        shouldValidate: true,
-                      });
-                    }}
-                    inputValue={watch("tenth_board")} // Keep input value in sync with the form state
-                    onInputChange={(_, value) => {
-                      // Update the field value as the user types
-                      setValue("tenth_board", value || "", {
-                        shouldValidate: true,
-                      });
-                    }}
                   />
                 </Grid>
 
@@ -582,39 +558,27 @@ function ProfileEdit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>12th Board</p>
-                  <Autocomplete
-                    freeSolo
-                    options={["CBSE", "ICSE"]}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        error={!!errors.twelfth_board}
-                        helperText={
-                          errors.twelfth_board
-                            ? errors.twelfth_board.message
-                            : ""
-                        }
-                        {...register("twelfth_board", {
-                          required: "12th Board is required",
-                          validate: (value) =>
-                            value.trim() !== "" || "12th Board is required",
-                        })}
+                  <Controller
+                    name="twelfth_board"
+                    control={control}
+                    rules={{ required: "12th Board is required" }}
+                    render={({ field }) => (
+                      <Autocomplete
+                        freeSolo
+                        options={["CBSE", "ICSE"]}
+                        value={field.value || null}
+                        onChange={(_, value) => field.onChange(value)}
+                        onInputChange={(_, value) => field.onChange(value)}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            error={!!errors.twelfth_board}
+                            helperText={errors.twelfth_board?.message}
+                          />
+                        )}
                       />
                     )}
-                    onChange={(_, value) => {
-                      // Update the field value when an option is selected
-                      setValue("twelfth_board", value || "", {
-                        shouldValidate: true,
-                      });
-                    }}
-                    inputValue={watch("twelfth_board")} // Keep input value in sync with the form state
-                    onInputChange={(_, value) => {
-                      // Update the field value as the user types
-                      setValue("twelfth_board", value || "", {
-                        shouldValidate: true,
-                      });
-                    }}
                   />
                 </Grid>
 
@@ -750,6 +714,7 @@ function ProfileEdit() {
                     }
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <p>Permanent Address</p>
                   <TextField
@@ -770,6 +735,7 @@ function ProfileEdit() {
                     }
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <p>Friend Name</p>
                   <TextField
@@ -780,6 +746,7 @@ function ProfileEdit() {
                     {...register("friend_name")}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <p>Friend Contact Details</p>
                   <TextField
@@ -799,6 +766,7 @@ function ProfileEdit() {
                     })}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <p>Disability</p>
                   <FormControl
@@ -822,6 +790,7 @@ function ProfileEdit() {
                     )}
                   </FormControl>
                 </Grid>
+                
               </Grid>
             </Card>
           </Stack>
