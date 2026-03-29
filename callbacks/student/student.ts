@@ -21,16 +21,20 @@ export interface Student {
   specialization: string;
   preference: string;
   gender: string;
+  gate_score: number;
   disability: string;
-  dob: number;
+  dob: string;
   expected_graduation_year: number;
   iitk_email: string;
+  jam_score: number;
+  net_score: number;
   personal_email: string;
   phone: string;
   alternate_phone: string;
   whatsapp_number: string;
   program_department_id: number;
   secondary_program_department_id: number;
+  stage_of_phd: string;
   current_cpi: number;
   ug_cpi: number;
   tenth_board: string;
@@ -48,6 +52,9 @@ export interface Student {
   friend_name: string;
   friend_phone: string;
   is_editable: string;
+  gate_score: number;
+  net_score: number;
+  jam_score: number;
   is_verified: boolean;
 }
 

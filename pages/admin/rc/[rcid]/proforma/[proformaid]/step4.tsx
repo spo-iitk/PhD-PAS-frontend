@@ -91,6 +91,8 @@ function Step4() {
         rid,
         data.company_recruitment_cycle_id
       );
+      console.log(hr)
+      console.log(data)
       setHR(hr);
       setFetch(data);
       reset(data);

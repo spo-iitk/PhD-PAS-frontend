@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import Meta from "@components/Meta";
@@ -21,7 +21,7 @@ import AdminStudentRequest, {
 } from "@callbacks/admin/student/adminStudent";
 import useStore from "@store/store";
 import { Branches, StagesofPhD, func } from "@components/Utils/matrixUtils";
-import { getId } from "@components/Parser/parser";
+import { getId, getDepartment, getProgram } from "@components/Parser/parser";
 
 function Edit() {
   const [StudentData, setStudentData] = useState<Student>({ ID: 0 } as Student);
@@ -32,6 +32,7 @@ function Edit() {
     formState: { errors },
     getValues,
     setValue,
+    control,
     watch,
   } = useForm<Student>({
     defaultValues: StudentData,
@@ -41,6 +42,8 @@ function Edit() {
   // const watchEntranceExam = watch("entrance_exam");
   // const watchCategory = watch("category");
   const watchDisability = watch("disability");
+  const watchDepartment = watch("department");
+  const watchStageOfPhd = watch("stage_of_phd");
 
   const [dept, setDept] = useState<any>("");
   // const [deptSec, setDeptSec] = useState<string>("");
@@ -57,8 +60,14 @@ function Edit() {
         parseInt(sId, 10)
       ).catch(() => ({ ID: 0 } as Student));
       setStudentData(student);
-      setDept(student.department);
-      reset(student);
+      setDept(getDepartment(student.program_department_id));
+      reset({
+        ...student,
+        program: getProgram(student.program_department_id),
+        department: getDepartment(student.program_department_id),
+        stage_of_phd: student.stage_of_phd,
+        dob: student.dob ? new Date(student.dob).toISOString().split("T")[0] : "",
+      });
     };
     if (router.isReady) fetch();
   }, [token, sId, reset, router]);
@@ -178,10 +187,12 @@ function Edit() {
                     error={!!errors.department}
                   >
                     <Select
-                      {...register("department", {
-                        required: "Department is required",
-                      })}
-                      onChange={(e) => setDept(e.target.value)}
+                      value={watchDepartment || ""}
+                      {...register("department", { required: "Department is required" })}
+                      onChange={(e) => {
+                        setValue("department", e.target.value, { shouldValidate: true });
+                        setDept(e.target.value);
+                      }}
                     >
                       <MenuItem value="" />
                       <MenuItem value="NA">None</MenuItem>
@@ -205,42 +216,13 @@ function Edit() {
                     error={!!errors.program}
                   >
                     <p>Program</p>
-                    {dept !== "" ? (
-                      <Autocomplete
-                        freeSolo
-                        options={Object.keys(
-                          func[dept as keyof typeof func] || []
-                        )}
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            {...register("program", {
-                              required: "Program is required",
-                            })}
-                            label="Program"
-                            variant="standard"
-                          />
-                        )}
-                        onChange={(_, value) => {
-                          // Manually set the value when a predefined option is selected
-                          setValue("program", value || "", {
-                            shouldValidate: true,
-                          });
-                        }}
-                        onInputChange={(_, value) => {
-                          // Update the value as the user types
-                          setValue("program", value, { shouldValidate: true });
-                        }}
-                      />
-                    ) : (
-                      <TextField
-                        {...register("program", {
-                          required: "Program is required",
-                        })}
-                        label="Program"
-                        variant="standard"
-                      />
-                    )}
+                    <TextField
+                      {...register("program", {
+                        required: "Program is required",
+                      })}
+                      variant="standard"
+                    />
+
                     {errors.program && (
                       <FormHelperText>{errors.program.message}</FormHelperText>
                     )}
@@ -249,33 +231,30 @@ function Edit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>Stage of PhD</p>
-                  <FormControl
+                  <Select
                     fullWidth
                     variant="standard"
-                    error={!!errors.specialization} // Highlight error state
+                    required
+                    value={watchStageOfPhd || ""}
+                    {...register("stage_of_phd", {
+                      required: "Stage of PhD is required",
+                    })}
+                    onChange={(e) => {
+                      setValue("stage_of_phd", e.target.value, { shouldValidate: true });
+                      setDept(e.target.value);
+                    }}
+                  // onChange={(e) => {
+                  //   setDept(e.target.value as string);
+                  // }}
                   >
-                    <InputLabel>Stage of PhD</InputLabel>
-                    <Select
-                      {...register("specialization", {
-                        required: "Stage of PhD is required",
-                      })}
-                      defaultValue="" // Ensure default empty value
-                    >
-                      <MenuItem value="">
-                        <em>Select a stage</em>
+                    <MenuItem value="" />
+                    {/* <MenuItem value="NA">None</MenuItem> */}
+                    {StagesofPhD.map((stage) => (
+                      <MenuItem key={stage} value={stage}>
+                        {stage}
                       </MenuItem>
-                      {StagesofPhD.map((stage) => (
-                        <MenuItem key={stage} value={stage}>
-                          {stage}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    <FormHelperText>
-                      {errors.specialization
-                        ? errors.specialization.message
-                        : ""}
-                    </FormHelperText>
-                  </FormControl>
+                    ))}
+                  </Select>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
@@ -454,20 +433,25 @@ function Edit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>10th Board</p>
-                  <Autocomplete
-                    freeSolo
-                    options={["CBSE", "ICSE"]}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        error={!!errors.tenth_board}
-                        helperText={
-                          errors.tenth_board ? "10th Board is required" : ""
-                        }
-                        {...register("tenth_board", {
-                          required: "10th Board is required",
-                        })}
+                  <Controller
+                    name="tenth_board"
+                    control={control}
+                    rules={{ required: "10th Board is required" }}
+                    render={({ field }) => (
+                      <Autocomplete
+                        freeSolo
+                        options={["CBSE", "ICSE"]}
+                        value={field.value || null}
+                        onChange={(_, value) => field.onChange(value)}
+                        onInputChange={(_, value) => field.onChange(value)}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            error={!!errors.tenth_board}
+                            helperText={errors.tenth_board?.message}
+                          />
+                        )}
                       />
                     )}
                   />
@@ -521,20 +505,25 @@ function Edit() {
 
                 <Grid item xs={12} sm={6}>
                   <p>12th Board</p>
-                  <Autocomplete
-                    freeSolo
-                    options={["CBSE", "ICSE"]}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        variant="standard"
-                        error={!!errors.twelfth_board}
-                        helperText={
-                          errors.twelfth_board ? "12th Board is required" : ""
-                        }
-                        {...register("twelfth_board", {
-                          required: "12th Board is required",
-                        })}
+                  <Controller
+                    name="twelfth_board"
+                    control={control}
+                    rules={{ required: "12th Board is required" }}
+                    render={({ field }) => (
+                      <Autocomplete
+                        freeSolo
+                        options={["CBSE", "ICSE"]}
+                        value={field.value || null}
+                        onChange={(_, value) => field.onChange(value)}
+                        onInputChange={(_, value) => field.onChange(value)}
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            variant="standard"
+                            error={!!errors.twelfth_board}
+                            helperText={errors.twelfth_board?.message}
+                          />
+                        )}
                       />
                     )}
                   />
@@ -585,6 +574,80 @@ function Edit() {
                     })}
                   />
                 </Grid>
+
+
+                <Grid item xs={12} sm={6}>
+                  <p>JAM Score</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="jam-score"
+                    variant="standard"
+                    error={!!errors.jam_score}
+                    helperText={errors.jam_score?.message}
+                    {...register("jam_score", {
+                      required: "JAM Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const marks = parseFloat(value.toString());
+                        if (Number.isNaN(marks))
+                          return "Marks must be a valid number";
+                        if (marks < 0) return "Marks must be at least 0";
+                        if (marks > 100) return "Marks cannot exceed 100";
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <p>GATE Score</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="gate-score"
+                    variant="standard"
+                    error={!!errors.gate_score}
+                    helperText={errors.gate_score?.message}
+                    {...register("gate_score", {
+                      required: "GATE Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const marks = parseFloat(value.toString());
+                        if (Number.isNaN(marks))
+                          return "Marks must be a valid number";
+                        if (marks < 0) return "Marks must be at least 0";
+                        if (marks > 100) return "Marks cannot exceed 100";
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <p>NET Score</p>
+                  <TextField
+                    fullWidth
+                    type="text"
+                    id="net-score"
+                    variant="standard"
+                    error={!!errors.net_score}
+                    helperText={errors.net_score?.message}
+                    {...register("net_score", {
+                      required: "NET Score is required",
+                      setValueAs: (value) => parseFloat(value),
+                      validate: (value) => {
+                        const marks = parseFloat(value.toString());
+                        if (Number.isNaN(marks))
+                          return "Marks must be a valid number";
+                        if (marks < 0) return "Marks must be at least 0";
+                        if (marks > 100) return "Marks cannot exceed 100";
+                        return true;
+                      },
+                    })}
+                  />
+                </Grid>
+
 
                 <Grid item xs={12} sm={6}>
                   <p>Current Address</p>

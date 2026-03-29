@@ -25,6 +25,7 @@ export interface Student {
   secondary_program_department_id: number;
   student_id: number;
   type: string;
+  stage_of_phd: string;
   roll_no?: string;
 }
 

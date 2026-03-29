@@ -145,10 +145,62 @@ function Step2() {
                 );
               })}
             </Stack>
-          </Card>
+          </Stack>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableBody>
+                {Branches.map((branch) => (
+                  <TableRow>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      sx={{ fontWeight: 600 }}
+                    >
+                      <Button onClick={() => handleBranchWise(branch)}>
+                        {branch}
+                      </Button>
+                    </TableCell>
+                    {/* <TableCell>
+                      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        {Object.keys(func[branch as keyof typeof func]).map(
+                          (keyword) => {
+                            const temp = func[branch as keyof typeof func];
+                            const value =
+                              func[branch as keyof typeof func][
+                                keyword as keyof typeof temp
+                              ];
+                            return (
+                              <TableRow>
+                                <TableCell>{keyword}</TableCell>
+                                <TableCell>
+                                  <Checkbox
+                                    checked={str[parseInt(value, 10)] === "1"}
+                                    onClick={() => handleCheck(branch, keyword)}
+                                  />
+                                </TableCell>
+                              </TableRow>
+                            );
+                          }
+                        )}
+                      </Table>
+                    </TableCell> */}
+                    <TableCell>
+                      <Checkbox
+                        // checked={str[parseInt(value, 10)] === "1"}
+                        onClick={() => handleBranchWise(branch)}
+                      />
+                    </TableCell>
 
-          {/* Navigation */}
-          <Stack direction="row" spacing={4}>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Stack
+            direction="row"
+            spacing={5}
+            sx={{ width: { xs: "330px", md: "500px" } }}
+          >
             <Button
               variant="contained"
               fullWidth
