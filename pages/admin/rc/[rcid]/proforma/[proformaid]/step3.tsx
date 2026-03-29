@@ -19,6 +19,7 @@ function Step3() {
   const pid = (proformaid || "").toString();
   const { token } = useStore();
   const [ctc, changeCTC] = useState("");
+  const [cost_to_company_foreign, changeCTCforeign] = useState("");
   const [pkgDetails, changePkg] = useState("");
   const [fetchData, setFetch] = useState<AdminProformaType>({
     ID: 0,
@@ -38,6 +39,7 @@ function Step3() {
       ID: parseInt(pid, 10),
       package_details: pkgDetails,
       cost_to_company: ctc,
+     cost_to_company_foreign:cost_to_company_foreign
     };
     const response = await requestProforma.put(token, rid, info);
     if (response) {
@@ -47,6 +49,7 @@ function Step3() {
         medical_requirements: "",
       });
       changeCTC("");
+        changeCTCforeign("");
       changePkg("");
       router.push({
         pathname: ROUTE,
@@ -61,6 +64,7 @@ function Step3() {
       setFetch(data);
       reset(data);
       changeCTC(data.cost_to_company);
+      changeCTCforeign(data.cost_to_company_foreign);
       changePkg(data.package_details);
     };
     if (rid && pid) getStep3();
